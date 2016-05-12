@@ -30,14 +30,16 @@ namespace Recording_Student_Achievements
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TextBox MenuLbl;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.TopBar = new System.Windows.Forms.PictureBox();
             this.QuickMenu = new System.Windows.Forms.PictureBox();
+            this.MenuLbl = new System.Windows.Forms.Label();
             this.header = new System.Windows.Forms.PictureBox();
-            MenuLbl = new System.Windows.Forms.TextBox();
+            this.addStudent = new System.Windows.Forms.Button();
+            this.removeStudent = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuickMenu)).BeginInit();
+            this.QuickMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.header)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,12 +54,24 @@ namespace Recording_Student_Achievements
             // 
             // QuickMenu
             // 
+            this.QuickMenu.Controls.Add(this.MenuLbl);
             this.QuickMenu.Image = global::Recording_Student_Achievements.Properties.Resources.Quick_Menu;
             this.QuickMenu.Location = new System.Drawing.Point(-1, 110);
             this.QuickMenu.Name = "QuickMenu";
             this.QuickMenu.Size = new System.Drawing.Size(159, 907);
             this.QuickMenu.TabIndex = 2;
             this.QuickMenu.TabStop = false;
+            // 
+            // MenuLbl
+            // 
+            this.MenuLbl.AutoSize = true;
+            this.MenuLbl.BackColor = System.Drawing.Color.Transparent;
+            this.MenuLbl.ForeColor = System.Drawing.Color.White;
+            this.MenuLbl.Location = new System.Drawing.Point(37, 25);
+            this.MenuLbl.Name = "MenuLbl";
+            this.MenuLbl.Size = new System.Drawing.Size(65, 13);
+            this.MenuLbl.TabIndex = 3;
+            this.MenuLbl.Text = "Quick Menu";
             // 
             // header
             // 
@@ -69,23 +83,32 @@ namespace Recording_Student_Achievements
             this.header.TabIndex = 0;
             this.header.TabStop = false;
             // 
-            // MenuLbl
+            // addStudent
             // 
-            MenuLbl.BackColor = System.Drawing.Color.Red;
-            MenuLbl.ForeColor = System.Drawing.Color.White;
-            MenuLbl.Location = new System.Drawing.Point(12, 132);
-            MenuLbl.Name = "MenuLbl";
-            MenuLbl.Size = new System.Drawing.Size(100, 20);
-            MenuLbl.TabIndex = 3;
-            MenuLbl.Text = "Quick Menu";
+            this.addStudent.Location = new System.Drawing.Point(12, 162);
+            this.addStudent.Name = "addStudent";
+            this.addStudent.Size = new System.Drawing.Size(121, 23);
+            this.addStudent.TabIndex = 3;
+            this.addStudent.Text = "Add a Student";
+            this.addStudent.UseVisualStyleBackColor = true;
+            // 
+            // removeStudent
+            // 
+            this.removeStudent.Location = new System.Drawing.Point(12, 213);
+            this.removeStudent.Name = "removeStudent";
+            this.removeStudent.Size = new System.Drawing.Size(121, 23);
+            this.removeStudent.TabIndex = 4;
+            this.removeStudent.Text = "Remove a Student";
+            this.removeStudent.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1996, 1001);
-            this.Controls.Add(MenuLbl);
+            this.ClientSize = new System.Drawing.Size(1916, 1001);
+            this.Controls.Add(this.removeStudent);
+            this.Controls.Add(this.addStudent);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.QuickMenu);
             this.Controls.Add(this.header);
@@ -100,6 +123,8 @@ namespace Recording_Student_Achievements
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.TopBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuickMenu)).EndInit();
+            this.QuickMenu.ResumeLayout(false);
+            this.QuickMenu.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.header)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,6 +163,9 @@ namespace Recording_Student_Achievements
         private PictureBox header;
         private PictureBox TopBar;
         private PictureBox QuickMenu;
+        private Label MenuLbl;
+        private Button addStudent;
+        private Button removeStudent;
     }
 }
 
