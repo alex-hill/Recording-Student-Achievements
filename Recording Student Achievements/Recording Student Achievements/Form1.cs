@@ -16,17 +16,31 @@ namespace Recording_Student_Achievements
 
     public partial class Form1 : Form
     {
+        public String dbFileName;
+        private OpenFileDialog fileChooser;
         public Form1()
         {
             InitializeComponent();
             ns = new NewStudent();
             ws = new WithdrawStudent();
+            fileChooser = new OpenFileDialog();
+            
+
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            fileChooser.Title = "Choose the database file";
+            if (fileChooser.ShowDialog() == DialogResult.Cancel)
+            {
 
+            }
+            else
+            {
+                this.dbFileName = fileChooser.FileName;
+            }
+            
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
