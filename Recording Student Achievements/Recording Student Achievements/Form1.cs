@@ -20,6 +20,7 @@ namespace Recording_Student_Achievements
         {
             InitializeComponent();
             ns = new NewStudent();
+            ws = new WithdrawStudent();
         }
 
 
@@ -36,19 +37,35 @@ namespace Recording_Student_Achievements
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
         }
-
+        private WithdrawStudent ws;
         private void withdrawStudentLbl_Click(object sender, EventArgs e)
         {
-
+            if (!ws.Visible && !ws.IsDisposed)
+            {
+                // Add the message
+                ws.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ns.IsDisposed)
+            {
+                ws = new WithdrawStudent();
+                ws.Show();
+            }
         }
 
         private NewStudent ns;
         private void newStudentLbl_Click(object sender, EventArgs e)
         {
             
-            if (!ns.Visible)
+            if (!ns.Visible && !ns.IsDisposed)
             {
                 // Add the message
+                ns.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ns.IsDisposed)
+            {
+                ns = new NewStudent();
                 ns.Show();
             }
         }
