@@ -31,9 +31,6 @@ namespace Recording_Student_Achievements
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-
-            this.addStudent = new System.Windows.Forms.Button();
-            this.removeStudent = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TopBar = new System.Windows.Forms.PictureBox();
             this.QuickMenu = new System.Windows.Forms.PictureBox();
@@ -49,24 +46,6 @@ namespace Recording_Student_Achievements
             this.QuickMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.header)).BeginInit();
             this.SuspendLayout();
-            // 
-            // addStudent
-            // 
-            this.addStudent.Location = new System.Drawing.Point(13, 328);
-            this.addStudent.Name = "addStudent";
-            this.addStudent.Size = new System.Drawing.Size(121, 23);
-            this.addStudent.TabIndex = 3;
-            this.addStudent.Text = "Add a Student";
-            this.addStudent.UseVisualStyleBackColor = true;
-            // 
-            // removeStudent
-            // 
-            this.removeStudent.Location = new System.Drawing.Point(13, 290);
-            this.removeStudent.Name = "removeStudent";
-            this.removeStudent.Size = new System.Drawing.Size(121, 23);
-            this.removeStudent.TabIndex = 4;
-            this.removeStudent.Text = "Remove a Student";
-            this.removeStudent.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -182,8 +161,6 @@ namespace Recording_Student_Achievements
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1916, 1001);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.removeStudent);
-            this.Controls.Add(this.addStudent);
             this.Controls.Add(this.TopBar);
             this.Controls.Add(this.QuickMenu);
             this.Controls.Add(this.header);
@@ -241,8 +218,6 @@ namespace Recording_Student_Achievements
         private PictureBox TopBar;
         private PictureBox QuickMenu;
         private Label menuLbl, homeLbl, studentLbl, newStudentLbl, withdrawStudentLbl;
-        private Button addStudent;
-        private Button removeStudent;
         private PictureBox pictureBox1;
     }
 }
