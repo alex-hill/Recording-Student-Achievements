@@ -126,6 +126,15 @@
   <ItemGroup>
     <None Include="Drawables\Seperator.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Drawables\Large Box.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Drawables\Logo.png" />
+    <Content Include="Table.accdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
