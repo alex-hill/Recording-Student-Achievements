@@ -31,11 +31,12 @@ namespace Recording_Student_Achievements
         private void button1_Click(object sender, EventArgs e)
         {
             OleDbConnection conn = new OleDbConnection();
-            conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True";
+            MessageBox.Show("Database File: " + Form1.getDbName());
+            conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + Form1.getDbName() +";Persist Security Info=True";
 
               OleDbCommand cmd = new OleDbCommand("INSERT INTO Student ([Family Name Alias], [Family Name Legal], [First Name Legal], [Preferred Name], [Year Level], [Room Number], [Gender], [Date of Birth], [Ethnicity], [NSN], [Funding Year Level], [Start Date])"
-                  +" VALUES(" + textBox1.Text + ", " + textBox2.Text + ", [" + textBox3.Text + "], " + textBox4.Text + ", " + textBox5.Text + ", " + textBox6.Text
-                   + ", " + textBox7.Text + ", " + textBox8.Text + ", " + textBox9.Text + ", " + textBox10.Text + ", " + textBox11.Text + ", " + textBox12.Text + ");");
+                  +" VALUES([" + textBox1.Text + "], [" + textBox2.Text + "], [" + textBox3.Text + "], [" + textBox4.Text + "], [" + textBox5.Text + "], [" + textBox6.Text
+                   + "], [" + textBox7.Text + "], [" + textBox8.Text + "], [" + textBox9.Text + "], [" + textBox10.Text + "], " + textBox11.Text + ", " + textBox12.Text + ");");
 
            // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;

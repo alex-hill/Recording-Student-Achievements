@@ -16,7 +16,7 @@ namespace Recording_Student_Achievements
 
     public partial class Form1 : Form
     {
-        public String dbFileName;
+        private static String dbFileName;
         private OpenFileDialog fileChooser;
         public Form1()
         {
@@ -26,6 +26,11 @@ namespace Recording_Student_Achievements
             fileChooser = new OpenFileDialog();
             
 
+        }
+
+        public static String getDbName()
+        {
+            return dbFileName;
         }
 
 
@@ -38,7 +43,7 @@ namespace Recording_Student_Achievements
             }
             else
             {
-                this.dbFileName = fileChooser.FileName;
+                dbFileName = fileChooser.FileName;
             }
             
         }
