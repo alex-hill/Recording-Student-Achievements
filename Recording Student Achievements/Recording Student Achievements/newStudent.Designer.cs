@@ -43,18 +43,18 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.familyNameAlias = new System.Windows.Forms.TextBox();
+            this.familyNameLegal = new System.Windows.Forms.TextBox();
+            this.firstNameLegal = new System.Windows.Forms.TextBox();
+            this.preferredName = new System.Windows.Forms.TextBox();
+            this.dateOfBirth = new System.Windows.Forms.TextBox();
+            this.startDate = new System.Windows.Forms.TextBox();
+            this.yearLevelCombo = new System.Windows.Forms.ComboBox();
+            this.genderCombo = new System.Windows.Forms.ComboBox();
+            this.ethnicityCombo = new System.Windows.Forms.ComboBox();
+            this.roomCombo = new System.Windows.Forms.ComboBox();
+            this.nsn = new System.Windows.Forms.TextBox();
+            this.fundingLevelCombo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -210,107 +210,176 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
+            // familyNameAlias
             // 
-            this.textBox1.Location = new System.Drawing.Point(233, 64);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(135, 20);
-            this.textBox1.TabIndex = 2;
+            this.familyNameAlias.Location = new System.Drawing.Point(233, 64);
+            this.familyNameAlias.Name = "familyNameAlias";
+            this.familyNameAlias.Size = new System.Drawing.Size(135, 20);
+            this.familyNameAlias.TabIndex = 2;
             // 
-            // textBox2
+            // familyNameLegal
             // 
-            this.textBox2.Location = new System.Drawing.Point(233, 94);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(135, 20);
-            this.textBox2.TabIndex = 2;
+            this.familyNameLegal.Location = new System.Drawing.Point(233, 94);
+            this.familyNameLegal.Name = "familyNameLegal";
+            this.familyNameLegal.Size = new System.Drawing.Size(135, 20);
+            this.familyNameLegal.TabIndex = 2;
+            this.familyNameLegal.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
-            // textBox3
+            // firstNameLegal
             // 
-            this.textBox3.Location = new System.Drawing.Point(233, 123);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(135, 20);
-            this.textBox3.TabIndex = 2;
+            this.firstNameLegal.Location = new System.Drawing.Point(233, 123);
+            this.firstNameLegal.Name = "firstNameLegal";
+            this.firstNameLegal.Size = new System.Drawing.Size(135, 20);
+            this.firstNameLegal.TabIndex = 2;
             // 
-            // textBox4
+            // preferredName
             // 
-            this.textBox4.Location = new System.Drawing.Point(233, 153);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(135, 20);
-            this.textBox4.TabIndex = 2;
+            this.preferredName.Location = new System.Drawing.Point(233, 153);
+            this.preferredName.Name = "preferredName";
+            this.preferredName.Size = new System.Drawing.Size(135, 20);
+            this.preferredName.TabIndex = 2;
             // 
-            // textBox5
+            // dateOfBirth
             // 
-            this.textBox5.Location = new System.Drawing.Point(233, 183);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(135, 20);
-            this.textBox5.TabIndex = 2;
+            this.dateOfBirth.Location = new System.Drawing.Point(233, 241);
+            this.dateOfBirth.Name = "dateOfBirth";
+            this.dateOfBirth.Size = new System.Drawing.Size(135, 20);
+            this.dateOfBirth.TabIndex = 2;
             // 
-            // textBox6
+            // startDate
             // 
-            this.textBox6.Location = new System.Drawing.Point(233, 212);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(135, 20);
-            this.textBox6.TabIndex = 2;
+            this.startDate.Location = new System.Drawing.Point(233, 389);
+            this.startDate.Name = "startDate";
+            this.startDate.Size = new System.Drawing.Size(135, 20);
+            this.startDate.TabIndex = 2;
             // 
-            // textBox7
+            // yearLevelCombo
             // 
-            this.textBox7.Location = new System.Drawing.Point(233, 241);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(135, 20);
-            this.textBox7.TabIndex = 2;
+            this.yearLevelCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.yearLevelCombo.FormattingEnabled = true;
+            this.yearLevelCombo.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"});
+            this.yearLevelCombo.SelectedIndex = 0;
+            this.yearLevelCombo.Location = new System.Drawing.Point(233, 180);
+            this.yearLevelCombo.Name = "yearLevelCombo";
+            this.yearLevelCombo.Size = new System.Drawing.Size(135, 21);
+            this.yearLevelCombo.TabIndex = 3;
             // 
-            // textBox8
+            // genderCombo
             // 
-            this.textBox8.Location = new System.Drawing.Point(233, 270);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(135, 20);
-            this.textBox8.TabIndex = 2;
+            this.genderCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.genderCombo.FormattingEnabled = true;
+            this.genderCombo.Items.AddRange(new object[] {
+            "Male",
+            "Female"});
+            this.genderCombo.SelectedIndex = 0;
+            this.genderCombo.Location = new System.Drawing.Point(233, 209);
+            this.genderCombo.Name = "genderCombo";
+            this.genderCombo.Size = new System.Drawing.Size(135, 21);
+            this.genderCombo.TabIndex = 4;
             // 
-            // textBox9
+            // ethnicityCombo
             // 
-            this.textBox9.Location = new System.Drawing.Point(233, 301);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(135, 20);
-            this.textBox9.TabIndex = 2;
+            this.ethnicityCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ethnicityCombo.FormattingEnabled = true;
+            this.ethnicityCombo.Items.AddRange(new object[] {
+            "Austrailian",
+            "British/Irish",
+            "Chinese",
+            "Dutch",
+            "Filipino",
+            "German",
+            "NZ European",
+            "NZ Maori",
+            "Samoan",
+            "Other Asian",
+            "Other European",
+            "Other Pacific Isl Group",
+            "Other Groups"});
+            this.ethnicityCombo.SelectedIndex = 0;
+            this.ethnicityCombo.Location = new System.Drawing.Point(233, 267);
+            this.ethnicityCombo.Name = "ethnicityCombo";
+            this.ethnicityCombo.Size = new System.Drawing.Size(135, 21);
+            this.ethnicityCombo.TabIndex = 5;
             // 
-            // textBox10
+            // roomCombo
             // 
-            this.textBox10.Location = new System.Drawing.Point(233, 330);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(135, 20);
-            this.textBox10.TabIndex = 2;
+            this.roomCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.roomCombo.FormattingEnabled = true;
+            this.roomCombo.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18"});
+            this.roomCombo.SelectedIndex = 0;
+            this.roomCombo.Location = new System.Drawing.Point(233, 327);
+            this.roomCombo.Name = "roomCombo";
+            this.roomCombo.Size = new System.Drawing.Size(135, 21);
+            this.roomCombo.TabIndex = 6;
             // 
-            // textBox11
+            // nsn
             // 
-            this.textBox11.Location = new System.Drawing.Point(233, 359);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(135, 20);
-            this.textBox11.TabIndex = 2;
+            this.nsn.Location = new System.Drawing.Point(233, 301);
+            this.nsn.Name = "nsn";
+            this.nsn.Size = new System.Drawing.Size(135, 20);
+            this.nsn.TabIndex = 2;
             // 
-            // textBox12
+            // fundingLevelCombo
             // 
-            this.textBox12.Location = new System.Drawing.Point(233, 389);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(135, 20);
-            this.textBox12.TabIndex = 2;
+            this.fundingLevelCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.fundingLevelCombo.FormattingEnabled = true;
+            this.fundingLevelCombo.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7"});
+            this.fundingLevelCombo.SelectedIndex = 0;
+            this.fundingLevelCombo.Location = new System.Drawing.Point(233, 356);
+            this.fundingLevelCombo.Name = "fundingLevelCombo";
+            this.fundingLevelCombo.Size = new System.Drawing.Size(135, 21);
+            this.fundingLevelCombo.TabIndex = 7;
+            this.fundingLevelCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // NewStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(473, 482);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.textBox11);
-            this.Controls.Add(this.textBox10);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.fundingLevelCombo);
+            this.Controls.Add(this.roomCombo);
+            this.Controls.Add(this.ethnicityCombo);
+            this.Controls.Add(this.genderCombo);
+            this.Controls.Add(this.yearLevelCombo);
+            this.Controls.Add(this.startDate);
+            this.Controls.Add(this.nsn);
+            this.Controls.Add(this.dateOfBirth);
+            this.Controls.Add(this.preferredName);
+            this.Controls.Add(this.firstNameLegal);
+            this.Controls.Add(this.familyNameLegal);
+            this.Controls.Add(this.familyNameAlias);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label13);
@@ -349,17 +418,17 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox familyNameAlias;
+        private System.Windows.Forms.TextBox familyNameLegal;
+        private System.Windows.Forms.TextBox firstNameLegal;
+        private System.Windows.Forms.TextBox preferredName;
+        private System.Windows.Forms.TextBox dateOfBirth;
+        private System.Windows.Forms.TextBox startDate;
+        private System.Windows.Forms.ComboBox genderCombo;
+        private System.Windows.Forms.ComboBox ethnicityCombo;
+        private System.Windows.Forms.ComboBox roomCombo;
+        private System.Windows.Forms.TextBox nsn;
+        private System.Windows.Forms.ComboBox fundingLevelCombo;
+        private System.Windows.Forms.ComboBox yearLevelCombo;
     }
 }

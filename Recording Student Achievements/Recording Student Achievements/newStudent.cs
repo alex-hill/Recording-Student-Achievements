@@ -13,9 +13,12 @@ namespace Recording_Student_Achievements
 {
     public partial class NewStudent : Form
     {
+        private OleDbConnection conn = new OleDbConnection();
         public NewStudent()
         {
             InitializeComponent();
+            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;
+Persist Security Info=False;";
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -30,13 +33,10 @@ namespace Recording_Student_Achievements
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OleDbConnection conn = new OleDbConnection();
-            MessageBox.Show("Database File: " + Form1.getDbName());
-            conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source= " + Form1.getDbName() +";Persist Security Info=True";
 
               OleDbCommand cmd = new OleDbCommand("INSERT INTO Student ([Family Name Alias], [Family Name Legal], [First Name Legal], [Preferred Name], [Year Level], [Room Number], [Gender], [Date of Birth], [Ethnicity], [NSN], [Funding Year Level], [Start Date])"
-                  +" VALUES([" + textBox1.Text + "], [" + textBox2.Text + "], [" + textBox3.Text + "], [" + textBox4.Text + "], [" + textBox5.Text + "], [" + textBox6.Text
-                   + "], [" + textBox7.Text + "], [" + textBox8.Text + "], [" + textBox9.Text + "], [" + textBox10.Text + "], " + textBox11.Text + ", " + textBox12.Text + ");");
+                  +" VALUES(" + familyNameAlias.Text + ", " + familyNameLegal.Text + ", [" + firstNameLegal.Text + "], " + preferredName.Text + ", " + yearLevelCombo.Text + ", " + roomCombo.Text
+                   + ", " + genderCombo.Text + ", " + dateOfBirth.Text + ", " + ethnicityCombo.Text + ", " + nsn.Text + ", " + fundingLevelCombo.Text + ", " + startDate.Text + ");");
 
            // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;
@@ -46,18 +46,18 @@ namespace Recording_Student_Achievements
             if (conn.State == ConnectionState.Open)
             {
                // cmd.Parameters.Add("@Student ID", OleDbType.VarChar).Value = 1;
-               cmd.Parameters.Add("@Family Name Alias", OleDbType.VarChar).Value = textBox1.Text;
-                cmd.Parameters.Add("@Family Name Legal", OleDbType.VarChar).Value = textBox2.Text;
-                cmd.Parameters.Add("@First Name Legal", OleDbType.VarChar).Value = textBox3.Text;
-                cmd.Parameters.Add("@Preferred Name", OleDbType.VarChar).Value = textBox4.Text;
-                cmd.Parameters.Add("@Year Level", OleDbType.VarChar).Value = textBox5.Text;
-                cmd.Parameters.Add("@Room Number", OleDbType.VarChar).Value = textBox6.Text;
-                cmd.Parameters.Add("@Gender", OleDbType.VarChar).Value = textBox7.Text;
-                cmd.Parameters.Add("@Date Of Birth", OleDbType.VarChar).Value = textBox8.Text;
-                cmd.Parameters.Add("@Ethnicity", OleDbType.VarChar).Value = textBox9.Text;
-                cmd.Parameters.Add("@NSN", OleDbType.VarChar).Value = textBox10.Text;
-                cmd.Parameters.Add("@Funding Year Level", OleDbType.VarChar).Value = textBox11.Text;
-                cmd.Parameters.Add("@Start Date", OleDbType.VarChar).Value = textBox12.Text;
+                cmd.Parameters.Add("@Family Name Alias", OleDbType.VarChar).Value = familyNameAlias.Text;
+                cmd.Parameters.Add("@Family Name Legal", OleDbType.VarChar).Value = familyNameLegal.Text;
+                cmd.Parameters.Add("@First Name Legal", OleDbType.VarChar).Value = firstNameLegal.Text;
+                cmd.Parameters.Add("@Preferred Name", OleDbType.VarChar).Value = preferredName.Text;
+                cmd.Parameters.Add("@Year Level", OleDbType.VarChar).Value = yearLevelCombo.Text;
+                cmd.Parameters.Add("@Room Number", OleDbType.VarChar).Value = roomCombo.Text;
+                cmd.Parameters.Add("@Gender", OleDbType.VarChar).Value = genderCombo.Text;
+                cmd.Parameters.Add("@Date Of Birth", OleDbType.VarChar).Value = dateOfBirth.Text;
+                cmd.Parameters.Add("@Ethnicity", OleDbType.VarChar).Value = ethnicityCombo.Text;
+                cmd.Parameters.Add("@NSN", OleDbType.VarChar).Value = nsn.Text;
+                cmd.Parameters.Add("@Funding Year Level", OleDbType.VarChar).Value = fundingLevelCombo.Text;
+                cmd.Parameters.Add("@Start Date", OleDbType.VarChar).Value = startDate.Text;
 
                 try
                 {
@@ -77,6 +77,16 @@ namespace Recording_Student_Achievements
             }
 
             this.Close();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

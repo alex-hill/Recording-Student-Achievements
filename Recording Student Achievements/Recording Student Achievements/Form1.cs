@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace Recording_Student_Achievements
 {
@@ -16,46 +17,24 @@ namespace Recording_Student_Achievements
 
     public partial class Form1 : Form
     {
-        private static String dbFileName;
-        private OpenFileDialog fileChooser;
+        private OleDbConnection connection = new OleDbConnection();
         public Form1()
         {
             InitializeComponent();
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;
+Persist Security Info=False;";
             ns = new NewStudent();
             ws = new WithdrawStudent();
-            fileChooser = new OpenFileDialog();
-            
-
-        }
-
-        public static String getDbName()
-        {
-            return dbFileName;
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            fileChooser.Title = "Choose the database file";
-            if (fileChooser.ShowDialog() == DialogResult.Cancel)
-            {
-
-            }
-            else
-            {
-                dbFileName = fileChooser.FileName;
-            }
-            
+            Left = Top = 0;
+            Width = Screen.PrimaryScreen.WorkingArea.Width;
+            Height = Screen.PrimaryScreen.WorkingArea.Height;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
         private WithdrawStudent ws;
         private void withdrawStudentLbl_Click(object sender, EventArgs e)
         {
@@ -87,6 +66,62 @@ namespace Recording_Student_Achievements
                 ns = new NewStudent();
                 ns.Show();
             }
+        }
+
+        private void geekLbl_Click(object sender, EventArgs e)
+        {
+            studentDataPnl.Show();
+            studentDataPnl.Visible = true;
+            try
+            {
+                connection.Open();
+
+                MessageBox.Show("Connection Successful");
+
+                OleDbCommand command = new OleDbCommand();
+                command.Connection = connection;
+                string query = "SELECT * FROM Student";
+                command.CommandText = query;
+
+                OleDbDataAdapter da = new OleDbDataAdapter(command);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex);
+            }
+        }
+
+        private void homeLbl_Click(object sender, EventArgs e)
+        {
+            if (studentDataPnl.Visible)
+            {
+                // Add the message
+                studentDataPnl.Visible = false;
+            }
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+            if (studentDataPnl.Visible)
+            {
+                // Add the message
+                studentDataPnl.Visible = false;
+            }
+        }
+
+        private void headerPanel_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.laingholm.school.nz/Site/Home.ashx");
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.laingholm.school.nz/Site/Home.ashx");
         }
     }
 }
