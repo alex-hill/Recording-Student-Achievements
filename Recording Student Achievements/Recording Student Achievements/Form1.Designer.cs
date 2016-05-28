@@ -76,16 +76,16 @@ namespace Recording_Student_Achievements
             this.studentDataPnl.Controls.Add(this.label1);
             this.studentDataPnl.Location = new System.Drawing.Point(165, 120);
             this.studentDataPnl.Name = "studentDataPnl";
-            this.studentDataPnl.Size = new System.Drawing.Size(1739, 869);
+            this.studentDataPnl.Size = new System.Drawing.Size(1742, 875);
             this.studentDataPnl.TabIndex = 6;
             this.studentDataPnl.Visible = false;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(36, 73);
+            this.dataGridView1.Location = new System.Drawing.Point(36, 75);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1669, 761);
+            this.dataGridView1.Size = new System.Drawing.Size(1648, 747);
             this.dataGridView1.TabIndex = 4;
             // 
             // label1
@@ -131,7 +131,7 @@ namespace Recording_Student_Achievements
             this.QuickMenu.Image = global::Recording_Student_Achievements.Properties.Resources.Quick_Menu;
             this.QuickMenu.Location = new System.Drawing.Point(-1, 110);
             this.QuickMenu.Name = "QuickMenu";
-            this.QuickMenu.Size = new System.Drawing.Size(159, 890);
+            this.QuickMenu.Size = new System.Drawing.Size(159, 931);
             this.QuickMenu.TabIndex = 2;
             this.QuickMenu.TabStop = false;
             // 
@@ -231,7 +231,7 @@ namespace Recording_Student_Achievements
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1916, 1001);
+            this.ClientSize = new System.Drawing.Size(1916, 1053);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.studentDataPnl);
             this.Controls.Add(this.homePic);
