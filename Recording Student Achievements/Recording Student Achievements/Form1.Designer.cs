@@ -44,6 +44,7 @@ namespace Recording_Student_Achievements
             this.studentLbl = new System.Windows.Forms.Label();
             this.newStudentLbl = new System.Windows.Forms.Label();
             this.withdrawStudentLbl = new System.Windows.Forms.Label();
+            this.assessmentAdd = new System.Windows.Forms.Label();
             this.geekLbl = new System.Windows.Forms.Label();
             this.header = new System.Windows.Forms.PictureBox();
             this.tableDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -127,6 +128,7 @@ namespace Recording_Student_Achievements
             this.QuickMenu.Controls.Add(this.studentLbl);
             this.QuickMenu.Controls.Add(this.newStudentLbl);
             this.QuickMenu.Controls.Add(this.withdrawStudentLbl);
+            this.QuickMenu.Controls.Add(this.assessmentAdd);
             this.QuickMenu.Controls.Add(this.geekLbl);
             this.QuickMenu.Image = global::Recording_Student_Achievements.Properties.Resources.Quick_Menu;
             this.QuickMenu.Location = new System.Drawing.Point(-1, 110);
@@ -202,6 +204,19 @@ namespace Recording_Student_Achievements
             this.withdrawStudentLbl.Text = "Withdraw Student";
             this.withdrawStudentLbl.Click += new System.EventHandler(this.withdrawStudentLbl_Click);
             // 
+            // assessmentAdd
+            // 
+            this.assessmentAdd.AutoSize = true;
+            this.assessmentAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.assessmentAdd.BackColor = System.Drawing.Color.Transparent;
+            this.assessmentAdd.ForeColor = System.Drawing.Color.White;
+            this.assessmentAdd.Location = new System.Drawing.Point(49, 125);
+            this.assessmentAdd.Name = "assessmentAdd";
+            this.assessmentAdd.Size = new System.Drawing.Size(83, 13);
+            this.assessmentAdd.TabIndex = 8;
+            this.assessmentAdd.Text = "Add Assignment";
+            this.assessmentAdd.Click += new System.EventHandler(this.label2_Click);
+            // 
             // geekLbl
             // 
             this.geekLbl.AutoSize = true;
@@ -209,7 +224,7 @@ namespace Recording_Student_Achievements
             this.geekLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.geekLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.geekLbl.ForeColor = System.Drawing.Color.White;
-            this.geekLbl.Location = new System.Drawing.Point(50, 125);
+            this.geekLbl.Location = new System.Drawing.Point(49, 145);
             this.geekLbl.Name = "geekLbl";
             this.geekLbl.Size = new System.Drawing.Size(44, 16);
             this.geekLbl.TabIndex = 3;
@@ -300,6 +315,7 @@ namespace Recording_Student_Achievements
         private BindingSource tableDataSetBindingSource;
         private DataGridView dataGridView1;
         private PictureBox pictureBox1;
+        private Label assessmentAdd;
     }
 }
 
