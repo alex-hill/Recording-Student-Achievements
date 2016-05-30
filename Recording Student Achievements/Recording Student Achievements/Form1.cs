@@ -204,7 +204,7 @@ namespace Recording_Student_Achievements
 
 
 
-                            OleDbCommand cmd = new OleDbCommand("SELECT NSN, [Student ID] FROM Student WHERE [Preferred Name] LIKE '" + values[0] + "' AND [Family Name Legal] LIKE '" + values[1] + "';");
+                            OleDbCommand cmd = new OleDbCommand("SELECT NSN FROM Student WHERE [Preferred Name] LIKE '" + values[0] + "' AND [Family Name Legal] LIKE '" + values[1] + "';");
 
                             // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
                             cmd.Connection = connection;
@@ -213,7 +213,6 @@ namespace Recording_Student_Achievements
 
                             returnValue.Read();
                             int nsn = Int32.Parse((String)returnValue.GetValue(0));
-                            int studentID = (int)returnValue.GetValue(1);
 
                             returnValue.Close();
 
@@ -225,10 +224,9 @@ namespace Recording_Student_Achievements
                             switch (subject)
                             {
                                 case "Reading":
-                                    cmd = new OleDbCommand("INSERT INTO Reading ([Student ID], NSN, [Initial Assessment Method], [Initial Assessment Level], [Final Assessment Method], [Final Assessment Level], [NS Achievement Code], " +
-                                        "[NS Progress], Effort, Comment) VALUES(" + studentID + ", " + nsn + ", [" + values[2] + "], [" + values[3] + "], [" + values[4] + "], [" + values[5] + "], [" + values[6] + "], [" + values[7] +"], [" + values[8] + "], [" + values[9] +"]);");
+                                    cmd = new OleDbCommand("INSERT INTO Reading (NSN, [Initial Assessment Method], [Initial Assessment Level], [Final Assessment Method], [Final Assessment Level], [NS Achievement Code], " +
+                                        "[NS Progress], Effort, Comment) VALUES(" + nsn + ", [" + values[2] + "], [" + values[3] + "], [" + values[4] + "], [" + values[5] + "], [" + values[6] + "], [" + values[7] +"], [" + values[8] + "], [" + values[9] +"]);");
 
-                                    cmd.Parameters.AddWithValue("@Student ID", studentID);
                                     cmd.Parameters.AddWithValue("@NSN", nsn);
                                     cmd.Parameters.AddWithValue("@Initial Assessment Method", values[2]);
                                     cmd.Parameters.AddWithValue("@Initial Assessment Level", values[3]);
@@ -275,7 +273,7 @@ namespace Recording_Student_Achievements
                                     MessageBox.Show("Data Added");
 
                             //Displaying the data that was just added
-                            string query = "SELECT * FROM " + subject + " INNER JOIN Student ON (" + subject + ".[Student ID] = Student.[Student ID]);";
+                            string query = "SELECT * FROM " + subject + " INNER JOIN Student ON (" + subject + ".[NSN] = Student.[NSN]);";
 
                             cmd.CommandText = query;
 
