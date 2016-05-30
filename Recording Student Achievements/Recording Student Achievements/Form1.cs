@@ -21,8 +21,8 @@ namespace Recording_Student_Achievements
         public Form1()
         {
             InitializeComponent();
-            //connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
-            connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
+           connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
             ns = new NewStudent();
             ws = new WithdrawStudent();
         }
@@ -91,13 +91,13 @@ namespace Recording_Student_Achievements
 
                     + "FROM (((([Student] s "
 
-                    + "INNER JOIN [Student Extra] se ON se.[Student ID] = s.[Student ID]) "
+                    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
-                    + "INNER JOIN [Reading] r ON r.[Student ID] = s.[Student ID])"
+                    + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
 
-                    + "INNER JOIN [Writing] w ON w.[Student ID] = s.[Student ID])"
+                    + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
 
-                    + "INNER JOIN [Mathematics] m ON m.[Student ID] = s.[Student ID]);";
+                    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]);";
 
                 command.CommandText = query;
 
