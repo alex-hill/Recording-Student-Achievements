@@ -189,7 +189,7 @@ namespace Recording_Student_Achievements
                         student = reader.ReadLine();
                         values = student.Split(',');
 
-                        String roomNo = values[0];
+                        String roomNo = values[1];
 
                         reader.ReadLine();
                         reader.ReadLine();
@@ -203,39 +203,45 @@ namespace Recording_Student_Achievements
                             values = student.Split(',');
 
 
-
-                            OleDbCommand cmd = new OleDbCommand("SELECT NSN FROM Student WHERE [Preferred Name] LIKE '" + values[0] + "' AND [Family Name Legal] LIKE '" + values[1] + "';");
-
-                            // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
+                            Console.WriteLine(values[0] + "\n" + values[1]);
+                            OleDbCommand cmd = new OleDbCommand("SELECT [NSN] FROM Student WHERE [Preferred Name] LIKE '" + values[0] + "' AND [Family Name Legal] LIKE '" + values[1] + "';");
+                            
                             cmd.Connection = connection;
 
                             OleDbDataReader returnValue = cmd.ExecuteReader();
 
                             returnValue.Read();
+                            Console.WriteLine(subject);
+                            Console.WriteLine(returnValue.GetValue(0));
                             int nsn = Int32.Parse((String)returnValue.GetValue(0));
 
                             returnValue.Close();
 
                             Console.WriteLine(nsn);
-                            Console.WriteLine(subject);
+                            
 
 
                             //Insert statements for the different subjects; reading, mathematics, and writing
                             switch (subject)
                             {
+                                
                                 case "Reading":
+                                    for (int i = 0; i < values.Length; ++i)
+                                    {
+                                        Console.WriteLine("values["+i+"] = " + values[i]);
+                                    }
                                     cmd = new OleDbCommand("INSERT INTO Reading (NSN, [Initial Assessment Method], [Initial Assessment Level], [Final Assessment Method], [Final Assessment Level], [NS Achievement Code], " +
                                         "[NS Progress], Effort, Comment) VALUES(" + nsn + ", [" + values[2] + "], [" + values[3] + "], [" + values[4] + "], [" + values[5] + "], [" + values[6] + "], [" + values[7] +"], [" + values[8] + "], [" + values[9] +"]);");
 
-                                    cmd.Parameters.AddWithValue("@NSN", nsn);
-                                    cmd.Parameters.AddWithValue("@Initial Assessment Method", values[2]);
-                                    cmd.Parameters.AddWithValue("@Initial Assessment Level", values[3]);
-                                    cmd.Parameters.AddWithValue("@Final Assessment Method", values[4]);
-                                    cmd.Parameters.AddWithValue("Final Assessment Level", values[5]);
-                                    cmd.Parameters.AddWithValue("NS Achievement Code", values[6]);
-                                    cmd.Parameters.AddWithValue("NS Progress", values[7]);
-                                    cmd.Parameters.AddWithValue("Effort", values[8]);
-                                    cmd.Parameters.AddWithValue("Comment", values[9]);
+                                    cmd.Parameters.AddWithValue("@NSN",  values[2]);
+                                    cmd.Parameters.AddWithValue("@Initial Assessment Method", values[3]);
+                                    cmd.Parameters.AddWithValue("@Initial Assessment Level", values[4]);
+                                    cmd.Parameters.AddWithValue("@Final Assessment Method", values[5]);
+                                    cmd.Parameters.AddWithValue("@Final Assessment Level", values[6]);
+                                    cmd.Parameters.AddWithValue("@NS Achievement Code", values[7]);
+                                    cmd.Parameters.AddWithValue("@NS Progress", values[8]);
+                                    cmd.Parameters.AddWithValue("@Effort", values[9]);
+                                   // cmd.Parameters.AddWithValue("@Comment", values[10]);
                                     break;
                                 case "Writing":
                                     cmd = new OleDbCommand("INSERT INTO Writing (NSN, [Initial Assessment], [Initial Assessment], [Overall Assessment], [NS Code], [NS Achievement Code], " +
@@ -273,7 +279,7 @@ namespace Recording_Student_Achievements
                                     MessageBox.Show("Data Added");
 
                             //Displaying the data that was just added
-                            string query = "SELECT * FROM " + subject + " INNER JOIN Student ON (" + subject + ".[NSN] = Student.[NSN]);";
+                            string query = "SELECT * FROM " + subject + " INNER JOIN Student ON (" + subject + ".[NSN] = Student.[NSN]) WHERE Student.[Room Number] = '" + roomNo + "';";
 
                             cmd.CommandText = query;
 
@@ -298,6 +304,46 @@ namespace Recording_Student_Achievements
             {
                 MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
                 connection.Close();
+            }
+        }
+
+        private void search_Click(object sender, EventArgs e)
+        {
+            studentDataPnl.Show();
+            studentDataPnl.Visible = true;
+            try
+            {
+                connection.Open();
+                OleDbCommand command = new OleDbCommand();
+                //
+                command.Connection = connection;
+                string query =
+                    "SELECT [s.NSN] AS `NSN`, [s.Family Name Legal] AS `Last Name`, [s.First Name Legal] AS `First Name`, [s.Date Of Birth] AS `DoB`, [se.School Next Year Level] AS `Next Year Level`, [se.Next Room Number] AS `Next Room Number`, [s.Gender] AS `Gender`, [s.Ethnicity] AS `Ethnicity` "
+                    + ", [r.Final Assessment Level] AS `Reading Final Assessment`, [r.NS Progress] AS `Reading Progress Level`"
+                    + ", [w.Overall Assessment] AS `Writing Overall Assessment`, [w.NS Progress]  AS `Writing Progress Level`"
+                    + ", [m.Overall Assessment] AS `Maths Overall Assessment`, [m.NS Progress]  AS `Maths Progress Level`"
+                    + ", [se.Curiosity 1] AS `Curiosity 1`, [se.Curiosity 2] AS `Curiosity 2`, [se.Curiosity 3] AS `Curiosity 3`"
+                    + ", [se.Creativity 1] AS `Creativity 1`, [se.Creativity 2]   AS `Creativity 2`, [se.Creativity 3]  AS `Creativity 3`"
+                    + ", [se.Community 1] AS `Community 1`, [se.Community 2] AS `Community 2`, [se.Community 3] AS `Community 3`"
+                    + ", [se.Sustainability 1] AS `Sustainability 1`, [se.Sustainability 2] AS `Sustainability 2`, [se.Sustainability 3]  AS `Sustainability 3` "
+                    + "FROM (((([Student] s "
+                    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+                    + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+                    + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+                    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN])"
+                    + "WHERE se.NSN = '" + Int32.Parse(searchByNSN.Text) + "';";
+                command.CommandText = query;
+                OleDbDataAdapter da = new OleDbDataAdapter(command);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
+                dataGridView1.Columns["Last Name"].Frozen = true;
+                dataGridView1.Columns["First Name"].Frozen = true;
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
             }
         }
     }

@@ -36,6 +36,8 @@ namespace Recording_Student_Achievements
             this.studentDataPnl = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.search = new System.Windows.Forms.Button();
+            this.searchByNSN = new System.Windows.Forms.TextBox();
             this.homePic = new System.Windows.Forms.PictureBox();
             this.TopBar = new System.Windows.Forms.PictureBox();
             this.QuickMenu = new System.Windows.Forms.PictureBox();
@@ -75,9 +77,11 @@ namespace Recording_Student_Achievements
             this.studentDataPnl.BackgroundImage = global::Recording_Student_Achievements.Properties.Resources.Large_Box;
             this.studentDataPnl.Controls.Add(this.dataGridView1);
             this.studentDataPnl.Controls.Add(this.label1);
+            this.studentDataPnl.Controls.Add(this.search);
+            this.studentDataPnl.Controls.Add(this.searchByNSN);
             this.studentDataPnl.Location = new System.Drawing.Point(165, 120);
             this.studentDataPnl.Name = "studentDataPnl";
-            this.studentDataPnl.Size = new System.Drawing.Size(1742, 875);
+            this.studentDataPnl.Size = new System.Drawing.Size(1180, 600);
             this.studentDataPnl.TabIndex = 6;
             this.studentDataPnl.Visible = false;
             // 
@@ -86,7 +90,7 @@ namespace Recording_Student_Achievements
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(36, 75);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1648, 747);
+            this.dataGridView1.Size = new System.Drawing.Size(1100, 480);
             this.dataGridView1.TabIndex = 4;
             // 
             // label1
@@ -100,6 +104,24 @@ namespace Recording_Student_Achievements
             this.label1.Size = new System.Drawing.Size(156, 29);
             this.label1.TabIndex = 3;
             this.label1.Text = "Student Data";
+            // 
+            // search
+            // 
+            this.search.Location = new System.Drawing.Point(311, 33);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(75, 23);
+            this.search.TabIndex = 6;
+            this.search.Text = "Search";
+            this.search.UseVisualStyleBackColor = true;
+            this.search.Click += new System.EventHandler(this.search_Click);
+            // 
+            // searchByNSN
+            // 
+            this.searchByNSN.Location = new System.Drawing.Point(205, 35);
+            this.searchByNSN.Name = "searchByNSN";
+            this.searchByNSN.Size = new System.Drawing.Size(100, 20);
+            this.searchByNSN.TabIndex = 5;
+            this.searchByNSN.Text = "NSN (9 number)";
             // 
             // homePic
             // 
@@ -131,9 +153,9 @@ namespace Recording_Student_Achievements
             this.QuickMenu.Controls.Add(this.assessmentAdd);
             this.QuickMenu.Controls.Add(this.geekLbl);
             this.QuickMenu.Image = global::Recording_Student_Achievements.Properties.Resources.Quick_Menu;
-            this.QuickMenu.Location = new System.Drawing.Point(-1, 110);
+            this.QuickMenu.Location = new System.Drawing.Point(-1, 111);
             this.QuickMenu.Name = "QuickMenu";
-            this.QuickMenu.Size = new System.Drawing.Size(159, 931);
+            this.QuickMenu.Size = new System.Drawing.Size(159, 620);
             this.QuickMenu.TabIndex = 2;
             this.QuickMenu.TabStop = false;
             // 
@@ -207,8 +229,8 @@ namespace Recording_Student_Achievements
             // assessmentAdd
             // 
             this.assessmentAdd.AutoSize = true;
-            this.assessmentAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.assessmentAdd.BackColor = System.Drawing.Color.Transparent;
+            this.assessmentAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.assessmentAdd.ForeColor = System.Drawing.Color.White;
             this.assessmentAdd.Location = new System.Drawing.Point(49, 125);
             this.assessmentAdd.Name = "assessmentAdd";
@@ -246,7 +268,7 @@ namespace Recording_Student_Achievements
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1916, 1053);
+            this.ClientSize = new System.Drawing.Size(1362, 741);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.studentDataPnl);
             this.Controls.Add(this.homePic);
@@ -316,6 +338,8 @@ namespace Recording_Student_Achievements
         private DataGridView dataGridView1;
         private PictureBox pictureBox1;
         private Label assessmentAdd;
+        private Button search;
+        private TextBox searchByNSN;
     }
 }
 
