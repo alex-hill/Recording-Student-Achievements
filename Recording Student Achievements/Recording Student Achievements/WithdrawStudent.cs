@@ -21,8 +21,8 @@ namespace Recording_Student_Achievements
         private void button1_Click(object sender, EventArgs e)
         {
             OleDbConnection conn = new OleDbConnection();
-            //conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
-            conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
+            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            //conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
 
             OleDbCommand cmd = new OleDbCommand("DELETE FROM Student WHERE [First Name Legal] LIKE '%" +  textBox1.Text + "%' AND [Family Name Legal] LIKE '%" + textBox2.Text + "%'");
 
