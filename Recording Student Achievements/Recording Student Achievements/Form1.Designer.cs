@@ -38,8 +38,6 @@ namespace Recording_Student_Achievements
             this.label1 = new System.Windows.Forms.Label();
             this.search = new System.Windows.Forms.Button();
             this.searchByNSN = new System.Windows.Forms.TextBox();
-            this.homePic = new System.Windows.Forms.PictureBox();
-            this.TopBar = new System.Windows.Forms.PictureBox();
             this.QuickMenu = new System.Windows.Forms.PictureBox();
             this.menuLbl = new System.Windows.Forms.Label();
             this.homeLbl = new System.Windows.Forms.Label();
@@ -50,17 +48,18 @@ namespace Recording_Student_Achievements
             this.geekLbl = new System.Windows.Forms.Label();
             this.reportLbl = new System.Windows.Forms.Label();
             this.generateIndiReportLbl = new System.Windows.Forms.Label();
-            this.header = new System.Windows.Forms.PictureBox();
             this.tableDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.header = new System.Windows.Forms.Panel();
+            this.topBar = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.quickMenuBar = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.studentDataPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.homePic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuickMenu)).BeginInit();
             this.QuickMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.header)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataSetBindingSource)).BeginInit();
+            this.topBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -76,11 +75,14 @@ namespace Recording_Student_Achievements
             // 
             // studentDataPnl
             // 
+            this.studentDataPnl.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.studentDataPnl.BackgroundImage = global::Recording_Student_Achievements.Properties.Resources.Large_Box;
-            this.studentDataPnl.Controls.Add(this.dataGridView1);
-            this.studentDataPnl.Controls.Add(this.label1);
+            this.studentDataPnl.Controls.Add(this.QuickMenu);
             this.studentDataPnl.Controls.Add(this.search);
             this.studentDataPnl.Controls.Add(this.searchByNSN);
+            this.studentDataPnl.Controls.Add(this.dataGridView1);
+            this.studentDataPnl.Controls.Add(this.label1);
+            this.studentDataPnl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.studentDataPnl.Location = new System.Drawing.Point(165, 120);
             this.studentDataPnl.Name = "studentDataPnl";
             this.studentDataPnl.Size = new System.Drawing.Size(1180, 600);
@@ -125,26 +127,6 @@ namespace Recording_Student_Achievements
             this.searchByNSN.TabIndex = 5;
             this.searchByNSN.Text = "NSN (9 number)";
             // 
-            // homePic
-            // 
-            this.homePic.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.homePic.Image = global::Recording_Student_Achievements.Properties.Resources.Home;
-            this.homePic.Location = new System.Drawing.Point(9, 81);
-            this.homePic.Name = "homePic";
-            this.homePic.Size = new System.Drawing.Size(31, 24);
-            this.homePic.TabIndex = 5;
-            this.homePic.TabStop = false;
-            this.homePic.Click += new System.EventHandler(this.pictureBox1_Click_1);
-            // 
-            // TopBar
-            // 
-            this.TopBar.Image = global::Recording_Student_Achievements.Properties.Resources.Top_Bar;
-            this.TopBar.Location = new System.Drawing.Point(-1, 74);
-            this.TopBar.Name = "TopBar";
-            this.TopBar.Size = new System.Drawing.Size(2000, 39);
-            this.TopBar.TabIndex = 1;
-            this.TopBar.TabStop = false;
-            // 
             // QuickMenu
             // 
             this.QuickMenu.Controls.Add(this.menuLbl);
@@ -157,9 +139,10 @@ namespace Recording_Student_Achievements
             this.QuickMenu.Controls.Add(this.reportLbl);
             this.QuickMenu.Controls.Add(this.generateIndiReportLbl);
             this.QuickMenu.Image = global::Recording_Student_Achievements.Properties.Resources.Quick_Menu;
-            this.QuickMenu.Location = new System.Drawing.Point(-1, 111);
+            this.QuickMenu.Location = new System.Drawing.Point(11, -5);
             this.QuickMenu.Name = "QuickMenu";
-            this.QuickMenu.Size = new System.Drawing.Size(159, 620);
+            this.QuickMenu.Size = new System.Drawing.Size(176, 620);
+            this.QuickMenu.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.QuickMenu.TabIndex = 2;
             this.QuickMenu.TabStop = false;
             // 
@@ -285,83 +268,75 @@ namespace Recording_Student_Achievements
             // 
             // header
             // 
-            this.header.Image = global::Recording_Student_Achievements.Properties.Resources.Header;
-            this.header.Location = new System.Drawing.Point(-1, -1);
+            this.header.BackColor = System.Drawing.SystemColors.Desktop;
+            this.header.Dock = System.Windows.Forms.DockStyle.Top;
+            this.header.Location = new System.Drawing.Point(0, 0);
             this.header.Name = "header";
-            this.header.Size = new System.Drawing.Size(2000, 75);
-            this.header.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.header.TabIndex = 0;
-            this.header.TabStop = false;
+            this.header.Size = new System.Drawing.Size(1350, 76);
+            this.header.TabIndex = 8;
+            // 
+            // topBar
+            // 
+            this.topBar.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.topBar.Controls.Add(this.panel1);
+            this.topBar.Location = new System.Drawing.Point(0, 75);
+            this.topBar.Name = "topBar";
+            this.topBar.Size = new System.Drawing.Size(2000, 39);
+            this.topBar.TabIndex = 9;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(0, 44);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(179, 621);
+            this.panel1.TabIndex = 10;
+            // 
+            // quickMenuBar
+            // 
+            this.quickMenuBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.quickMenuBar.Location = new System.Drawing.Point(0, 114);
+            this.quickMenuBar.Name = "quickMenuBar";
+            this.quickMenuBar.Size = new System.Drawing.Size(153, 622);
+            this.quickMenuBar.TabIndex = 10;
             // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.quickMenuBar);
+            this.Controls.Add(this.topBar);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.studentDataPnl);
-            this.Controls.Add(this.homePic);
-            this.Controls.Add(this.TopBar);
-            this.Controls.Add(this.QuickMenu);
             this.Controls.Add(this.header);
+            this.Controls.Add(this.studentDataPnl);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1366, 768);
             this.Name = "Form1";
             this.Text = "Student Achievement System";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.studentDataPnl.ResumeLayout(false);
             this.studentDataPnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.homePic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuickMenu)).EndInit();
             this.QuickMenu.ResumeLayout(false);
             this.QuickMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.header)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataSetBindingSource)).EndInit();
+            this.topBar.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
 
-
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_MOVE = 0xF010;
-            const int WM_NCLBUTTONDBLCLK = 0x00A3; //double click on a title bar a.k.a. non-client area of the form
-
-            switch (m.Msg)
-            {
-                case WM_SYSCOMMAND:             //preventing the form from being moved by the mouse.
-                    int command = m.WParam.ToInt32() & 0xfff0;
-                    if (command == SC_MOVE)
-                        return;
-                    break;
-            }
-
-            if (m.Msg == WM_NCLBUTTONDBLCLK)       //preventing the form being resized by the mouse double click on the title bar.
-            {
-                m.Result = System.IntPtr.Zero;
-                return;
-            }
-
-            base.WndProc(ref m);
-        }
 
 
 
         #endregion
-
-        private PictureBox header;
-        private PictureBox TopBar;
         private PictureBox QuickMenu;
         private Label menuLbl, homeLbl, studentLbl, newStudentLbl, withdrawStudentLbl, geekLbl, reportLbl, generateIndiReportLbl;
-        private PictureBox homePic;
         private Panel studentDataPnl;
         private Label label1;
         private BindingSource tableDataSetBindingSource;
@@ -370,6 +345,10 @@ namespace Recording_Student_Achievements
         private Label assessmentAdd;
         private Button search;
         private TextBox searchByNSN;
+        private Panel header;
+        private Panel topBar;
+        private Panel panel1;
+        private Panel quickMenuBar;
     }
 }
 

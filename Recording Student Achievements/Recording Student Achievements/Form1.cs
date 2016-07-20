@@ -21,18 +21,38 @@ namespace Recording_Student_Achievements
         public Form1()
         {
             InitializeComponent();
-           connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
             //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
             ns = new NewStudent();
             ws = new WithdrawStudent();
+            topBar.Paint += new PaintEventHandler(topBar_Paint);
+            topBar.Refresh();
+            quickMenuBar.Paint += new PaintEventHandler(quickMenuBar_Paint);
+            quickMenuBar.Refresh();
+
+        }
+
+        private void topBar_Paint(object sender, PaintEventArgs e)
+        {
+            System.Drawing.Drawing2D.LinearGradientBrush linearGradientBrush = 
+                new System.Drawing.Drawing2D.LinearGradientBrush(topBar.ClientRectangle, Color.Black, Color.Black, 90);
+            System.Drawing.Drawing2D.ColorBlend cblend = new System.Drawing.Drawing2D.ColorBlend(4);
+            cblend.Colors = new Color[4] { Color.White, Color.DimGray, Color.White, Color.Black };
+            cblend.Positions = new float[4] { 0f, 0.1f, 0.8f, 1f };
+            linearGradientBrush.InterpolationColors = cblend;
+            e.Graphics.FillRectangle(linearGradientBrush, topBar.ClientRectangle);
+
+        }
+
+        private void quickMenuBar_Paint(object sender, PaintEventArgs e)
+        {
+            
+
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Left = Top = 0;
-           // Width = Screen.PrimaryScreen.WorkingArea.Width;
-            //Height = Screen.PrimaryScreen.WorkingArea.Height;
         }
 
         private WithdrawStudent ws;
@@ -350,6 +370,11 @@ namespace Recording_Student_Achievements
         private void generateIndiReportLbl_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void header_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
