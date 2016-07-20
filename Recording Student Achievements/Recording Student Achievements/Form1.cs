@@ -346,5 +346,10 @@ namespace Recording_Student_Achievements
                 MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
             }
         }
+
+        private void generateIndiReportLbl_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

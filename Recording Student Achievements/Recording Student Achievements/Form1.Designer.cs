@@ -48,6 +48,8 @@ namespace Recording_Student_Achievements
             this.withdrawStudentLbl = new System.Windows.Forms.Label();
             this.assessmentAdd = new System.Windows.Forms.Label();
             this.geekLbl = new System.Windows.Forms.Label();
+            this.reportLbl = new System.Windows.Forms.Label();
+            this.generateIndiReportLbl = new System.Windows.Forms.Label();
             this.header = new System.Windows.Forms.PictureBox();
             this.tableDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -152,6 +154,8 @@ namespace Recording_Student_Achievements
             this.QuickMenu.Controls.Add(this.withdrawStudentLbl);
             this.QuickMenu.Controls.Add(this.assessmentAdd);
             this.QuickMenu.Controls.Add(this.geekLbl);
+            this.QuickMenu.Controls.Add(this.reportLbl);
+            this.QuickMenu.Controls.Add(this.generateIndiReportLbl);
             this.QuickMenu.Image = global::Recording_Student_Achievements.Properties.Resources.Quick_Menu;
             this.QuickMenu.Location = new System.Drawing.Point(-1, 111);
             this.QuickMenu.Name = "QuickMenu";
@@ -253,6 +257,32 @@ namespace Recording_Student_Achievements
             this.geekLbl.Text = "Geek It";
             this.geekLbl.Click += new System.EventHandler(this.geekLbl_Click);
             // 
+            // reportLbl
+            // 
+            this.reportLbl.AutoSize = true;
+            this.reportLbl.BackColor = System.Drawing.Color.Transparent;
+            this.reportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportLbl.ForeColor = System.Drawing.Color.White;
+            this.reportLbl.Location = new System.Drawing.Point(30, 165);
+            this.reportLbl.Name = "reportLbl";
+            this.reportLbl.Size = new System.Drawing.Size(60, 20);
+            this.reportLbl.TabIndex = 3;
+            this.reportLbl.Text = "Reports";
+            // 
+            // generateIndiReportLbl
+            // 
+            this.generateIndiReportLbl.AutoSize = true;
+            this.generateIndiReportLbl.BackColor = System.Drawing.Color.Transparent;
+            this.generateIndiReportLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.generateIndiReportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generateIndiReportLbl.ForeColor = System.Drawing.Color.White;
+            this.generateIndiReportLbl.Location = new System.Drawing.Point(49, 185);
+            this.generateIndiReportLbl.Name = "generateIndiReportLbl";
+            this.generateIndiReportLbl.Size = new System.Drawing.Size(92, 16);
+            this.generateIndiReportLbl.TabIndex = 3;
+            this.generateIndiReportLbl.Text = "Individual Report";
+            this.generateIndiReportLbl.Click += new System.EventHandler(this.generateIndiReportLbl_Click);
+            // 
             // header
             // 
             this.header.Image = global::Recording_Student_Achievements.Properties.Resources.Header;
@@ -330,7 +360,7 @@ namespace Recording_Student_Achievements
         private PictureBox header;
         private PictureBox TopBar;
         private PictureBox QuickMenu;
-        private Label menuLbl, homeLbl, studentLbl, newStudentLbl, withdrawStudentLbl, geekLbl;
+        private Label menuLbl, homeLbl, studentLbl, newStudentLbl, withdrawStudentLbl, geekLbl, reportLbl, generateIndiReportLbl;
         private PictureBox homePic;
         private Panel studentDataPnl;
         private Label label1;
