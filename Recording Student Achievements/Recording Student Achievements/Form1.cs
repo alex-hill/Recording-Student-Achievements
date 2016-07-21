@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using WindowsFormsApplication1;
 
 namespace Recording_Student_Achievements
 {
@@ -37,6 +38,7 @@ namespace Recording_Student_Achievements
             System.Drawing.Drawing2D.LinearGradientBrush linearGradientBrush = 
                 new System.Drawing.Drawing2D.LinearGradientBrush(topBar.ClientRectangle, Color.Black, Color.Black, 90);
             System.Drawing.Drawing2D.ColorBlend cblend = new System.Drawing.Drawing2D.ColorBlend(4);
+
             cblend.Colors = new Color[4] { Color.White, Color.DimGray, Color.White, Color.Black };
             cblend.Positions = new float[4] { 0f, 0.1f, 0.8f, 1f };
             linearGradientBrush.InterpolationColors = cblend;
@@ -44,10 +46,26 @@ namespace Recording_Student_Achievements
 
         }
 
+
         private void quickMenuBar_Paint(object sender, PaintEventArgs e)
         {
-            
+            Color c1 = Color.FromArgb(0, 71, 131);
+            Color c2 = Color.FromArgb(1, 56, 115);
+            System.Drawing.Drawing2D.LinearGradientBrush myBrush
+                = new System.Drawing.Drawing2D.LinearGradientBrush(quickMenuBar.ClientRectangle, c1, c2, 90);
 
+
+            System.Drawing.Drawing2D.ColorBlend cblend = new System.Drawing.Drawing2D.ColorBlend(4);
+
+            cblend.Colors = new Color[4] { Color.White, c1, c2, Color.Black};
+            cblend.Positions = new float[4] { 0f, 0.001f, 0.09f, 1f };
+            myBrush.InterpolationColors = cblend;
+
+
+
+            CustomRectangle.FillRoundedRectangle(e.Graphics, myBrush, new System.Drawing.Rectangle(-20,0, quickMenuBar.Width + 20, quickMenuBar.Height), 25);
+            myBrush.Dispose();
+            e.Graphics.Dispose();
         }
 
 

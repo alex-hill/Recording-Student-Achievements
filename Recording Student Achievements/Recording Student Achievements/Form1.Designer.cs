@@ -34,10 +34,6 @@ namespace Recording_Student_Achievements
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.studentDataPnl = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.search = new System.Windows.Forms.Button();
-            this.searchByNSN = new System.Windows.Forms.TextBox();
             this.QuickMenu = new System.Windows.Forms.PictureBox();
             this.menuLbl = new System.Windows.Forms.Label();
             this.homeLbl = new System.Windows.Forms.Label();
@@ -48,6 +44,10 @@ namespace Recording_Student_Achievements
             this.geekLbl = new System.Windows.Forms.Label();
             this.reportLbl = new System.Windows.Forms.Label();
             this.generateIndiReportLbl = new System.Windows.Forms.Label();
+            this.search = new System.Windows.Forms.Button();
+            this.searchByNSN = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.header = new System.Windows.Forms.Panel();
             this.topBar = new System.Windows.Forms.Panel();
@@ -55,9 +55,9 @@ namespace Recording_Student_Achievements
             this.quickMenuBar = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.studentDataPnl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuickMenu)).BeginInit();
             this.QuickMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataSetBindingSource)).BeginInit();
             this.topBar.SuspendLayout();
             this.SuspendLayout();
@@ -88,44 +88,6 @@ namespace Recording_Student_Achievements
             this.studentDataPnl.Size = new System.Drawing.Size(1180, 600);
             this.studentDataPnl.TabIndex = 6;
             this.studentDataPnl.Visible = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(36, 75);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1100, 480);
-            this.dataGridView1.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Franklin Gothic Heavy", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(31, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 29);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Student Data";
-            // 
-            // search
-            // 
-            this.search.Location = new System.Drawing.Point(311, 33);
-            this.search.Name = "search";
-            this.search.Size = new System.Drawing.Size(75, 23);
-            this.search.TabIndex = 6;
-            this.search.Text = "Search";
-            this.search.UseVisualStyleBackColor = true;
-            this.search.Click += new System.EventHandler(this.search_Click);
-            // 
-            // searchByNSN
-            // 
-            this.searchByNSN.Location = new System.Drawing.Point(205, 35);
-            this.searchByNSN.Name = "searchByNSN";
-            this.searchByNSN.Size = new System.Drawing.Size(100, 20);
-            this.searchByNSN.TabIndex = 5;
-            this.searchByNSN.Text = "NSN (9 number)";
             // 
             // QuickMenu
             // 
@@ -266,6 +228,44 @@ namespace Recording_Student_Achievements
             this.generateIndiReportLbl.Text = "Individual Report";
             this.generateIndiReportLbl.Click += new System.EventHandler(this.generateIndiReportLbl_Click);
             // 
+            // search
+            // 
+            this.search.Location = new System.Drawing.Point(311, 33);
+            this.search.Name = "search";
+            this.search.Size = new System.Drawing.Size(75, 23);
+            this.search.TabIndex = 6;
+            this.search.Text = "Search";
+            this.search.UseVisualStyleBackColor = true;
+            this.search.Click += new System.EventHandler(this.search_Click);
+            // 
+            // searchByNSN
+            // 
+            this.searchByNSN.Location = new System.Drawing.Point(205, 35);
+            this.searchByNSN.Name = "searchByNSN";
+            this.searchByNSN.Size = new System.Drawing.Size(100, 20);
+            this.searchByNSN.TabIndex = 5;
+            this.searchByNSN.Text = "NSN (9 number)";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(36, 75);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(1100, 480);
+            this.dataGridView1.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Franklin Gothic Heavy", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(31, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(156, 29);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Student Data";
+            // 
             // header
             // 
             this.header.BackColor = System.Drawing.SystemColors.Desktop;
@@ -293,7 +293,9 @@ namespace Recording_Student_Achievements
             // 
             // quickMenuBar
             // 
-            this.quickMenuBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.quickMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.quickMenuBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.quickMenuBar.Location = new System.Drawing.Point(0, 114);
             this.quickMenuBar.Name = "quickMenuBar";
             this.quickMenuBar.Size = new System.Drawing.Size(153, 622);
@@ -305,11 +307,11 @@ namespace Recording_Student_Achievements
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
-            this.Controls.Add(this.quickMenuBar);
             this.Controls.Add(this.topBar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.header);
             this.Controls.Add(this.studentDataPnl);
+            this.Controls.Add(this.quickMenuBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1366, 768);
@@ -320,10 +322,10 @@ namespace Recording_Student_Achievements
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.studentDataPnl.ResumeLayout(false);
             this.studentDataPnl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.QuickMenu)).EndInit();
             this.QuickMenu.ResumeLayout(false);
             this.QuickMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataSetBindingSource)).EndInit();
             this.topBar.ResumeLayout(false);
             this.ResumeLayout(false);
