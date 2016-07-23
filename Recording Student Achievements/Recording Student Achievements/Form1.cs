@@ -30,6 +30,8 @@ namespace Recording_Student_Achievements
             topBar.Refresh();
             quickMenuBar.Paint += new PaintEventHandler(quickMenuBar_Paint);
             quickMenuBar.Refresh();
+            geekItPnl.Paint += new PaintEventHandler(geekItPnl_Paint);
+            geekItPnl.Refresh();
 
         }
 
@@ -49,8 +51,8 @@ namespace Recording_Student_Achievements
 
         private void quickMenuBar_Paint(object sender, PaintEventArgs e)
         {
-            Color c1 = Color.FromArgb(0, 71, 131);
-            Color c2 = Color.FromArgb(1, 56, 115);
+            Color c2 = Color.FromArgb(0, 71, 131);
+            Color c1 = Color.FromArgb(1, 56, 115);
             System.Drawing.Drawing2D.LinearGradientBrush myBrush
                 = new System.Drawing.Drawing2D.LinearGradientBrush(quickMenuBar.ClientRectangle, c1, c2, 90);
 
@@ -58,12 +60,33 @@ namespace Recording_Student_Achievements
             System.Drawing.Drawing2D.ColorBlend cblend = new System.Drawing.Drawing2D.ColorBlend(4);
 
             cblend.Colors = new Color[4] { Color.White, c1, c2, Color.Black};
-            cblend.Positions = new float[4] { 0f, 0.001f, 0.09f, 1f };
+            cblend.Positions = new float[4] { 0f, 0.0001f, 0.69f, 1f };
             myBrush.InterpolationColors = cblend;
 
 
 
             CustomRectangle.FillRoundedRectangle(e.Graphics, myBrush, new System.Drawing.Rectangle(-20,0, quickMenuBar.Width + 20, quickMenuBar.Height), 25);
+            myBrush.Dispose();
+            e.Graphics.Dispose();
+        }
+
+        private void geekItPnl_Paint(object sender, PaintEventArgs e)
+        {
+            Color c2 = Color.FromArgb(0, 71, 131);
+            Color c1 = Color.FromArgb(1, 56, 115);
+            System.Drawing.Drawing2D.LinearGradientBrush myBrush
+                = new System.Drawing.Drawing2D.LinearGradientBrush(geekItPnl.ClientRectangle, c1, c2, 90);
+
+
+            System.Drawing.Drawing2D.ColorBlend cblend = new System.Drawing.Drawing2D.ColorBlend(4);
+
+            cblend.Colors = new Color[4] { Color.White, c1, c2, Color.Black };
+            cblend.Positions = new float[4] { 0f, 0.0001f, 0.69f, 1f };
+            myBrush.InterpolationColors = cblend;
+
+
+
+            CustomRectangle.FillRoundedRectangle(e.Graphics, myBrush, new System.Drawing.Rectangle(0, 0, geekItPnl.Width , geekItPnl.Height), 25);
             myBrush.Dispose();
             e.Graphics.Dispose();
         }
@@ -108,8 +131,8 @@ namespace Recording_Student_Achievements
 
         private void geekLbl_Click(object sender, EventArgs e)
         {
-            studentDataPnl.Show();
-            studentDataPnl.Visible = true;
+            geekItPnl.Show();
+            geekItPnl.Visible = true;
             try
             {
                 connection.Open();
@@ -157,19 +180,19 @@ namespace Recording_Student_Achievements
 
         private void homeLbl_Click(object sender, EventArgs e)
         {
-            if (studentDataPnl.Visible)
+            if (geekItPnl.Visible)
             {
                 // Add the message
-                studentDataPnl.Visible = false;
+                geekItPnl.Visible = false;
             }
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            if (studentDataPnl.Visible)
+            if (geekItPnl.Visible)
             {
                 // Add the message
-                studentDataPnl.Visible = false;
+                geekItPnl.Visible = false;
             }
         }
 
@@ -321,8 +344,8 @@ namespace Recording_Student_Achievements
 
                             cmd.CommandText = query;
 
-                            studentDataPnl.Show();
-                            studentDataPnl.Visible = true;
+                            geekItPnl.Show();
+                            geekItPnl.Visible = true;
 
 
                             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
@@ -347,8 +370,8 @@ namespace Recording_Student_Achievements
 
         private void search_Click(object sender, EventArgs e)
         {
-            studentDataPnl.Show();
-            studentDataPnl.Visible = true;
+            geekItPnl.Show();
+            geekItPnl.Visible = true;
             try
             {
                 connection.Open();
