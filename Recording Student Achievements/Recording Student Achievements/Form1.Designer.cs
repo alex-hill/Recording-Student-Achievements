@@ -33,14 +33,11 @@ namespace Recording_Student_Achievements
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.studentDataPnl = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.geekItPnl = new System.Windows.Forms.Panel();
             this.search = new System.Windows.Forms.Button();
             this.searchByNSN = new System.Windows.Forms.TextBox();
-            this.homePic = new System.Windows.Forms.PictureBox();
-            this.TopBar = new System.Windows.Forms.PictureBox();
-            this.QuickMenu = new System.Windows.Forms.PictureBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.menuLbl = new System.Windows.Forms.Label();
             this.homeLbl = new System.Windows.Forms.Label();
             this.studentLbl = new System.Windows.Forms.Label();
@@ -50,17 +47,17 @@ namespace Recording_Student_Achievements
             this.geekLbl = new System.Windows.Forms.Label();
             this.reportLbl = new System.Windows.Forms.Label();
             this.generateIndiReportLbl = new System.Windows.Forms.Label();
-            this.header = new System.Windows.Forms.PictureBox();
             this.tableDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.header = new System.Windows.Forms.Panel();
+            this.topBar = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.quickMenuBar = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.studentDataPnl.SuspendLayout();
+            this.geekItPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.homePic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.QuickMenu)).BeginInit();
-            this.QuickMenu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.header)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataSetBindingSource)).BeginInit();
+            this.quickMenuBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -74,42 +71,26 @@ namespace Recording_Student_Achievements
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // studentDataPnl
+            // geekItPnl
             // 
-            this.studentDataPnl.BackgroundImage = global::Recording_Student_Achievements.Properties.Resources.Large_Box;
-            this.studentDataPnl.Controls.Add(this.dataGridView1);
-            this.studentDataPnl.Controls.Add(this.label1);
-            this.studentDataPnl.Controls.Add(this.search);
-            this.studentDataPnl.Controls.Add(this.searchByNSN);
-            this.studentDataPnl.Location = new System.Drawing.Point(165, 120);
-            this.studentDataPnl.Name = "studentDataPnl";
-            this.studentDataPnl.Size = new System.Drawing.Size(1180, 600);
-            this.studentDataPnl.TabIndex = 6;
-            this.studentDataPnl.Visible = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(36, 75);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1100, 480);
-            this.dataGridView1.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Franklin Gothic Heavy", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(31, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(156, 29);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Student Data";
+            this.geekItPnl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.geekItPnl.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.geekItPnl.Controls.Add(this.search);
+            this.geekItPnl.Controls.Add(this.searchByNSN);
+            this.geekItPnl.Controls.Add(this.dataGridView1);
+            this.geekItPnl.Controls.Add(this.label1);
+            this.geekItPnl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.geekItPnl.Location = new System.Drawing.Point(185, 144);
+            this.geekItPnl.Name = "geekItPnl";
+            this.geekItPnl.Size = new System.Drawing.Size(1135, 637);
+            this.geekItPnl.TabIndex = 6;
+            this.geekItPnl.Visible = false;
             // 
             // search
             // 
-            this.search.Location = new System.Drawing.Point(311, 33);
+            this.search.Location = new System.Drawing.Point(311, 23);
             this.search.Name = "search";
             this.search.Size = new System.Drawing.Size(75, 23);
             this.search.TabIndex = 6;
@@ -119,49 +100,34 @@ namespace Recording_Student_Achievements
             // 
             // searchByNSN
             // 
-            this.searchByNSN.Location = new System.Drawing.Point(205, 35);
+            this.searchByNSN.Location = new System.Drawing.Point(205, 25);
             this.searchByNSN.Name = "searchByNSN";
             this.searchByNSN.Size = new System.Drawing.Size(100, 20);
             this.searchByNSN.TabIndex = 5;
             this.searchByNSN.Text = "NSN (9 number)";
             // 
-            // homePic
+            // dataGridView1
             // 
-            this.homePic.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.homePic.Image = global::Recording_Student_Achievements.Properties.Resources.Home;
-            this.homePic.Location = new System.Drawing.Point(9, 81);
-            this.homePic.Name = "homePic";
-            this.homePic.Size = new System.Drawing.Size(31, 24);
-            this.homePic.TabIndex = 5;
-            this.homePic.TabStop = false;
-            this.homePic.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(36, 71);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(1064, 535);
+            this.dataGridView1.TabIndex = 4;
             // 
-            // TopBar
+            // label1
             // 
-            this.TopBar.Image = global::Recording_Student_Achievements.Properties.Resources.Top_Bar;
-            this.TopBar.Location = new System.Drawing.Point(-1, 74);
-            this.TopBar.Name = "TopBar";
-            this.TopBar.Size = new System.Drawing.Size(2000, 39);
-            this.TopBar.TabIndex = 1;
-            this.TopBar.TabStop = false;
-            // 
-            // QuickMenu
-            // 
-            this.QuickMenu.Controls.Add(this.menuLbl);
-            this.QuickMenu.Controls.Add(this.homeLbl);
-            this.QuickMenu.Controls.Add(this.studentLbl);
-            this.QuickMenu.Controls.Add(this.newStudentLbl);
-            this.QuickMenu.Controls.Add(this.withdrawStudentLbl);
-            this.QuickMenu.Controls.Add(this.assessmentAdd);
-            this.QuickMenu.Controls.Add(this.geekLbl);
-            this.QuickMenu.Controls.Add(this.reportLbl);
-            this.QuickMenu.Controls.Add(this.generateIndiReportLbl);
-            this.QuickMenu.Image = global::Recording_Student_Achievements.Properties.Resources.Quick_Menu;
-            this.QuickMenu.Location = new System.Drawing.Point(-1, 111);
-            this.QuickMenu.Name = "QuickMenu";
-            this.QuickMenu.Size = new System.Drawing.Size(159, 620);
-            this.QuickMenu.TabIndex = 2;
-            this.QuickMenu.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Franklin Gothic Heavy", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(31, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(156, 29);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Student Data";
             // 
             // menuLbl
             // 
@@ -170,7 +136,7 @@ namespace Recording_Student_Achievements
             this.menuLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.menuLbl.Font = new System.Drawing.Font("Franklin Gothic Heavy", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuLbl.ForeColor = System.Drawing.Color.White;
-            this.menuLbl.Location = new System.Drawing.Point(5, 2);
+            this.menuLbl.Location = new System.Drawing.Point(2, 5);
             this.menuLbl.Name = "menuLbl";
             this.menuLbl.Size = new System.Drawing.Size(139, 29);
             this.menuLbl.TabIndex = 3;
@@ -183,7 +149,7 @@ namespace Recording_Student_Achievements
             this.homeLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.homeLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.homeLbl.ForeColor = System.Drawing.Color.White;
-            this.homeLbl.Location = new System.Drawing.Point(15, 40);
+            this.homeLbl.Location = new System.Drawing.Point(12, 43);
             this.homeLbl.Name = "homeLbl";
             this.homeLbl.Size = new System.Drawing.Size(63, 25);
             this.homeLbl.TabIndex = 3;
@@ -196,7 +162,7 @@ namespace Recording_Student_Achievements
             this.studentLbl.BackColor = System.Drawing.Color.Transparent;
             this.studentLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.studentLbl.ForeColor = System.Drawing.Color.White;
-            this.studentLbl.Location = new System.Drawing.Point(30, 65);
+            this.studentLbl.Location = new System.Drawing.Point(27, 68);
             this.studentLbl.Name = "studentLbl";
             this.studentLbl.Size = new System.Drawing.Size(67, 20);
             this.studentLbl.TabIndex = 3;
@@ -209,7 +175,7 @@ namespace Recording_Student_Achievements
             this.newStudentLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.newStudentLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newStudentLbl.ForeColor = System.Drawing.Color.White;
-            this.newStudentLbl.Location = new System.Drawing.Point(50, 85);
+            this.newStudentLbl.Location = new System.Drawing.Point(47, 88);
             this.newStudentLbl.Name = "newStudentLbl";
             this.newStudentLbl.Size = new System.Drawing.Size(72, 16);
             this.newStudentLbl.TabIndex = 3;
@@ -223,7 +189,7 @@ namespace Recording_Student_Achievements
             this.withdrawStudentLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.withdrawStudentLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.withdrawStudentLbl.ForeColor = System.Drawing.Color.White;
-            this.withdrawStudentLbl.Location = new System.Drawing.Point(50, 105);
+            this.withdrawStudentLbl.Location = new System.Drawing.Point(47, 108);
             this.withdrawStudentLbl.Name = "withdrawStudentLbl";
             this.withdrawStudentLbl.Size = new System.Drawing.Size(98, 16);
             this.withdrawStudentLbl.TabIndex = 3;
@@ -236,7 +202,7 @@ namespace Recording_Student_Achievements
             this.assessmentAdd.BackColor = System.Drawing.Color.Transparent;
             this.assessmentAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.assessmentAdd.ForeColor = System.Drawing.Color.White;
-            this.assessmentAdd.Location = new System.Drawing.Point(49, 125);
+            this.assessmentAdd.Location = new System.Drawing.Point(46, 128);
             this.assessmentAdd.Name = "assessmentAdd";
             this.assessmentAdd.Size = new System.Drawing.Size(83, 13);
             this.assessmentAdd.TabIndex = 8;
@@ -250,7 +216,7 @@ namespace Recording_Student_Achievements
             this.geekLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.geekLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.geekLbl.ForeColor = System.Drawing.Color.White;
-            this.geekLbl.Location = new System.Drawing.Point(49, 145);
+            this.geekLbl.Location = new System.Drawing.Point(46, 148);
             this.geekLbl.Name = "geekLbl";
             this.geekLbl.Size = new System.Drawing.Size(44, 16);
             this.geekLbl.TabIndex = 3;
@@ -263,7 +229,7 @@ namespace Recording_Student_Achievements
             this.reportLbl.BackColor = System.Drawing.Color.Transparent;
             this.reportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportLbl.ForeColor = System.Drawing.Color.White;
-            this.reportLbl.Location = new System.Drawing.Point(30, 165);
+            this.reportLbl.Location = new System.Drawing.Point(27, 168);
             this.reportLbl.Name = "reportLbl";
             this.reportLbl.Size = new System.Drawing.Size(60, 20);
             this.reportLbl.TabIndex = 3;
@@ -276,7 +242,7 @@ namespace Recording_Student_Achievements
             this.generateIndiReportLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.generateIndiReportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generateIndiReportLbl.ForeColor = System.Drawing.Color.White;
-            this.generateIndiReportLbl.Location = new System.Drawing.Point(49, 185);
+            this.generateIndiReportLbl.Location = new System.Drawing.Point(46, 188);
             this.generateIndiReportLbl.Name = "generateIndiReportLbl";
             this.generateIndiReportLbl.Size = new System.Drawing.Size(92, 16);
             this.generateIndiReportLbl.TabIndex = 3;
@@ -285,84 +251,99 @@ namespace Recording_Student_Achievements
             // 
             // header
             // 
-            this.header.Image = global::Recording_Student_Achievements.Properties.Resources.Header;
-            this.header.Location = new System.Drawing.Point(-1, -1);
+            this.header.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.header.BackColor = System.Drawing.SystemColors.Desktop;
+            this.header.Location = new System.Drawing.Point(0, 0);
             this.header.Name = "header";
-            this.header.Size = new System.Drawing.Size(2000, 75);
-            this.header.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.header.TabIndex = 0;
-            this.header.TabStop = false;
+            this.header.Size = new System.Drawing.Size(1350, 81);
+            this.header.TabIndex = 8;
+            // 
+            // topBar
+            // 
+            this.topBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.topBar.BackColor = System.Drawing.SystemColors.Desktop;
+            this.topBar.Location = new System.Drawing.Point(0, 75);
+            this.topBar.Name = "topBar";
+            this.topBar.Size = new System.Drawing.Size(1350, 39);
+            this.topBar.TabIndex = 9;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(0, 44);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(179, 621);
+            this.panel1.TabIndex = 10;
+            // 
+            // quickMenuBar
+            // 
+            this.quickMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.quickMenuBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.quickMenuBar.Controls.Add(this.menuLbl);
+            this.quickMenuBar.Controls.Add(this.newStudentLbl);
+            this.quickMenuBar.Controls.Add(this.homeLbl);
+            this.quickMenuBar.Controls.Add(this.generateIndiReportLbl);
+            this.quickMenuBar.Controls.Add(this.studentLbl);
+            this.quickMenuBar.Controls.Add(this.reportLbl);
+            this.quickMenuBar.Controls.Add(this.geekLbl);
+            this.quickMenuBar.Controls.Add(this.withdrawStudentLbl);
+            this.quickMenuBar.Controls.Add(this.assessmentAdd);
+            this.quickMenuBar.Location = new System.Drawing.Point(0, 114);
+            this.quickMenuBar.Name = "quickMenuBar";
+            this.quickMenuBar.Size = new System.Drawing.Size(153, 693);
+            this.quickMenuBar.TabIndex = 10;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.panel2.Location = new System.Drawing.Point(-1, 114);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1363, 726);
+            this.panel2.TabIndex = 11;
             // 
             // Form1
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1362, 741);
+            this.ClientSize = new System.Drawing.Size(1350, 808);
+            this.Controls.Add(this.topBar);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.studentDataPnl);
-            this.Controls.Add(this.homePic);
-            this.Controls.Add(this.TopBar);
-            this.Controls.Add(this.QuickMenu);
+            this.Controls.Add(this.geekItPnl);
+            this.Controls.Add(this.quickMenuBar);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.header);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1366, 768);
             this.Name = "Form1";
             this.Text = "Student Achievement System";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.studentDataPnl.ResumeLayout(false);
-            this.studentDataPnl.PerformLayout();
+            this.geekItPnl.ResumeLayout(false);
+            this.geekItPnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.homePic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TopBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.QuickMenu)).EndInit();
-            this.QuickMenu.ResumeLayout(false);
-            this.QuickMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.header)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableDataSetBindingSource)).EndInit();
+            this.quickMenuBar.ResumeLayout(false);
+            this.quickMenuBar.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
 
-
-        protected override void WndProc(ref Message m)
-        {
-            const int WM_SYSCOMMAND = 0x0112;
-            const int SC_MOVE = 0xF010;
-            const int WM_NCLBUTTONDBLCLK = 0x00A3; //double click on a title bar a.k.a. non-client area of the form
-
-            switch (m.Msg)
-            {
-                case WM_SYSCOMMAND:             //preventing the form from being moved by the mouse.
-                    int command = m.WParam.ToInt32() & 0xfff0;
-                    if (command == SC_MOVE)
-                        return;
-                    break;
-            }
-
-            if (m.Msg == WM_NCLBUTTONDBLCLK)       //preventing the form being resized by the mouse double click on the title bar.
-            {
-                m.Result = System.IntPtr.Zero;
-                return;
-            }
-
-            base.WndProc(ref m);
-        }
 
 
 
         #endregion
-
-        private PictureBox header;
-        private PictureBox TopBar;
-        private PictureBox QuickMenu;
         private Label menuLbl, homeLbl, studentLbl, newStudentLbl, withdrawStudentLbl, geekLbl, reportLbl, generateIndiReportLbl;
-        private PictureBox homePic;
-        private Panel studentDataPnl;
+        private Panel geekItPnl;
         private Label label1;
         private BindingSource tableDataSetBindingSource;
         private DataGridView dataGridView1;
@@ -370,6 +351,11 @@ namespace Recording_Student_Achievements
         private Label assessmentAdd;
         private Button search;
         private TextBox searchByNSN;
+        private Panel header;
+        private Panel topBar;
+        private Panel panel1;
+        private Panel quickMenuBar;
+        private Panel panel2;
     }
 }
 
