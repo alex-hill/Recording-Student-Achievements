@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using WindowsFormsApplication1;
 
 namespace Recording_Student_Achievements
 {
@@ -21,18 +22,78 @@ namespace Recording_Student_Achievements
         public Form1()
         {
             InitializeComponent();
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Database.xlsx;Persist Security Info=False;Extended Properties=Excel 12.0;"; //For not Alex's laptop
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
             //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
             ns = new NewStudent();
             ws = new WithdrawStudent();
+            topBar.Paint += new PaintEventHandler(topBar_Paint);
+            topBar.Refresh();
+            quickMenuBar.Paint += new PaintEventHandler(quickMenuBar_Paint);
+            quickMenuBar.Refresh();
+            geekItPnl.Paint += new PaintEventHandler(geekItPnl_Paint);
+            geekItPnl.Refresh();
+
+        }
+
+        private void topBar_Paint(object sender, PaintEventArgs e)
+        {
+            System.Drawing.Drawing2D.LinearGradientBrush linearGradientBrush = 
+                new System.Drawing.Drawing2D.LinearGradientBrush(topBar.ClientRectangle, Color.Black, Color.Black, 90);
+            System.Drawing.Drawing2D.ColorBlend cblend = new System.Drawing.Drawing2D.ColorBlend(4);
+
+            cblend.Colors = new Color[4] { Color.White, Color.DimGray, Color.White, Color.Black };
+            cblend.Positions = new float[4] { 0f, 0.1f, 0.8f, 1f };
+            linearGradientBrush.InterpolationColors = cblend;
+            e.Graphics.FillRectangle(linearGradientBrush, topBar.ClientRectangle);
+
+        }
+
+
+        private void quickMenuBar_Paint(object sender, PaintEventArgs e)
+        {
+            Color c2 = Color.FromArgb(0, 71, 131);
+            Color c1 = Color.FromArgb(1, 56, 115);
+            System.Drawing.Drawing2D.LinearGradientBrush myBrush
+                = new System.Drawing.Drawing2D.LinearGradientBrush(quickMenuBar.ClientRectangle, c1, c2, 90);
+
+
+            System.Drawing.Drawing2D.ColorBlend cblend = new System.Drawing.Drawing2D.ColorBlend(4);
+
+            cblend.Colors = new Color[4] { Color.White, c1, c2, Color.Black};
+            cblend.Positions = new float[4] { 0f, 0.0001f, 0.69f, 1f };
+            myBrush.InterpolationColors = cblend;
+
+
+
+            CustomRectangle.FillRoundedRectangle(e.Graphics, myBrush, new System.Drawing.Rectangle(-20,0, quickMenuBar.Width + 20, quickMenuBar.Height), 25);
+            myBrush.Dispose();
+            e.Graphics.Dispose();
+        }
+
+        private void geekItPnl_Paint(object sender, PaintEventArgs e)
+        {
+            Color c2 = Color.FromArgb(0, 71, 131);
+            Color c1 = Color.FromArgb(1, 56, 115);
+            System.Drawing.Drawing2D.LinearGradientBrush myBrush
+                = new System.Drawing.Drawing2D.LinearGradientBrush(geekItPnl.ClientRectangle, c1, c2, 90);
+
+
+            System.Drawing.Drawing2D.ColorBlend cblend = new System.Drawing.Drawing2D.ColorBlend(4);
+
+            cblend.Colors = new Color[4] { Color.White, c1, c2, Color.Black };
+            cblend.Positions = new float[4] { 0f, 0.0001f, 0.69f, 1f };
+            myBrush.InterpolationColors = cblend;
+
+
+
+            CustomRectangle.FillRoundedRectangle(e.Graphics, myBrush, new System.Drawing.Rectangle(0, 0, geekItPnl.Width , geekItPnl.Height), 25);
+            myBrush.Dispose();
+            e.Graphics.Dispose();
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Left = Top = 0;
-           // Width = Screen.PrimaryScreen.WorkingArea.Width;
-            //Height = Screen.PrimaryScreen.WorkingArea.Height;
         }
 
         private WithdrawStudent ws;
@@ -70,8 +131,8 @@ namespace Recording_Student_Achievements
 
         private void geekLbl_Click(object sender, EventArgs e)
         {
-            studentDataPnl.Show();
-            studentDataPnl.Visible = true;
+            geekItPnl.Show();
+            geekItPnl.Visible = true;
             try
             {
                 connection.Open();
@@ -79,27 +140,25 @@ namespace Recording_Student_Achievements
                 OleDbCommand command = new OleDbCommand();
                 //
                 command.Connection = connection;
-                //string query =
-                //    "SELECT [s.NSN] AS `NSN`, [s.Family Name Legal] AS `Last Name`, [s.First Name Legal] AS `First Name`, [s.Date Of Birth] AS `DoB`, [se.School Next Year Level] AS `Next Year Level`, [se.Next Room Number] AS `Next Room Number`, [s.Gender] AS `Gender`, [s.Ethnicity] AS `Ethnicity` "
-                //    + ", [r.Final Assessment Level] AS `Reading Final Assessment`, [r.NS Progress] AS `Reading Progress Level`"
-                //    + ", [w.Overall Assessment] AS `Writing Overall Assessment`, [w.NS Progress]  AS `Writing Progress Level`"
-                //    + ", [m.Overall Assessment] AS `Maths Overall Assessment`, [m.NS Progress]  AS `Maths Progress Level`"
-                //    + ", [se.Curiosity 1] AS `Curiosity 1`, [se.Curiosity 2] AS `Curiosity 2`, [se.Curiosity 3] AS `Curiosity 3`"
-                //    + ", [se.Creativity 1] AS `Creativity 1`, [se.Creativity 2]   AS `Creativity 2`, [se.Creativity 3]  AS `Creativity 3`"
-                //    + ", [se.Community 1] AS `Community 1`, [se.Community 2] AS `Community 2`, [se.Community 3] AS `Community 3`"
-                //    + ", [se.Sustainability 1] AS `Sustainability 1`, [se.Sustainability 2] AS `Sustainability 2`, [se.Sustainability 3]  AS `Sustainability 3` "
+                string query =
+                    "SELECT [s.NSN] AS `NSN`, [s.Family Name Legal] AS `Last Name`, [s.First Name Legal] AS `First Name`, [s.Date Of Birth] AS `DoB`, [se.School Next Year Level] AS `Next Year Level`, [se.Next Room Number] AS `Next Room Number`, [s.Gender] AS `Gender`, [s.Ethnicity] AS `Ethnicity` "
+                    + ", [r.Final Assessment Level] AS `Reading Final Assessment`, [r.NS Progress] AS `Reading Progress Level`"
+                    + ", [w.Overall Assessment] AS `Writing Overall Assessment`, [w.NS Progress]  AS `Writing Progress Level`"
+                    + ", [m.Overall Assessment] AS `Maths Overall Assessment`, [m.NS Progress]  AS `Maths Progress Level`"
+                    + ", [se.Curiosity 1] AS `Curiosity 1`, [se.Curiosity 2] AS `Curiosity 2`, [se.Curiosity 3] AS `Curiosity 3`"
+                    + ", [se.Creativity 1] AS `Creativity 1`, [se.Creativity 2]   AS `Creativity 2`, [se.Creativity 3]  AS `Creativity 3`"
+                    + ", [se.Community 1] AS `Community 1`, [se.Community 2] AS `Community 2`, [se.Community 3] AS `Community 3`"
+                    + ", [se.Sustainability 1] AS `Sustainability 1`, [se.Sustainability 2] AS `Sustainability 2`, [se.Sustainability 3]  AS `Sustainability 3` "
 
-                //    + "FROM (((([Student] s "
+                    + "FROM (((([Student] s "
 
-                //    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+                    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
-                //    + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+                    + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
 
-                //    + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+                    + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
 
-                //    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]);";
-
-                string query = "SELECT * FROM [Student Data$]";
+                    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]);";
 
                 command.CommandText = query;
 
@@ -108,15 +167,8 @@ namespace Recording_Student_Achievements
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
 
-                dataGridView1.Columns["Family Name Legal"].Frozen = true;
-                dataGridView1.Columns["First Name Legal"].Frozen = true; 
-
-                command.CommandText = query;
-
-                for (int i = 0; i < dataGridView1.Columns.Count; ++i)
-                {
-                    dataGridView1[0, i].Style.BackColor = Color.LightBlue;
-                }
+                dataGridView1.Columns["Last Name"].Frozen = true;
+                dataGridView1.Columns["First Name"].Frozen = true; 
 
                 connection.Close();
             }
@@ -128,19 +180,19 @@ namespace Recording_Student_Achievements
 
         private void homeLbl_Click(object sender, EventArgs e)
         {
-            if (studentDataPnl.Visible)
+            if (geekItPnl.Visible)
             {
                 // Add the message
-                studentDataPnl.Visible = false;
+                geekItPnl.Visible = false;
             }
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
-            if (studentDataPnl.Visible)
+            if (geekItPnl.Visible)
             {
                 // Add the message
-                studentDataPnl.Visible = false;
+                geekItPnl.Visible = false;
             }
         }
 
@@ -292,8 +344,8 @@ namespace Recording_Student_Achievements
 
                             cmd.CommandText = query;
 
-                            studentDataPnl.Show();
-                            studentDataPnl.Visible = true;
+                            geekItPnl.Show();
+                            geekItPnl.Visible = true;
 
 
                             OleDbDataAdapter da = new OleDbDataAdapter(cmd);
@@ -318,8 +370,8 @@ namespace Recording_Student_Achievements
 
         private void search_Click(object sender, EventArgs e)
         {
-            studentDataPnl.Show();
-            studentDataPnl.Visible = true;
+            geekItPnl.Show();
+            geekItPnl.Visible = true;
             try
             {
                 connection.Open();
@@ -354,6 +406,16 @@ namespace Recording_Student_Achievements
             {
                 MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
             }
+        }
+
+        private void generateIndiReportLbl_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void header_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
