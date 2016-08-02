@@ -216,6 +216,7 @@
             this.familyNameAlias.Name = "familyNameAlias";
             this.familyNameAlias.Size = new System.Drawing.Size(96, 20);
             this.familyNameAlias.TabIndex = 2;
+            this.familyNameAlias.Text = "a";
             // 
             // familyNameLegal
             // 
@@ -224,6 +225,7 @@
             this.familyNameLegal.Size = new System.Drawing.Size(96, 20);
             this.familyNameLegal.TabIndex = 2;
             this.familyNameLegal.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.familyNameLegal.Text = "b";
             // 
             // firstNameLegal
             // 
@@ -231,6 +233,7 @@
             this.firstNameLegal.Name = "firstNameLegal";
             this.firstNameLegal.Size = new System.Drawing.Size(96, 20);
             this.firstNameLegal.TabIndex = 2;
+            this.firstNameLegal.Text = "c";
             // 
             // preferredName
             // 
@@ -238,6 +241,7 @@
             this.preferredName.Name = "preferredName";
             this.preferredName.Size = new System.Drawing.Size(96, 20);
             this.preferredName.TabIndex = 2;
+            this.preferredName.Text = "d";
             // 
             // dateOfBirth
             // 
@@ -245,6 +249,7 @@
             this.dateOfBirth.Name = "dateOfBirth";
             this.dateOfBirth.Size = new System.Drawing.Size(96, 20);
             this.dateOfBirth.TabIndex = 2;
+            this.dateOfBirth.Text = "20/07/1995";
             // 
             // startDate
             // 
@@ -252,6 +257,7 @@
             this.startDate.Name = "startDate";
             this.startDate.Size = new System.Drawing.Size(96, 20);
             this.startDate.TabIndex = 2;
+            this.startDate.Text = "1/08/2016";
             // 
             // yearLevelCombo
             // 
@@ -269,6 +275,7 @@
             this.yearLevelCombo.Name = "yearLevelCombo";
             this.yearLevelCombo.Size = new System.Drawing.Size(96, 21);
             this.yearLevelCombo.TabIndex = 3;
+            this.yearLevelCombo.SelectedIndex = 0;
             // 
             // genderCombo
             // 
@@ -281,6 +288,7 @@
             this.genderCombo.Name = "genderCombo";
             this.genderCombo.Size = new System.Drawing.Size(96, 21);
             this.genderCombo.TabIndex = 4;
+            this.genderCombo.SelectedIndex = 0;
             // 
             // ethnicityCombo
             // 
@@ -333,6 +341,7 @@
             this.roomCombo.Name = "roomCombo";
             this.roomCombo.Size = new System.Drawing.Size(96, 21);
             this.roomCombo.TabIndex = 6;
+            this.roomCombo.SelectedIndex = 0;
             // 
             // nsn
             // 
@@ -340,6 +349,7 @@
             this.nsn.Name = "nsn";
             this.nsn.Size = new System.Drawing.Size(96, 20);
             this.nsn.TabIndex = 2;
+            this.nsn.Text = "1000000000";
             // 
             // fundingLevelCombo
             // 
@@ -358,6 +368,7 @@
             this.fundingLevelCombo.Size = new System.Drawing.Size(96, 21);
             this.fundingLevelCombo.TabIndex = 7;
             this.fundingLevelCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.fundingLevelCombo.SelectedIndex = 0;
             // 
             // NewStudent
             // 

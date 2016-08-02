@@ -35,10 +35,10 @@ namespace Recording_Student_Achievements
         {
             
               OleDbCommand cmd = new OleDbCommand("INSERT INTO [Student Data$] ([Family Name Alias], [Family Name Legal], [First Name Legal], [Preferred Name], [Year Level], [Room Number], [Gender], [Date of Birth], [Ethnicity], [NSN], [Funding Year Level], [Start Date])"
-                  +" VALUES(" + familyNameAlias.Text + ", " + familyNameLegal.Text + ", '" + firstNameLegal.Text + "', " + preferredName.Text + ", " + yearLevelCombo.Text + ", " + roomCombo.Text
-                   + ", " + genderCombo.Text + ", " + dateOfBirth.Text + ", '" + ethnicityCombo.Text + "', " + nsn.Text + ", " + fundingLevelCombo.Text + ", " + startDate.Text + ");");
+                  +" VALUES(" + familyNameAlias.Text + ", " + familyNameLegal.Text + ", '" + firstNameLegal.Text + "', " + preferredName.Text + ", '" + yearLevelCombo.Text + "', " + roomCombo.Text
+                   + ", " + genderCombo.Text + ", '" + dateOfBirth.Text + "', '" + ethnicityCombo.Text + "', " + nsn.Text + ", " + fundingLevelCombo.Text + ", '" + startDate.Text + "');");
               Console.Write(familyNameAlias.Text + ", " + familyNameLegal.Text + ", '" + firstNameLegal.Text + "', " + preferredName.Text + ", " + yearLevelCombo.Text + ", " + roomCombo.Text
-                   + ", " + genderCombo.Text + ", " + dateOfBirth.Text + ", '" + ethnicityCombo.Text + "', " + nsn.Text + ", " + fundingLevelCombo.Text + ", " + startDate.Text + ");");
+                   + ", " + genderCombo.Text + ", " + dateOfBirth.Text + ", '" + ethnicityCombo.Text + "', " + nsn.Text + ", " + fundingLevelCombo.Text + ", " + startDate.Text + ")");
 
             cmd.Connection = conn;
 
@@ -50,7 +50,7 @@ namespace Recording_Student_Achievements
                 cmd.Parameters.Add("@Family Name Alias", OleDbType.VarChar).Value = familyNameAlias.Text;
                 cmd.Parameters.Add("@Family Name Legal", OleDbType.VarChar).Value = familyNameLegal.Text;
                 cmd.Parameters.Add("@First Name Legal", OleDbType.VarChar).Value = firstNameLegal.Text;
-                cmd.Parameters.Add("@Preferred Name", OleDbType.VarChar).Value = preferredName.Text;
+                cmd.Parameters.Add("@Preferred Name", OleDbType.VarChar).Value = genderCombo.Text;
                 cmd.Parameters.Add("@Year Level", OleDbType.VarChar).Value = yearLevelCombo.Text;
                 cmd.Parameters.Add("@Room Number", OleDbType.VarChar).Value = roomCombo.Text;
                 cmd.Parameters.Add("@Gender", OleDbType.VarChar).Value = genderCombo.Text;

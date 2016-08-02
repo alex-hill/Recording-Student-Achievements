@@ -174,7 +174,7 @@ namespace Recording_Student_Achievements
 
                 //dataGridView1.Columns["family name legal"].BackColor = Color.Red;
 
-                for (int i = 0; i < dataGridView1.Columns.Count; ++i)
+                for (int i = 0; i < dataGridView1.Rows.Count; ++i)
                 {
                     dataGridView1[0, i].Style.BackColor = Color.LightBlue;
                 }
