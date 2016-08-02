@@ -13,20 +13,19 @@ namespace Recording_Student_Achievements
 {
     public partial class WithdrawStudent : Form
     {
+        OleDbConnection conn = new OleDbConnection();
         public WithdrawStudent()
         {
             InitializeComponent();
+            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Database.xlsx;Persist Security Info=False;Extended Properties=Excel 12.0;"; //For not Alex's laptop
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            OleDbConnection conn = new OleDbConnection();
-            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            
             //conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
+            OleDbCommand cmd = new OleDbCommand("DELETE FROM [Sheet1$] WHERE [First Name Legal] LIKE '%" +  textBox1.Text + "%' AND [Family Name Legal] LIKE '%" + textBox2.Text + "%'");
 
-            OleDbCommand cmd = new OleDbCommand("DELETE FROM Student WHERE [First Name Legal] LIKE '%" +  textBox1.Text + "%' AND [Family Name Legal] LIKE '%" + textBox2.Text + "%'");
-
-            // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;
 
             conn.Open();
@@ -61,10 +60,10 @@ namespace Recording_Student_Achievements
 
         private void button2_Click(object sender, EventArgs e)
         {
-            OleDbConnection conn = new OleDbConnection();
-            conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True";
+            //OleDbConnection conn = new OleDbConnection();
+            //conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True";
 
-            OleDbCommand cmd = new OleDbCommand("DELETE FROM Student;");
+            OleDbCommand cmd = new OleDbCommand("DELETE FROM [Sheet1$];");
 
             // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;

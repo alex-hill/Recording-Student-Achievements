@@ -22,7 +22,7 @@ namespace Recording_Student_Achievements
         public Form1()
         {
             InitializeComponent();
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Database.xlsx;Persist Security Info=False;Extended Properties=Excel 12.0;"; //For not Alex's laptop
             //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
             ns = new NewStudent();
             ws = new WithdrawStudent();
@@ -140,25 +140,27 @@ namespace Recording_Student_Achievements
                 OleDbCommand command = new OleDbCommand();
                 //
                 command.Connection = connection;
-                string query =
-                    "SELECT [s.NSN] AS `NSN`, [s.Family Name Legal] AS `Last Name`, [s.First Name Legal] AS `First Name`, [s.Date Of Birth] AS `DoB`, [se.School Next Year Level] AS `Next Year Level`, [se.Next Room Number] AS `Next Room Number`, [s.Gender] AS `Gender`, [s.Ethnicity] AS `Ethnicity` "
-                    + ", [r.Final Assessment Level] AS `Reading Final Assessment`, [r.NS Progress] AS `Reading Progress Level`"
-                    + ", [w.Overall Assessment] AS `Writing Overall Assessment`, [w.NS Progress]  AS `Writing Progress Level`"
-                    + ", [m.Overall Assessment] AS `Maths Overall Assessment`, [m.NS Progress]  AS `Maths Progress Level`"
-                    + ", [se.Curiosity 1] AS `Curiosity 1`, [se.Curiosity 2] AS `Curiosity 2`, [se.Curiosity 3] AS `Curiosity 3`"
-                    + ", [se.Creativity 1] AS `Creativity 1`, [se.Creativity 2]   AS `Creativity 2`, [se.Creativity 3]  AS `Creativity 3`"
-                    + ", [se.Community 1] AS `Community 1`, [se.Community 2] AS `Community 2`, [se.Community 3] AS `Community 3`"
-                    + ", [se.Sustainability 1] AS `Sustainability 1`, [se.Sustainability 2] AS `Sustainability 2`, [se.Sustainability 3]  AS `Sustainability 3` "
+                //string query =
+                //    "SELECT [s.NSN] AS `NSN`, [s.Family Name Legal] AS `Last Name`, [s.First Name Legal] AS `First Name`, [s.Date Of Birth] AS `DoB`, [se.School Next Year Level] AS `Next Year Level`, [se.Next Room Number] AS `Next Room Number`, [s.Gender] AS `Gender`, [s.Ethnicity] AS `Ethnicity` "
+                //    + ", [r.Final Assessment Level] AS `Reading Final Assessment`, [r.NS Progress] AS `Reading Progress Level`"
+                //    + ", [w.Overall Assessment] AS `Writing Overall Assessment`, [w.NS Progress]  AS `Writing Progress Level`"
+                //    + ", [m.Overall Assessment] AS `Maths Overall Assessment`, [m.NS Progress]  AS `Maths Progress Level`"
+                //    + ", [se.Curiosity 1] AS `Curiosity 1`, [se.Curiosity 2] AS `Curiosity 2`, [se.Curiosity 3] AS `Curiosity 3`"
+                //    + ", [se.Creativity 1] AS `Creativity 1`, [se.Creativity 2]   AS `Creativity 2`, [se.Creativity 3]  AS `Creativity 3`"
+                //    + ", [se.Community 1] AS `Community 1`, [se.Community 2] AS `Community 2`, [se.Community 3] AS `Community 3`"
+                //    + ", [se.Sustainability 1] AS `Sustainability 1`, [se.Sustainability 2] AS `Sustainability 2`, [se.Sustainability 3]  AS `Sustainability 3` "
 
-                    + "FROM (((([Student] s "
+                //    + "FROM (((([Student] s "
 
-                    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+                //    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
-                    + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+                //    + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
 
-                    + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+                //    + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
 
-                    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]);";
+                //    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]);";
+
+                string query = "SELECT * FROM [Geek It$]";
 
                 command.CommandText = query;
 
@@ -167,8 +169,15 @@ namespace Recording_Student_Achievements
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
 
-                dataGridView1.Columns["Last Name"].Frozen = true;
-                dataGridView1.Columns["First Name"].Frozen = true; 
+                dataGridView1.Columns["Surname"].Frozen = true;
+                dataGridView1.Columns["First Name"].Frozen = true;
+
+                //dataGridView1.Columns["family name legal"].BackColor = Color.Red;
+
+                for (int i = 0; i < dataGridView1.Rows.Count; ++i)
+                {
+                    dataGridView1[0, i].Style.BackColor = Color.LightBlue;
+                }
 
                 connection.Close();
             }
