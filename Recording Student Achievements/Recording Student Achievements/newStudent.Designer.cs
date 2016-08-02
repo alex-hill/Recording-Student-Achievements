@@ -224,8 +224,8 @@
             this.familyNameLegal.Name = "familyNameLegal";
             this.familyNameLegal.Size = new System.Drawing.Size(96, 20);
             this.familyNameLegal.TabIndex = 2;
-            this.familyNameLegal.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             this.familyNameLegal.Text = "b";
+            this.familyNameLegal.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // firstNameLegal
             // 
@@ -275,7 +275,7 @@
             this.yearLevelCombo.Name = "yearLevelCombo";
             this.yearLevelCombo.Size = new System.Drawing.Size(96, 21);
             this.yearLevelCombo.TabIndex = 3;
-            this.yearLevelCombo.SelectedIndex = 0;
+            this.yearLevelCombo.SelectedIndexChanged += new System.EventHandler(this.yearLevelCombo_SelectedIndexChanged);
             // 
             // genderCombo
             // 
@@ -288,7 +288,6 @@
             this.genderCombo.Name = "genderCombo";
             this.genderCombo.Size = new System.Drawing.Size(96, 21);
             this.genderCombo.TabIndex = 4;
-            this.genderCombo.SelectedIndex = 0;
             // 
             // ethnicityCombo
             // 
@@ -312,7 +311,6 @@
             this.ethnicityCombo.Name = "ethnicityCombo";
             this.ethnicityCombo.Size = new System.Drawing.Size(96, 21);
             this.ethnicityCombo.TabIndex = 5;
-            this.ethnicityCombo.SelectedIndex = 6;
             // 
             // roomCombo
             // 
@@ -341,7 +339,6 @@
             this.roomCombo.Name = "roomCombo";
             this.roomCombo.Size = new System.Drawing.Size(96, 21);
             this.roomCombo.TabIndex = 6;
-            this.roomCombo.SelectedIndex = 0;
             // 
             // nsn
             // 
@@ -368,7 +365,6 @@
             this.fundingLevelCombo.Size = new System.Drawing.Size(96, 21);
             this.fundingLevelCombo.TabIndex = 7;
             this.fundingLevelCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.fundingLevelCombo.SelectedIndex = 0;
             // 
             // NewStudent
             // 
