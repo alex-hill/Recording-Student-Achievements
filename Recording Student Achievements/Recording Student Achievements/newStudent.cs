@@ -33,12 +33,13 @@ namespace Recording_Student_Achievements
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
+              OleDbCommand cmd = new OleDbCommand("INSERT INTO [Student Data$] ([Family Name Alias], [Family Name Legal], [First Name Legal], [Preferred Name], [Year Level], [Room Number], [Gender], [Date of Birth], [Ethnicity], [NSN], [Funding Year Level], [Start Date])"
+                  +" VALUES(" + familyNameAlias.Text + ", " + familyNameLegal.Text + ", '" + firstNameLegal.Text + "', " + preferredName.Text + ", " + yearLevelCombo.Text + ", " + roomCombo.Text
+                   + ", " + genderCombo.Text + ", " + dateOfBirth.Text + ", '" + ethnicityCombo.Text + "', " + nsn.Text + ", " + fundingLevelCombo.Text + ", " + startDate.Text + ");");
+              Console.Write(familyNameAlias.Text + ", " + familyNameLegal.Text + ", '" + firstNameLegal.Text + "', " + preferredName.Text + ", " + yearLevelCombo.Text + ", " + roomCombo.Text
+                   + ", " + genderCombo.Text + ", " + dateOfBirth.Text + ", '" + ethnicityCombo.Text + "', " + nsn.Text + ", " + fundingLevelCombo.Text + ", " + startDate.Text + ");");
 
-              OleDbCommand cmd = new OleDbCommand("INSERT INTO [Sheet1$] ([Family Name Alias], [Family Name Legal], [First Name Legal], [Preferred Name], [Year Level], [Room Number], [Gender], [Date of Birth], [Ethnicity], [NSN], [Funding Year Level], [Start Date])"
-                  +" VALUES(" + familyNameAlias.Text + ", " + familyNameLegal.Text + ", [" + firstNameLegal.Text + "], " + preferredName.Text + ", " + yearLevelCombo.Text + ", " + roomCombo.Text
-                   + ", " + genderCombo.Text + ", " + dateOfBirth.Text + ", " + ethnicityCombo.Text + ", " + nsn.Text + ", " + fundingLevelCombo.Text + ", " + startDate.Text + ");");
-
-           // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;
 
             conn.Open();

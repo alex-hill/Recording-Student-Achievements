@@ -160,7 +160,7 @@ namespace Recording_Student_Achievements
 
                 //    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]);";
 
-                string query = "SELECT * FROM [Student Data$]";
+                string query = "SELECT * FROM [Geek It$]";
 
                 command.CommandText = query;
 
@@ -169,8 +169,8 @@ namespace Recording_Student_Achievements
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
 
-                dataGridView1.Columns["Family Name Legal"].Frozen = true;
-                dataGridView1.Columns["First Name Legal"].Frozen = true;
+                dataGridView1.Columns["Surname"].Frozen = true;
+                dataGridView1.Columns["First Name"].Frozen = true;
 
                 //dataGridView1.Columns["family name legal"].BackColor = Color.Red;
 

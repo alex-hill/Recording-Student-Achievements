@@ -304,6 +304,7 @@
             this.ethnicityCombo.Name = "ethnicityCombo";
             this.ethnicityCombo.Size = new System.Drawing.Size(96, 21);
             this.ethnicityCombo.TabIndex = 5;
+            this.ethnicityCombo.SelectedIndex = 6;
             // 
             // roomCombo
             // 
