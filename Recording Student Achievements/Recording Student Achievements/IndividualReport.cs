@@ -65,13 +65,16 @@ namespace Recording_Student_Achievements
                     MessageBox.Show("Please enter an NSN number", "NSN error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            } else if (optionBox.SelectedIndex == 2)
-            { 
-                if (!string.IsNullOrWhiteSpace(userLastName.Text) && !string.IsNullOrWhiteSpace(userFirstName.Text)) {
+            }
+            else if (optionBox.SelectedIndex == 2)
+            {
+                if (!string.IsNullOrWhiteSpace(userLastName.Text) && !string.IsNullOrWhiteSpace(userFirstName.Text))
+                {
                     firstName = userFirstName.Text;
                     lastName = userLastName.Text;
                     checkValue(null, firstName, lastName);
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Please enter a first and family name", "Name error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -82,27 +85,48 @@ namespace Recording_Student_Achievements
         private void checkValue(String nsn, String firstName, String lastName)
         {
             OleDbCommand cmd = new OleDbCommand();
-            if (nsn != null)
+            // 1 means firstName and lastName being used
+            // 2 means nsn being used
+            int check = 0;
+
+            if (firstName != null && lastName != null)
             {
-                cmd = new OleDbCommand("SELECT [NSN] FROM [Student] WHERE [NSN] = '" + Int32.Parse(nsn) + "'; ");
-            }else
-            {
-                cmd = new OleDbCommand("SELECT [Family Name Legal], [First Name Legal] FROM [Student] " +
-                    "WHERE [Family Name Legal] = '" + lastName + "' AND [First Name Legal] = '" + firstName + "'; ");
+                cmd = new OleDbCommand("SELECT * FROM [Student] WHERE [Family Name Legal] = '" + lastName + "' AND [First Name Legal] = '" + firstName + "'; ");
+                cmd.Connection = conn;
+                check = 1;
             }
-            cmd.Connection = conn;
+            else if (nsnNumber != null)
+            {
+                cmd = new OleDbCommand("SELECT * FROM [Student] WHERE [NSN] = '" + Int32.Parse(nsn) + "'; ");
+                cmd.Connection = conn;
+                check = 2;
+            }
 
             conn.Open();
 
             if (conn.State == ConnectionState.Open)
             {
-                // cmd.Parameters.Add("@Student ID", OleDbType.VarChar).Value = 1;
-                cmd.Parameters.Add("@Family Name Alias", OleDbType.VarChar).Value = familyNameAlias.Text;
-
                 try
                 {
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Data Added");
+                    OleDbDataReader reader = cmd.ExecuteReader();
+                    if (!reader.HasRows)
+                    {
+                        if (check == 1)
+                        {
+                            MessageBox.Show("That Name does not exist", "Name does not exist",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else if (check == 2)
+                        {
+                            MessageBox.Show("That NSN does not exist", "NSN does not exist",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        mailMerge(reader);
+                    }
+                    reader.Close();
                     conn.Close();
                 }
                 catch (OleDbException ex)
@@ -115,5 +139,17 @@ namespace Recording_Student_Achievements
             {
                 MessageBox.Show("Connection Failed");
             }
+
+            this.Close();
         }
+
+        private void mailMerge(OleDbDataReader reader)
+        {
+            while(reader.Read())
+            {
+                
+            }
+        }
+    }
+
 }
