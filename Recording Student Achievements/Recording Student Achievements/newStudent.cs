@@ -29,7 +29,6 @@ namespace Recording_Student_Achievements
                 + " VALUES(" + familyNameAlias.Text + ", " + familyNameLegal.Text + ", [" + firstNameLegal.Text + "], " + preferredName.Text + ", " + yearLevelCombo.Text + ", " + roomCombo.Text
                  + ", " + genderCombo.Text + ", " + dateOfBirth.Text + ", " + ethnicityCombo.Text + ", " + nsn.Text + ", " + fundingLevelCombo.Text + ", " + startDate.Text + ");");
 
-            // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;
 
             conn.Open();

@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IndividualReport));
             this.titleLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.userNSN = new System.Windows.Forms.TextBox();
+            this.userNSN = new NumericTextBox();
             this.generateBttn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -67,7 +67,8 @@
             // 
             // userNSN
             // 
-            this.userNSN.Location = new System.Drawing.Point(167, 158);
+            this.userNSN.AllowSpace = false;
+            this.userNSN.Location = new System.Drawing.Point(167, 151);
             this.userNSN.Name = "userNSN";
             this.userNSN.Size = new System.Drawing.Size(100, 20);
             this.userNSN.TabIndex = 10;
@@ -115,7 +116,7 @@
             // nsnNumber
             // 
             this.nsnNumber.AutoSize = true;
-            this.nsnNumber.Location = new System.Drawing.Point(89, 161);
+            this.nsnNumber.Location = new System.Drawing.Point(89, 154);
             this.nsnNumber.Name = "nsnNumber";
             this.nsnNumber.Size = new System.Drawing.Size(70, 13);
             this.nsnNumber.TabIndex = 13;
@@ -125,7 +126,7 @@
             // famName
             // 
             this.famName.AutoSize = true;
-            this.famName.Location = new System.Drawing.Point(63, 159);
+            this.famName.Location = new System.Drawing.Point(63, 152);
             this.famName.Name = "famName";
             this.famName.Size = new System.Drawing.Size(96, 13);
             this.famName.TabIndex = 13;
@@ -135,7 +136,7 @@
             // firName
             // 
             this.firName.AutoSize = true;
-            this.firName.Location = new System.Drawing.Point(73, 188);
+            this.firName.Location = new System.Drawing.Point(73, 181);
             this.firName.Name = "firName";
             this.firName.Size = new System.Drawing.Size(86, 13);
             this.firName.TabIndex = 13;
@@ -144,7 +145,7 @@
             // 
             // userLastName
             // 
-            this.userLastName.Location = new System.Drawing.Point(167, 159);
+            this.userLastName.Location = new System.Drawing.Point(167, 152);
             this.userLastName.Name = "userLastName";
             this.userLastName.Size = new System.Drawing.Size(100, 20);
             this.userLastName.TabIndex = 10;
@@ -153,7 +154,7 @@
             // 
             // userFirstName
             // 
-            this.userFirstName.Location = new System.Drawing.Point(167, 185);
+            this.userFirstName.Location = new System.Drawing.Point(167, 178);
             this.userFirstName.Name = "userFirstName";
             this.userFirstName.Size = new System.Drawing.Size(100, 20);
             this.userFirstName.TabIndex = 10;
@@ -215,7 +216,7 @@
 
         private System.Windows.Forms.Label titleLbl;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox userNSN;
+        private NumericTextBox userNSN;
         private System.Windows.Forms.Button generateBttn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
