@@ -29,27 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WithdrawStudent));
-            this.button1 = new System.Windows.Forms.Button();
+            this.removeOneStudentBttn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.legalNameTxtBox = new System.Windows.Forms.TextBox();
+            this.familyNameTxtBox = new System.Windows.Forms.TextBox();
+            this.removeAllBttn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // button1
+            // removeOneStudentBttn
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button1.Location = new System.Drawing.Point(96, 146);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 52);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Remove Selected Student";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.removeOneStudentBttn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.removeOneStudentBttn.Location = new System.Drawing.Point(96, 146);
+            this.removeOneStudentBttn.Name = "removeOneStudentBttn";
+            this.removeOneStudentBttn.Size = new System.Drawing.Size(152, 52);
+            this.removeOneStudentBttn.TabIndex = 0;
+            this.removeOneStudentBttn.Text = "Remove Selected Student";
+            this.removeOneStudentBttn.UseVisualStyleBackColor = true;
+            this.removeOneStudentBttn.Click += new System.EventHandler(this.removeOneStudent_click);
             // 
             // label1
             // 
@@ -60,7 +60,6 @@
             this.label1.Size = new System.Drawing.Size(94, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Legal Name";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -72,31 +71,30 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Family Name";
             // 
-            // textBox1
+            // legalNameTxtBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(164, 66);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.legalNameTxtBox.Location = new System.Drawing.Point(164, 66);
+            this.legalNameTxtBox.Name = "legalNameTxtBox";
+            this.legalNameTxtBox.Size = new System.Drawing.Size(100, 20);
+            this.legalNameTxtBox.TabIndex = 3;
             // 
-            // textBox2
+            // familyNameTxtBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(164, 100);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 4;
+            this.familyNameTxtBox.Location = new System.Drawing.Point(164, 100);
+            this.familyNameTxtBox.Name = "familyNameTxtBox";
+            this.familyNameTxtBox.Size = new System.Drawing.Size(100, 20);
+            this.familyNameTxtBox.TabIndex = 4;
             // 
-            // button2
+            // removeAllBttn
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.button2.Location = new System.Drawing.Point(102, 255);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(137, 49);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Remove All Students";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.removeAllBttn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.removeAllBttn.Location = new System.Drawing.Point(102, 255);
+            this.removeAllBttn.Name = "removeAllBttn";
+            this.removeAllBttn.Size = new System.Drawing.Size(137, 49);
+            this.removeAllBttn.TabIndex = 5;
+            this.removeAllBttn.Text = "Remove All Students";
+            this.removeAllBttn.UseVisualStyleBackColor = true;
+            this.removeAllBttn.Click += new System.EventHandler(this.removeAll_click);
             // 
             // label3
             // 
@@ -107,7 +105,6 @@
             this.label3.Size = new System.Drawing.Size(242, 34);
             this.label3.TabIndex = 6;
             this.label3.Text = "Withdraw Student";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -129,7 +126,6 @@
             this.label5.Size = new System.Drawing.Size(336, 13);
             this.label5.TabIndex = 1;
             this.label5.Text = "*Note : Any student(s) data once withdrawn cannot be retrieved again";
-            this.label5.Click += new System.EventHandler(this.label1_Click);
             // 
             // WithdrawStudent
             // 
@@ -138,13 +134,13 @@
             this.ClientSize = new System.Drawing.Size(339, 350);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.removeAllBttn);
+            this.Controls.Add(this.familyNameTxtBox);
+            this.Controls.Add(this.legalNameTxtBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.removeOneStudentBttn);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WithdrawStudent";
             this.Text = "Withdraw Student(s)";
@@ -156,12 +152,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button removeOneStudentBttn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox legalNameTxtBox;
+        private System.Windows.Forms.TextBox familyNameTxtBox;
+        private System.Windows.Forms.Button removeAllBttn;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;

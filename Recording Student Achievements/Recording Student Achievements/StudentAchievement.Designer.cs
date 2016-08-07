@@ -2,7 +2,7 @@
 
 namespace Recording_Student_Achievements
 {
-    partial class Form1
+    partial class StudentAchievement
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace Recording_Student_Achievements
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentAchievement));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.geekItPnl = new System.Windows.Forms.Panel();
             this.search = new System.Windows.Forms.Button();
@@ -84,7 +84,7 @@ namespace Recording_Student_Achievements
             this.geekItPnl.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.geekItPnl.Location = new System.Drawing.Point(185, 144);
             this.geekItPnl.Name = "geekItPnl";
-            this.geekItPnl.Size = new System.Drawing.Size(1135, 570);
+            this.geekItPnl.Size = new System.Drawing.Size(1135, 562);
             this.geekItPnl.TabIndex = 6;
             this.geekItPnl.Visible = false;
             // 
@@ -114,7 +114,7 @@ namespace Recording_Student_Achievements
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(36, 71);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1064, 468);
+            this.dataGridView1.Size = new System.Drawing.Size(1064, 460);
             this.dataGridView1.TabIndex = 4;
             // 
             // label1
@@ -292,7 +292,7 @@ namespace Recording_Student_Achievements
             this.quickMenuBar.Controls.Add(this.assessmentAdd);
             this.quickMenuBar.Location = new System.Drawing.Point(0, 114);
             this.quickMenuBar.Name = "quickMenuBar";
-            this.quickMenuBar.Size = new System.Drawing.Size(153, 626);
+            this.quickMenuBar.Size = new System.Drawing.Size(153, 618);
             this.quickMenuBar.TabIndex = 10;
             // 
             // panel2
@@ -303,7 +303,7 @@ namespace Recording_Student_Achievements
             this.panel2.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.panel2.Location = new System.Drawing.Point(-1, 114);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1363, 659);
+            this.panel2.Size = new System.Drawing.Size(1363, 651);
             this.panel2.TabIndex = 11;
             // 
             // Form1
@@ -311,7 +311,7 @@ namespace Recording_Student_Achievements
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 741);
+            this.ClientSize = new System.Drawing.Size(1350, 733);
             this.Controls.Add(this.topBar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.geekItPnl);

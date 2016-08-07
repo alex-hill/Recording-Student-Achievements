@@ -10,22 +10,28 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using WindowsFormsApplication1;
+using System.Data.SqlClient;
+using Word = Microsoft.Office.Interop.Word;
+using System.Collections;
+
 
 namespace Recording_Student_Achievements
 {
     
 
 
-    public partial class Form1 : Form
+    public partial class StudentAchievement : Form
     {
         private OleDbConnection connection = new OleDbConnection();
-        public Form1()
+        ArrayList colNames = new ArrayList();
+        public StudentAchievement()
         {
             InitializeComponent();
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Database.xlsx;Persist Security Info=False;Extended Properties=Excel 12.0;"; //For not Alex's laptop
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
             //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
             ns = new NewStudent();
             ws = new WithdrawStudent();
+            ir = new IndividualReport();
             topBar.Paint += new PaintEventHandler(topBar_Paint);
             topBar.Refresh();
             quickMenuBar.Paint += new PaintEventHandler(quickMenuBar_Paint);
@@ -105,7 +111,7 @@ namespace Recording_Student_Achievements
                 ws.Show();
             }
             // Can now add more than one student (previously crashed if tried to add another student)
-            if (ns.IsDisposed)
+            if (ws.IsDisposed)
             {
                 ws = new WithdrawStudent();
                 ws.Show();
@@ -127,6 +133,8 @@ namespace Recording_Student_Achievements
                 ns = new NewStudent();
                 ns.Show();
             }
+
+
         }
 
         private void geekLbl_Click(object sender, EventArgs e)
@@ -140,27 +148,82 @@ namespace Recording_Student_Achievements
                 OleDbCommand command = new OleDbCommand();
                 //
                 command.Connection = connection;
-                //string query =
-                //    "SELECT [s.NSN] AS `NSN`, [s.Family Name Legal] AS `Last Name`, [s.First Name Legal] AS `First Name`, [s.Date Of Birth] AS `DoB`, [se.School Next Year Level] AS `Next Year Level`, [se.Next Room Number] AS `Next Room Number`, [s.Gender] AS `Gender`, [s.Ethnicity] AS `Ethnicity` "
-                //    + ", [r.Final Assessment Level] AS `Reading Final Assessment`, [r.NS Progress] AS `Reading Progress Level`"
-                //    + ", [w.Overall Assessment] AS `Writing Overall Assessment`, [w.NS Progress]  AS `Writing Progress Level`"
-                //    + ", [m.Overall Assessment] AS `Maths Overall Assessment`, [m.NS Progress]  AS `Maths Progress Level`"
-                //    + ", [se.Curiosity 1] AS `Curiosity 1`, [se.Curiosity 2] AS `Curiosity 2`, [se.Curiosity 3] AS `Curiosity 3`"
-                //    + ", [se.Creativity 1] AS `Creativity 1`, [se.Creativity 2]   AS `Creativity 2`, [se.Creativity 3]  AS `Creativity 3`"
-                //    + ", [se.Community 1] AS `Community 1`, [se.Community 2] AS `Community 2`, [se.Community 3] AS `Community 3`"
-                //    + ", [se.Sustainability 1] AS `Sustainability 1`, [se.Sustainability 2] AS `Sustainability 2`, [se.Sustainability 3]  AS `Sustainability 3` "
+                
+            string query =
+                "SELECT [s.NSN] AS `NSN`, [s.Family Name Legal] AS `Last Name`, [s.First Name Legal] AS `First Name` "
+                + ", [s.Date Of Birth] AS `DoB`, [s.Room Number] AS `Room Number`, [se.Teacher] AS `Teacher` "
+                + ", [se.School Next Year Level] AS `LPS Next Year Level`, [se.Report Week Count] AS `Report Week Count` "
+                + ", [se.Next Room Number] AS `Next Room Number`, [s.Gender] AS `Gender`, [s.Ethnicity] AS `Ethnicity` "
+                + ", 0 as placeholder "
+                + ", [r.Final Assessment Level] AS `Reading Final Assessment`, "
+                + ", [r.NS Progress] AS `Reading Progress Level`"
+                + ", [w.Overall Assessment] AS `Writing Overall Assessment`, [w.NS Progress]  AS `Writing Progress Level`"
+                + ", [m.Overall Assessment] AS `Maths Overall Assessment`, [m.NS Progress]  AS `Maths Progress Level`"
+                + ", [se.Curiosity 1] AS `Curiosity 1`, [se.Curiosity 2] AS `Curiosity 2`, [se.Curiosity 3] AS `Curiosity 3`"
+                + ", [se.Creativity 1] AS `Creativity 1`, [se.Creativity 2]   AS `Creativity 2`, [se.Creativity 3]  AS `Creativity 3`"
+                + ", [se.Community 1] AS `Community 1`, [se.Community 2] AS `Community 2`, [se.Community 3] AS `Community 3`"
+                + ", [se.Sustainability 1] AS `Sustainability 1`, [se.Sustainability 2] AS `Sustainability 2`, [se.Sustainability 3]  AS `Sustainability 3` "
 
-                //    + "FROM (((([Student] s "
+                + "FROM (((([Student] s "
 
-                //    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+                + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
-                //    + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+                + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
 
-                //    + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+                + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
 
-                //    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]);";
+                + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
+                + "INNER JOIN [Culture Activities] ca ON ca.[NSN] = s.[NSN]) "
+                + "INNER JOIN [Sports Activities] sa ON sa.[NSN] = s.[NSN]) "
+                + "INNER JOIN [Extra Activities] ea ON m.[NSN] = s.[NSN]);";
 
-                string query = "SELECT * FROM [Geek It$]";
+/*
+                {
+
+                    using (var cmd = new OleDbCommand("SELECT * FROM [Student], [Student Extra], [Reading], [Writing], [Mathematics], [Culture Activities], [Sports Activities], [Extra Activities]", connection))
+                    using (var reader = cmd.ExecuteReader(CommandBehavior.SchemaOnly))
+                    {
+                        var table = reader.GetSchemaTable();
+                        var nameCol = table.Columns["ColumnName"];
+                        foreach (DataRow row in table.Rows)
+                        {
+                            String str = row[nameCol].ToString();
+                            if(str.Contains("Student."))
+                            {
+                                str = str.Replace("Student.", "");
+                                colNames.Add(str);
+                            }else if(str.Contains("Reading.NSN") || str.Contains("Writing.NSN") || str.Contains("Mathematics.NSN") || str.Contains("Culture Activities.NSN") || str.Contains("Sports Activities.NSN") || str.Contains("Extra Activities.NSN") ){
+                            }else
+                            {
+                                colNames.Add(str);
+                            }
+                            
+                        }
+                    }
+                }
+
+                for (int iIndex = 0; iIndex < colNames.Count; iIndex++)
+                {
+                    object o = colNames[iIndex];
+                    Console.WriteLine(o);
+                }
+
+                string query =
+                    "SELECT * FROM((((((([Student] s "
+
+                    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+
+                    + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+
+                    + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+
+                    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN])"
+
+                    + "INNER JOIN [Culture Activities] ca ON ca.[NSN] = s.[NSN])"
+                    + "INNER JOIN [Sports Activities] sa ON sa.[NSN] = s.[NSN])"
+                    + "INNER JOIN [Extra Activities] ea ON ea.[NSN] = s.[NSN]);";
+
+                */
 
                 command.CommandText = query;
 
@@ -168,17 +231,10 @@ namespace Recording_Student_Achievements
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 dataGridView1.DataSource = dt;
-
-                dataGridView1.Columns["Surname"].Frozen = true;
+                /*
+                dataGridView1.Columns["Last Name"].Frozen = true;
                 dataGridView1.Columns["First Name"].Frozen = true;
-
-                //dataGridView1.Columns["family name legal"].BackColor = Color.Red;
-
-                for (int i = 0; i < dataGridView1.Rows.Count; ++i)
-                {
-                    dataGridView1[0, i].Style.BackColor = Color.LightBlue;
-                }
-
+                */
                 connection.Close();
             }
             catch (Exception ex)
@@ -186,6 +242,7 @@ namespace Recording_Student_Achievements
                 MessageBox.Show("Error" + ex);
             }
         }
+
 
         private void homeLbl_Click(object sender, EventArgs e)
         {
@@ -275,7 +332,7 @@ namespace Recording_Student_Achievements
 
                             Console.WriteLine(values[0] + "\n" + values[1]);
                             OleDbCommand cmd = new OleDbCommand("SELECT [NSN] FROM Student WHERE [Preferred Name] LIKE '" + values[0] + "' AND [Family Name Legal] LIKE '" + values[1] + "';");
-                            
+
                             cmd.Connection = connection;
 
                             OleDbDataReader returnValue = cmd.ExecuteReader();
@@ -288,22 +345,22 @@ namespace Recording_Student_Achievements
                             returnValue.Close();
 
                             Console.WriteLine(nsn);
-                            
+
 
 
                             //Insert statements for the different subjects; reading, mathematics, and writing
                             switch (subject)
                             {
-                                
+
                                 case "Reading":
                                     for (int i = 0; i < values.Length; ++i)
                                     {
-                                        Console.WriteLine("values["+i+"] = " + values[i]);
+                                        Console.WriteLine("values[" + i + "] = " + values[i]);
                                     }
                                     cmd = new OleDbCommand("INSERT INTO Reading (NSN, [Initial Assessment Method], [Initial Assessment Level], [Final Assessment Method], [Final Assessment Level], [NS Achievement Code], " +
-                                        "[NS Progress], Effort, Comment) VALUES(" + nsn + ", [" + values[2] + "], [" + values[3] + "], [" + values[4] + "], [" + values[5] + "], [" + values[6] + "], [" + values[7] +"], [" + values[8] + "], [" + values[9] +"]);");
+                                        "[NS Progress], Effort, Comment) VALUES(" + nsn + ", [" + values[2] + "], [" + values[3] + "], [" + values[4] + "], [" + values[5] + "], [" + values[6] + "], [" + values[7] + "], [" + values[8] + "], [" + values[9] + "]);");
 
-                                    cmd.Parameters.AddWithValue("@NSN",  values[2]);
+                                    cmd.Parameters.AddWithValue("@NSN", values[2]);
                                     cmd.Parameters.AddWithValue("@Initial Assessment Method", values[3]);
                                     cmd.Parameters.AddWithValue("@Initial Assessment Level", values[4]);
                                     cmd.Parameters.AddWithValue("@Final Assessment Method", values[5]);
@@ -311,7 +368,7 @@ namespace Recording_Student_Achievements
                                     cmd.Parameters.AddWithValue("@NS Achievement Code", values[7]);
                                     cmd.Parameters.AddWithValue("@NS Progress", values[8]);
                                     cmd.Parameters.AddWithValue("@Effort", values[9]);
-                                   // cmd.Parameters.AddWithValue("@Comment", values[10]);
+                                    // cmd.Parameters.AddWithValue("@Comment", values[10]);
                                     break;
                                 case "Writing":
                                     cmd = new OleDbCommand("INSERT INTO Writing (NSN, [Initial Assessment], [Initial Assessment], [Overall Assessment], [NS Code], [NS Achievement Code], " +
@@ -342,11 +399,11 @@ namespace Recording_Student_Achievements
                                     cmd.Parameters.AddWithValue("Comment", values[9]);
                                     break;
 
-                                    
+
                             }
                             cmd.Connection = connection;
-                                    cmd.ExecuteNonQuery();
-                                    MessageBox.Show("Data Added");
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Data Added");
 
                             //Displaying the data that was just added
                             string query = "SELECT * FROM " + subject + " INNER JOIN Student ON (" + subject + ".[NSN] = Student.[NSN]) WHERE Student.[Room Number] = '" + roomNo + "';";
@@ -361,10 +418,10 @@ namespace Recording_Student_Achievements
                             DataTable dt = new DataTable();
                             da.Fill(dt);
                             dataGridView1.DataSource = dt;
-                           
+
                         }
 
-                        
+
                     }
                     fileStream.Close();
                 }
@@ -417,8 +474,20 @@ namespace Recording_Student_Achievements
             }
         }
 
+        private IndividualReport ir;
         private void generateIndiReportLbl_Click(object sender, EventArgs e)
         {
+            if(!ir.Visible && !ir.IsDisposed)
+            {
+                ir.Show();
+            }
+            
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ir.IsDisposed)
+            {
+                ir = new IndividualReport();
+                ir.Show();
+            }
             
         }
 

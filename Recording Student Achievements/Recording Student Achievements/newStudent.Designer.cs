@@ -87,7 +87,6 @@
             this.label3.Size = new System.Drawing.Size(137, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Family Name legal";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -98,7 +97,6 @@
             this.label4.Size = new System.Drawing.Size(123, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "First Name legal";
-            this.label4.Click += new System.EventHandler(this.label3_Click);
             // 
             // label5
             // 
@@ -109,7 +107,6 @@
             this.label5.Size = new System.Drawing.Size(121, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "Preferred Name";
-            this.label5.Click += new System.EventHandler(this.label3_Click);
             // 
             // label6
             // 
@@ -120,7 +117,6 @@
             this.label6.Size = new System.Drawing.Size(84, 20);
             this.label6.TabIndex = 0;
             this.label6.Text = "Year Level";
-            this.label6.Click += new System.EventHandler(this.label3_Click);
             // 
             // label7
             // 
@@ -131,7 +127,6 @@
             this.label7.Size = new System.Drawing.Size(112, 20);
             this.label7.TabIndex = 0;
             this.label7.Text = "Room Number";
-            this.label7.Click += new System.EventHandler(this.label3_Click);
             // 
             // label8
             // 
@@ -142,7 +137,6 @@
             this.label8.Size = new System.Drawing.Size(63, 20);
             this.label8.TabIndex = 0;
             this.label8.Text = "Gender";
-            this.label8.Click += new System.EventHandler(this.label3_Click);
             // 
             // label9
             // 
@@ -153,7 +147,6 @@
             this.label9.Size = new System.Drawing.Size(102, 20);
             this.label9.TabIndex = 0;
             this.label9.Text = "Date Of Birth";
-            this.label9.Click += new System.EventHandler(this.label3_Click);
             // 
             // label10
             // 
@@ -164,7 +157,6 @@
             this.label10.Size = new System.Drawing.Size(69, 20);
             this.label10.TabIndex = 0;
             this.label10.Text = "Ethnicity";
-            this.label10.Click += new System.EventHandler(this.label3_Click);
             // 
             // label11
             // 
@@ -175,7 +167,6 @@
             this.label11.Size = new System.Drawing.Size(42, 20);
             this.label11.TabIndex = 0;
             this.label11.Text = "NSN";
-            this.label11.Click += new System.EventHandler(this.label3_Click);
             // 
             // label12
             // 
@@ -186,7 +177,6 @@
             this.label12.Size = new System.Drawing.Size(146, 20);
             this.label12.TabIndex = 0;
             this.label12.Text = "Funding Year Level";
-            this.label12.Click += new System.EventHandler(this.label3_Click);
             // 
             // label13
             // 
@@ -197,7 +187,6 @@
             this.label13.Size = new System.Drawing.Size(83, 20);
             this.label13.TabIndex = 0;
             this.label13.Text = "Start Date";
-            this.label13.Click += new System.EventHandler(this.label3_Click);
             // 
             // button1
             // 
@@ -208,7 +197,6 @@
             this.button1.TabIndex = 1;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // familyNameAlias
             // 
@@ -225,7 +213,6 @@
             this.familyNameLegal.Size = new System.Drawing.Size(96, 20);
             this.familyNameLegal.TabIndex = 2;
             this.familyNameLegal.Text = "b";
-            this.familyNameLegal.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // firstNameLegal
             // 
@@ -275,7 +262,6 @@
             this.yearLevelCombo.Name = "yearLevelCombo";
             this.yearLevelCombo.Size = new System.Drawing.Size(96, 21);
             this.yearLevelCombo.TabIndex = 3;
-            this.yearLevelCombo.SelectedIndexChanged += new System.EventHandler(this.yearLevelCombo_SelectedIndexChanged);
             // 
             // genderCombo
             // 
@@ -364,7 +350,6 @@
             this.fundingLevelCombo.Name = "fundingLevelCombo";
             this.fundingLevelCombo.Size = new System.Drawing.Size(96, 21);
             this.fundingLevelCombo.TabIndex = 7;
-            this.fundingLevelCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // NewStudent
             // 
