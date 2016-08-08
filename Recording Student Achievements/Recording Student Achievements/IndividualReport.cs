@@ -147,7 +147,8 @@ namespace Recording_Student_Achievements
         {
             while(reader.Read())
             {
-                
+                String Year = "";
+
             }
         }
     }

@@ -55,9 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="NumericTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="CustomRectangle.cs" />
     <Compile Include="IndividualReport.cs">
       <SubType>Form</SubType>
