@@ -53,7 +53,7 @@
             this.genderCombo = new System.Windows.Forms.ComboBox();
             this.ethnicityCombo = new System.Windows.Forms.ComboBox();
             this.roomCombo = new System.Windows.Forms.ComboBox();
-            this.nsn = new System.Windows.Forms.TextBox();
+            this.nsn = new NumericTextBox();
             this.fundingLevelCombo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
@@ -195,6 +195,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 28);
             this.button1.TabIndex = 1;
+            this.button1.TabStop = false;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             // 
@@ -203,7 +204,7 @@
             this.familyNameAlias.Location = new System.Drawing.Point(198, 64);
             this.familyNameAlias.Name = "familyNameAlias";
             this.familyNameAlias.Size = new System.Drawing.Size(96, 20);
-            this.familyNameAlias.TabIndex = 2;
+            this.familyNameAlias.TabIndex = 0;
             this.familyNameAlias.Text = "a";
             // 
             // familyNameLegal
@@ -211,7 +212,7 @@
             this.familyNameLegal.Location = new System.Drawing.Point(198, 94);
             this.familyNameLegal.Name = "familyNameLegal";
             this.familyNameLegal.Size = new System.Drawing.Size(96, 20);
-            this.familyNameLegal.TabIndex = 2;
+            this.familyNameLegal.TabIndex = 1;
             this.familyNameLegal.Text = "b";
             // 
             // firstNameLegal
@@ -227,7 +228,7 @@
             this.preferredName.Location = new System.Drawing.Point(198, 153);
             this.preferredName.Name = "preferredName";
             this.preferredName.Size = new System.Drawing.Size(96, 20);
-            this.preferredName.TabIndex = 2;
+            this.preferredName.TabIndex = 3;
             this.preferredName.Text = "d";
             // 
             // dateOfBirth
@@ -235,7 +236,7 @@
             this.dateOfBirth.Location = new System.Drawing.Point(198, 241);
             this.dateOfBirth.Name = "dateOfBirth";
             this.dateOfBirth.Size = new System.Drawing.Size(96, 20);
-            this.dateOfBirth.TabIndex = 2;
+            this.dateOfBirth.TabIndex = 6;
             this.dateOfBirth.Text = "20/07/1995";
             // 
             // startDate
@@ -243,7 +244,7 @@
             this.startDate.Location = new System.Drawing.Point(198, 389);
             this.startDate.Name = "startDate";
             this.startDate.Size = new System.Drawing.Size(96, 20);
-            this.startDate.TabIndex = 2;
+            this.startDate.TabIndex = 11;
             this.startDate.Text = "1/08/2016";
             // 
             // yearLevelCombo
@@ -261,7 +262,7 @@
             this.yearLevelCombo.Location = new System.Drawing.Point(198, 180);
             this.yearLevelCombo.Name = "yearLevelCombo";
             this.yearLevelCombo.Size = new System.Drawing.Size(96, 21);
-            this.yearLevelCombo.TabIndex = 3;
+            this.yearLevelCombo.TabIndex = 4;
             // 
             // genderCombo
             // 
@@ -273,7 +274,7 @@
             this.genderCombo.Location = new System.Drawing.Point(198, 209);
             this.genderCombo.Name = "genderCombo";
             this.genderCombo.Size = new System.Drawing.Size(96, 21);
-            this.genderCombo.TabIndex = 4;
+            this.genderCombo.TabIndex = 5;
             // 
             // ethnicityCombo
             // 
@@ -296,7 +297,7 @@
             this.ethnicityCombo.Location = new System.Drawing.Point(198, 267);
             this.ethnicityCombo.Name = "ethnicityCombo";
             this.ethnicityCombo.Size = new System.Drawing.Size(96, 21);
-            this.ethnicityCombo.TabIndex = 5;
+            this.ethnicityCombo.TabIndex = 7;
             // 
             // roomCombo
             // 
@@ -324,14 +325,14 @@
             this.roomCombo.Location = new System.Drawing.Point(198, 327);
             this.roomCombo.Name = "roomCombo";
             this.roomCombo.Size = new System.Drawing.Size(96, 21);
-            this.roomCombo.TabIndex = 6;
+            this.roomCombo.TabIndex = 9;
             // 
             // nsn
             // 
             this.nsn.Location = new System.Drawing.Point(198, 301);
             this.nsn.Name = "nsn";
             this.nsn.Size = new System.Drawing.Size(96, 20);
-            this.nsn.TabIndex = 2;
+            this.nsn.TabIndex = 8;
             this.nsn.Text = "1000000000";
             // 
             // fundingLevelCombo
@@ -349,7 +350,7 @@
             this.fundingLevelCombo.Location = new System.Drawing.Point(198, 356);
             this.fundingLevelCombo.Name = "fundingLevelCombo";
             this.fundingLevelCombo.Size = new System.Drawing.Size(96, 21);
-            this.fundingLevelCombo.TabIndex = 7;
+            this.fundingLevelCombo.TabIndex = 10;
             // 
             // NewStudent
             // 
@@ -415,7 +416,7 @@
         private System.Windows.Forms.ComboBox genderCombo;
         private System.Windows.Forms.ComboBox ethnicityCombo;
         private System.Windows.Forms.ComboBox roomCombo;
-        private System.Windows.Forms.TextBox nsn;
+        private NumericTextBox nsn;
         private System.Windows.Forms.ComboBox fundingLevelCombo;
         private System.Windows.Forms.ComboBox yearLevelCombo;
     }

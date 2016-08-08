@@ -34,7 +34,7 @@ namespace Recording_Student_Achievements
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IndividualReport));
             this.titleLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.userNSN = new NumericTextBox();
+            this.userNSN = new Recording_Student_Achievements.NumericTextBox();
             this.generateBttn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -75,7 +75,6 @@ namespace Recording_Student_Achievements
             this.userNSN.Name = "userNSN";
             this.userNSN.Size = new System.Drawing.Size(100, 20);
             this.userNSN.TabIndex = 10;
-            this.userNSN.Text = "Enter Details";
             this.userNSN.Visible = false;
             // 
             // generateBttn
@@ -152,7 +151,6 @@ namespace Recording_Student_Achievements
             this.userLastName.Name = "userLastName";
             this.userLastName.Size = new System.Drawing.Size(100, 20);
             this.userLastName.TabIndex = 10;
-            this.userLastName.Text = "Enter Details";
             this.userLastName.Visible = false;
             // 
             // userFirstName
@@ -161,7 +159,6 @@ namespace Recording_Student_Achievements
             this.userFirstName.Name = "userFirstName";
             this.userFirstName.Size = new System.Drawing.Size(100, 20);
             this.userFirstName.TabIndex = 10;
-            this.userFirstName.Text = "Enter Details";
             this.userFirstName.Visible = false;
             // 
             // label9
@@ -213,82 +210,6 @@ namespace Recording_Student_Achievements
             this.ResumeLayout(false);
             this.PerformLayout();
 
-        }
-
-        public class NumericTextBox : TextBox
-        {
-            bool allowSpace = false;
-
-            // Restricts the entry of characters to digits (including hex), the negative sign,
-            // the decimal point, and editing keystrokes (backspace).
-            protected override void OnKeyPress(KeyPressEventArgs e)
-            {
-                base.OnKeyPress(e);
-
-                NumberFormatInfo numberFormatInfo = System.Globalization.CultureInfo.CurrentCulture.NumberFormat;
-                string decimalSeparator = numberFormatInfo.NumberDecimalSeparator;
-                string groupSeparator = numberFormatInfo.NumberGroupSeparator;
-                string negativeSign = numberFormatInfo.NegativeSign;
-
-                string keyInput = e.KeyChar.ToString();
-
-                if (Char.IsDigit(e.KeyChar))
-                {
-                    // Digits are OK
-                }
-                else if (keyInput.Equals(decimalSeparator) || keyInput.Equals(groupSeparator) ||
-                 keyInput.Equals(negativeSign))
-                {
-                    // Decimal separator is OK
-                }
-                else if (e.KeyChar == '\b')
-                {
-                    // Backspace key is OK
-                }
-                //    else if ((ModifierKeys & (Keys.Control | Keys.Alt)) != 0)
-                //    {
-                //     // Let the edit control handle control and alt key combinations
-                //    }
-                else if (this.allowSpace && e.KeyChar == ' ')
-                {
-
-                }
-                else
-                {
-                    // Swallow this invalid key and beep
-                    e.Handled = true;
-                    //    MessageBeep();
-                }
-            }
-
-            public int IntValue
-            {
-                get
-                {
-                    return Int32.Parse(this.Text);
-                }
-            }
-
-            public decimal DecimalValue
-            {
-                get
-                {
-                    return Decimal.Parse(this.Text);
-                }
-            }
-
-            public bool AllowSpace
-            {
-                set
-                {
-                    this.allowSpace = value;
-                }
-
-                get
-                {
-                    return this.allowSpace;
-                }
-            }
         }
 
         #endregion

@@ -306,7 +306,7 @@ namespace Recording_Student_Achievements
             this.panel2.Size = new System.Drawing.Size(1363, 651);
             this.panel2.TabIndex = 11;
             // 
-            // Form1
+            // StudentAchievement
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,10 +321,9 @@ namespace Recording_Student_Achievements
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1364, 726);
-            this.Name = "Form1";
+            this.Name = "StudentAchievement";
             this.Text = "Student Achievement System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.geekItPnl.ResumeLayout(false);
             this.geekItPnl.PerformLayout();
@@ -342,14 +341,14 @@ namespace Recording_Student_Achievements
 
         #endregion
         private Label menuLbl, homeLbl, studentLbl, newStudentLbl, withdrawStudentLbl, geekLbl, reportLbl, generateIndiReportLbl;
-        private Panel geekItPnl;
+        protected Panel geekItPnl;
         private Label label1;
         private BindingSource tableDataSetBindingSource;
-        private DataGridView dataGridView1;
+        protected DataGridView dataGridView1;
         private PictureBox pictureBox1;
         private Label assessmentAdd;
         private Button search;
-        private TextBox searchByNSN;
+        protected TextBox searchByNSN;
         private Panel header;
         private Panel topBar;
         private Panel panel1;

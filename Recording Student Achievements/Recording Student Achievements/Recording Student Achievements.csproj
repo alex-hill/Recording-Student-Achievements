@@ -55,7 +55,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomRectangle.cs" />
+    <Compile Include="CustomClasses\NSNSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomClasses\GeekIt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomClasses\AddAssessment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomClasses\NumericTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomClasses\CustomRectangle.cs" />
     <Compile Include="IndividualReport.cs">
       <SubType>Form</SubType>
     </Compile>
