@@ -35,7 +35,6 @@ namespace Recording_Student_Achievements
 
             if (conn.State == ConnectionState.Open)
             {
-                // cmd.Parameters.Add("@Student ID", OleDbType.VarChar).Value = 1;
                 cmd.Parameters.Add("@Family Name Alias", OleDbType.VarChar).Value = familyNameAlias.Text;
                 cmd.Parameters.Add("@Family Name Legal", OleDbType.VarChar).Value = familyNameLegal.Text;
                 cmd.Parameters.Add("@First Name Legal", OleDbType.VarChar).Value = firstNameLegal.Text;
