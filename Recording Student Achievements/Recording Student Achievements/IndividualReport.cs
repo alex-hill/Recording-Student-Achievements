@@ -360,19 +360,19 @@ namespace Recording_Student_Achievements
                         // Calculate Math NS and KF
                         while (mathKf1Reader.Read())
                         {
-                            mathKf1 = reader.GetString(0);
+                            mathKf1 = mathKf1Reader.GetString(0);
                         }
                         while (mathKf2Reader.Read())
                         {
-                            mathKf2 = reader.GetString(0);
+                            mathKf2 = mathKf1Reader.GetString(0);
                         }
                         while (mathNs1Reader.Read())
                         {
-                            mathNs1 = reader.GetString(0);
+                            mathNs1 = mathKf1Reader.GetString(0);
                         }
                         while (mathNs2Reader.Read())
                         {
-                            mathNs2 = reader.GetString(0);
+                            mathNs2 = mathKf1Reader.GetString(0);
                         }
 
                         // Get Reading Report Statement
@@ -380,9 +380,6 @@ namespace Recording_Student_Achievements
                         {
                             readingReportStatement = readingReportStatementReader.GetString(0);
                         }
-
-
-
 
                         // Calculate Placement Formula
                         while (nextTeacherReader.Read())
@@ -408,9 +405,18 @@ namespace Recording_Student_Achievements
                         }
 
 
-                        reader.Close();
+                        readingKfNsReader.Close();
+                        writingKfNsReader.Close();
+                        mathKf1Reader.Close();
+                        mathKf2Reader.Close();
+                        mathNs1Reader.Close();
+                        mathNs2Reader.Close();
+                        nextTeacherReader.Close();
+                        readingReportStatementReader.Close();
+                        writingOverallAssessmentReader.Close();
                         conn.Close();
                     }
+                    mailMerge(conn);
                 }
                 catch (OleDbException ex)
                 {
@@ -424,6 +430,11 @@ namespace Recording_Student_Achievements
             }
 
             //method end
+        }
+
+        public void mailMerge(OleDbConnection reader)
+        {
+
         }
 
 
