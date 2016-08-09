@@ -17,7 +17,7 @@ namespace Recording_Student_Achievements
         public IndividualReport()
         {
             InitializeComponent();
-            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\2016.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
 
         }
 
@@ -91,33 +91,13 @@ namespace Recording_Student_Achievements
 
             if (firstName != null && lastName != null)
             {
-                cmd = new OleDbCommand("SELECT [s.Family Name Legal], [s.Preferred Name], [s.Room Number], [s.Gender], [r.Final Assessment Method], "
-                + "[r.Final Assessment Level], [w.Overall Assessment], [m.KF1], [m.KF2], [m.NS1], "
-                + "[m.NS2], [se.General Comment], [se.Next Room Number], [m.Overall Assessment], [w.Initial Assessment], "
-                + " [w.Final Assessment] "
-                + "FROM (((([Student] s "
-                + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
-                + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN"
-                + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
-                + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
-                
-                + "WHERE [Family Name Legal] = '" + lastName + "' AND [First Name Legal] = '" + firstName + "'; ");
+                cmd = new OleDbCommand("SELECT * FROM [Student] WHERE [Family Name Legal] = '" + lastName + "' AND [First Name Legal] = '" + firstName + "'; ");
                 cmd.Connection = conn;
                 check = 1;
             }
             else if (nsnNumber != null)
             {
-                cmd = new OleDbCommand("SELECT [s.Family Name Legal], [s.Preferred Name], [s.Room Number], [s.Gender], [r.Final Assessment Method], "
-                + "[r.Final Assessment Level], [w.Overall Assessment], [m.KF1], [m.KF2], [m.NS1], "
-                + "[m.NS2], [se.General Comment], [se.Next Room Number], [se.General Comment], [se.General Comment], "
-                + "[m.Overall Assessment], [w.Initial Assessment], [w.Final Assessment] "
-                + "FROM (((([Student] s "
-                + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
-                + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN"
-                + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
-                + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
-
-                + "WHERE [NSN] = '" + Int32.Parse(nsn) + "'; ");
+                cmd = new OleDbCommand("SELECT * FROM [Student] WHERE [NSN] = '" + Int32.Parse(nsn) + "'; ");
                 cmd.Connection = conn;
                 check = 2;
             }
@@ -165,94 +145,12 @@ namespace Recording_Student_Achievements
 
         private void mailMerge(OleDbDataReader reader)
         {
-            string familyName = "";
-            string firstName, room = "";
-            string readingFinalAssessmentMethod, readingFinalAssessmentLevel, writingOverallAssessment = "";
-            string mathKF1, mathKF2, mathNS1 = "";
-            string mathNS2, generalComment, nextRoom = "";
-            string mathOverallAssessment, writingInitialAssessment = "";
-
-            string hisHer = "";
-            string a = "";
-
             while(reader.Read())
             {
-                int currentYear = DateTime.Now.Year;
-                int nextYear = currentYear + 1;
+                String Year = "";
 
-                
-
-                for(int i = 0; i < reader.FieldCount; i++) {
-                    switch(i) {
-                        case 0 :
-                            familyName = reader.GetString(i);
-                            break;
-                        case 1 :
-                            firstName = reader.GetString(i);
-                            break;
-                        case 2 :
-                            room = reader.GetString(i);
-                            break;
-                        case 3 :
-                            if (reader.GetString(i) == "Male")
-                            {
-                                hisHer = "his";
-                            }
-                            else if (reader.GetString(i) == "Female")
-                            {
-                                hisHer = "her";
-                            }
-                            break;
-                        case 4:
-                            readingFinalAssessmentLevel = reader.GetString(i);
-                            break;
-                        case 5:
-                            writingOverallAssessment = reader.GetString(i);
-                            break;
-                        case 6:
-                            mathKF1 = reader.GetString(i);
-                            break;
-                        case 7:
-                            mathKF2 = reader.GetString(i);
-                            break;
-                        case 8:
-                            mathNS1 = reader.GetString(i);
-                            break;
-                        case 9:
-                            mathNS2 = reader.GetString(i);
-                            break;
-                        case 10:
-                            generalComment = reader.GetString(i);
-                            break;
-                        case 11:
-                            nextRoom = reader.GetString(i);
-                            break;
-                        case 12:
-                            mathOverallAssessment = reader.GetString(i);
-                            break;
-                        case 13:
-                            writingInitialAssessment = reader.GetString(i);
-                            break;
-                        case 14:
-                            a = reader.GetString(i);
-                            break;
-                    }
-                    //switch end
-                }
-                //for end
             }
-            //while end
-            OleDbCommand cmd = new OleDbCommand();
-
-            cmd = new OleDbCommand("SELECT [KF1], [KF2], [NS1], [NS2]"
-            + "FROM [Reading National Standards]"
-            + "WHERE [Assessment] = '" + familyName + "'; ");
-
-
-
-            cmd.Connection = conn;
         }
-        //method end
     }
 
 }
