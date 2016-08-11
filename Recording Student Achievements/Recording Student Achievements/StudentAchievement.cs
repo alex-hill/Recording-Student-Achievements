@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using WindowsFormsApplication1;
 using System.Data.SqlClient;
-using Word = Microsoft.Office.Interop.Word;
+//using Microsoft.Office.Interop.Word;
 using System.Collections;
 
 
