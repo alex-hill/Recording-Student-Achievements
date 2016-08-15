@@ -17,7 +17,7 @@ namespace Recording_Student_Achievements
         public IndividualReport()
         {
             InitializeComponent();
-            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\2016.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
 
         }
 
@@ -92,9 +92,9 @@ namespace Recording_Student_Achievements
             if (firstName != null && lastName != null)
             {
                 cmd = new OleDbCommand("SELECT [s.Family Name Legal], [s.Preferred Name], [s.Room Number], [s.Gender], "
-                + "[r.Final Assessment Level], [w.Overall Assessment], [m.KF1], [m.KF2], [m.NS1], "
-                + "[m.NS2], [se.General Comment], [se.Next Room Number], [m.Overall Assessment], [w.Initial Assessment], "
-                + " [w.Final Assessment] "
+                + "[r.Final Assessment Level], [m.KF1], [m.KF2], [m.NS1], "
+                + "[m.NS2], [se.General Comment], [se.Next Room Number], [m.Overall Assessment], "
+                + "[w.Initial Assessment], [w.Final Assessment], [m.Final Assessment Method], [r.Final Assessment Method]"
                 + "FROM (((([Student] s "
                 + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
                 + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN"
@@ -109,16 +109,19 @@ namespace Recording_Student_Achievements
             {
                 cmd = new OleDbCommand("SELECT [s.Family Name Legal], [s.Preferred Name], [s.Room Number], [s.Gender], "
                 + "[r.Final Assessment Level], [m.KF1], [m.KF2], [m.NS1], "
-                + "[m.NS2], [se.General Comment], [se.Next Room Number], [se.General Comment], [se.General Comment], "
-                + "[m.Overall Assessment], [w.Initial Assessment], [w.Final Assessment], [m.Final Assessment Method], "
-                + "[r.Final Assessment Method] "
+                + "[m.NS2], [se.General Comment], [se.Next Room Number], [m.Overall Assessment], "
+                + "[w.Initial Assessment], [w.Final Assessment], [m.Final Assessment Method], [r.Final Assessment Method]"
                 + "FROM (((([Student] s "
-                + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
-                + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN"
-                + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
-                + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
 
-                + "WHERE [NSN] = '" + Int32.Parse(nsn) + "'; ");
+                        + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+
+                        + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+
+                        + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+
+                        + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN])"
+
+                + "WHERE s.[NSN] = '" + Int32.Parse(nsn) + "'; ");
                 cmd.Connection = conn;
                 check = 2;
             }
@@ -196,9 +199,9 @@ namespace Recording_Student_Achievements
             string nextTeacher = "";
             string placementFormula = "";
             string readingReportStatement = "";
-            int readingInitialGrade = 0;
-            int readingFinalGrade = 0;
-            int readingOverallGrade = 0;
+            String readingInitialGrade = "";
+            String readingFinalGrade = "";
+            String readingOverallGrade = "";
 
 
             while (reader.Read())
@@ -210,23 +213,24 @@ namespace Recording_Student_Achievements
                 {
                     hisHer = "his";
                 }
-                else if (reader.GetString(4) == "Female")
+                else if (reader.GetString(3) == "Female")
                 {
                     hisHer = "her";
                 }
-                readingFinalAssessmentLevel = reader.GetString(5);
+                //Console.WriteLine(reader.GetValue(14).GetType());
+                readingFinalAssessmentLevel = reader.GetString(4);
 
-                mathKf1 = reader.GetString(6);
-                mathKf2 = reader.GetString(7);
-                mathNs1 = reader.GetString(8);
-                mathNs2 = reader.GetString(9);
-                generalComment = reader.GetString(10);
-                nextRoom = reader.GetString(11);
-                mathOverallAssessment = reader.GetString(12);
-                writingInitialAssessment = reader.GetString(13);
-                writingFinalAssessment = reader.GetString(14);
-                readingFinalAssessmentMethod = reader.GetString(15);
-                mathFinalAssessmentMethod = reader.GetString(16);
+                mathKf1 = reader.GetString(5);
+                mathKf2 = reader.GetString(6);
+                mathNs1 = reader.GetString(7);
+                mathNs2 = reader.GetString(8);
+                generalComment = reader.GetString(9);
+                nextRoom = reader.GetString(10);
+                mathOverallAssessment = reader.GetString(11);
+                writingInitialAssessment = reader.GetString(12);
+                writingFinalAssessment = reader.GetString(13);
+                readingFinalAssessmentMethod = reader.GetString(14);
+                mathFinalAssessmentMethod = reader.GetString(15);
             }
             reader.Close();
             //while end
@@ -242,14 +246,14 @@ namespace Recording_Student_Achievements
             OleDbCommand cmdWritingFinalGrade = new OleDbCommand();
 
 
-            cmdReadingKfNs = new OleDbCommand("SELECT [KF1], [KF2], [NS1], [NS2]"
-            + "FROM [Reading National Standards]"
-            + "WHERE [Assessment] = '" + readingFinalAssessmentLevel + "'; ");
+            cmdReadingKfNs = new OleDbCommand("SELECT [KF 1], [KF 2], [NS 1], [NS 2]"
+            + " FROM [Reading National Standards]"
+            + " WHERE [Assessment] = '" + readingFinalAssessmentLevel + "'; ");
             cmdReadingKfNs.Connection = conn;
 
-            cmdWritingKfNs = new OleDbCommand("SELECT [Statement]"
-            + "FROM [Mathematics Level Statements]"
-            + "WHERE [Maths Code] = '" + mathKf1 + "'; ");
+            cmdWritingKfNs = new OleDbCommand("SELECT [KF 1], [KF 2], [NS 1], [NS 2]"
+            + " FROM [Writing National Standards]"
+            + " WHERE [Writing Level] = '" + writingFinalAssessment + "'; ");
             cmdWritingKfNs.Connection = conn;
 
             cmdMathKf1 = new OleDbCommand("SELECT [Statement] FROM [Mathematics Level Statements]"
@@ -291,53 +295,41 @@ namespace Recording_Student_Achievements
 
             if (conn.State == ConnectionState.Open)
             {
-                OleDbDataReader writingInitialGradeReader = cmdWritingInitialGrade.ExecuteReader();
-                OleDbDataReader writingFinalGradeReader = cmdWritingFinalGrade.ExecuteReader();
-                // Get Reading Overall Grade
-                while (writingInitialGradeReader.Read())
-                {
-                    readingInitialGrade = writingInitialGradeReader.GetInt16(0);
-                }
-                while (writingFinalGradeReader.Read())
-                {
-                    readingFinalGrade = writingFinalGradeReader.GetInt16(0);
-                }
-                if (readingInitialGrade > readingFinalGrade)
-                {
-                    readingOverallGrade = readingInitialGrade;
-                }
-                else
-                {
-                    readingOverallGrade = readingInitialGrade;
-                }
-
-            }
-            OleDbCommand cmdOverallWritingAssessment = new OleDbCommand();
-            cmdOverallWritingAssessment = new OleDbCommand("SELECT [Writing Level] FROM [Writing National Standards] "
-            + "WHERE [Grade] = '" + readingOverallGrade + "'; ");
-            cmdOverallWritingAssessment.Connection = conn;
-
-
-            if (conn.State == ConnectionState.Open)
-            {
                 try
                 {
-                    OleDbDataReader readingKfNsReader = cmdReadingKfNs.ExecuteReader();
-                    OleDbDataReader writingKfNsReader = cmdWritingKfNs.ExecuteReader();
-                    OleDbDataReader mathKf1Reader = cmdMathKf1.ExecuteReader();
-                    OleDbDataReader mathKf2Reader = cmdMathKf2.ExecuteReader();
-                    OleDbDataReader mathNs1Reader = cmdMathNs1.ExecuteReader();
-                    OleDbDataReader mathNs2Reader = cmdMathNs2.ExecuteReader();
-                    OleDbDataReader nextTeacherReader = cmdNextTeacher.ExecuteReader();
-                    OleDbDataReader readingReportStatementReader = cmdReadingReportStatement.ExecuteReader();
-                    OleDbDataReader writingOverallAssessmentReader = cmdOverallWritingAssessment.ExecuteReader();
+                    OleDbDataReader writingInitialGradeReader = cmdWritingInitialGrade.ExecuteReader();
+                    OleDbDataReader writingFinalGradeReader = cmdWritingFinalGrade.ExecuteReader();
+                    OleDbDataReader readingKfNsReader = cmdReadingKfNs.ExecuteReader(); 
+                    OleDbDataReader writingKfNsReader = cmdWritingKfNs.ExecuteReader(); 
+                    OleDbDataReader mathKf1Reader = cmdMathKf1.ExecuteReader(); 
+                    OleDbDataReader mathKf2Reader = cmdMathKf2.ExecuteReader(); 
+                    OleDbDataReader mathNs1Reader = cmdMathNs1.ExecuteReader(); 
+                    OleDbDataReader mathNs2Reader = cmdMathNs2.ExecuteReader(); 
 
+                    OleDbDataReader nextTeacherReader = cmdNextTeacher.ExecuteReader(); 
+                    OleDbDataReader readingReportStatementReader = cmdReadingReportStatement.ExecuteReader(); 
                     // Get Reading Overall Grade
-                    while (writingOverallAssessmentReader.Read() && readingKfNsReader.Read() && writingKfNsReader.Read()
-                        && mathKf1Reader.Read() && mathKf2Reader.Read() && mathNs1Reader.Read() && mathNs2Reader.Read()
-                         && nextTeacherReader.Read() && readingReportStatementReader.Read() && writingOverallAssessmentReader.Read())
+                    while (writingInitialGradeReader.Read())
                     {
-                        writingOverallAssessment = writingOverallAssessmentReader.GetString(0);
+                        readingInitialGrade = writingInitialGradeReader.GetString(0);
+                    }
+                    while (writingFinalGradeReader.Read())
+                    {
+                        readingFinalGrade = writingFinalGradeReader.GetString(0);
+                    }
+                    if (Convert.ToInt32(readingInitialGrade) > Convert.ToInt32(readingFinalGrade))
+                    {
+                        readingOverallGrade = readingInitialGrade;
+                    }
+                    else
+                    {
+                        readingOverallGrade = readingInitialGrade;
+                    }
+                    while (readingKfNsReader.Read() && writingKfNsReader.Read()
+                            && mathKf1Reader.Read() && mathKf2Reader.Read() && mathNs1Reader.Read() && mathNs2Reader.Read()
+                             && nextTeacherReader.Read() && readingReportStatementReader.Read())
+                    {
+
 
                         // Calculate Reading NS and KF
                         while (readingKfNsReader.Read())
@@ -408,13 +400,43 @@ namespace Recording_Student_Achievements
                         }
 
 
-                        reader.Close();
-                        conn.Close();
+
+
                     }
                 }
                 catch (OleDbException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.StackTrace);
+                    conn.Close();
+                }
+
+
+            }
+            OleDbCommand cmdOverallWritingAssessment = new OleDbCommand();
+            cmdOverallWritingAssessment = new OleDbCommand("SELECT [Writing Level] FROM [Writing National Standards] "
+            + "WHERE [Grade] = '" + readingOverallGrade + "'; ");
+            cmdOverallWritingAssessment.Connection = conn;
+
+
+            if (conn.State == ConnectionState.Open)
+            {
+                try
+                {
+                    
+                    OleDbDataReader writingOverallAssessmentReader = cmdOverallWritingAssessment.ExecuteReader();
+
+                    // Get Reading Overall Grade
+                    while (writingOverallAssessmentReader.Read())
+                    {
+                        writingOverallAssessment = writingOverallAssessmentReader.GetString(0);
+                        
+                    }
+
+                    conn.Close();
+                }
+                catch (OleDbException ex)
+                {
+                    MessageBox.Show(ex.StackTrace);
                     conn.Close();
                 }
             }
@@ -423,7 +445,16 @@ namespace Recording_Student_Achievements
                 MessageBox.Show("Connection Failed");
             }
 
+
+            // Write to publisher file (or word file, whatever the fuck we're doing)
+            var application = new Microsoft.Office.Interop.Publisher.Application();
+            var document = new Microsoft.Office.Interop.Publisher.Document();
+
+            document.Application.Documents.Add(Template: @"C:\Users\rts8039\Desktop\Report Layout 02 (Room 07)");
+
             //method end
+
+
         }
 
 
