@@ -34,7 +34,7 @@ namespace Recording_Student_Achievements
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IndividualReport));
             this.titleLbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.userNSN = new Recording_Student_Achievements.NumericTextBox();
+            this.userNSN = new System.Windows.Forms.NumericUpDown();
             this.generateBttn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -46,6 +46,7 @@ namespace Recording_Student_Achievements
             this.userFirstName = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.optionBox = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.userNSN)).BeginInit();
             this.SuspendLayout();
             // 
             // titleLbl
@@ -70,11 +71,20 @@ namespace Recording_Student_Achievements
             // 
             // userNSN
             // 
-            this.userNSN.AllowSpace = false;
             this.userNSN.Location = new System.Drawing.Point(167, 151);
+            this.userNSN.Maximum = new decimal(new int[] {
+            -727379968,
+            232,
+            0,
+            0});
             this.userNSN.Name = "userNSN";
             this.userNSN.Size = new System.Drawing.Size(100, 20);
             this.userNSN.TabIndex = 10;
+            this.userNSN.Value = new decimal(new int[] {
+            134817833,
+            0,
+            0,
+            0});
             this.userNSN.Visible = false;
             // 
             // generateBttn
@@ -207,6 +217,7 @@ namespace Recording_Student_Achievements
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IndividualReport";
             this.Text = "Generate Individual Reports";
+            ((System.ComponentModel.ISupportInitialize)(this.userNSN)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,7 +227,7 @@ namespace Recording_Student_Achievements
 
         private System.Windows.Forms.Label titleLbl;
         private System.Windows.Forms.Label label1;
-        private NumericTextBox userNSN;
+        private System.Windows.Forms.NumericUpDown userNSN;
         private System.Windows.Forms.Button generateBttn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
