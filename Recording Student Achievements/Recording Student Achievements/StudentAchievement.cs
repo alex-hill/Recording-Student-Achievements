@@ -28,7 +28,6 @@ namespace Recording_Student_Achievements
         {
             InitializeComponent();
             connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
-            //connection.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
             ns = new NewStudent();
             ws = new WithdrawStudent();
             ir = new IndividualReport();
@@ -152,7 +151,7 @@ namespace Recording_Student_Achievements
                 string query =
                         "SELECT [s.NSN] AS `NSN`, [s.Family Name Legal] AS `Last Name`, [s.First Name Legal] AS `First Name`, [s.Date Of Birth] AS `DoB`, [se.School Next Year Level] AS `Next Year Level`, [se.Next Room Number] AS `Next Room Number`, [s.Gender] AS `Gender`, [s.Ethnicity] AS `Ethnicity` "
                         + ", [r.Final Assessment Level] AS `Reading Final Assessment`, [r.NS Progress] AS `Reading Progress Level`"
-                        + ", [w.Overall Assessment] AS `Writing Overall Assessment`, [w.NS Progress]  AS `Writing Progress Level`"
+                        + ", [w.Initial Assessment] AS `Writing Initial Assessment`, [w.NS Progress]  AS `Writing Progress Level`"
                         + ", [m.Overall Assessment] AS `Maths Overall Assessment`, [m.NS Progress]  AS `Maths Progress Level`"
                         + ", [se.Curiosity 1] AS `Curiosity 1`, [se.Curiosity 2] AS `Curiosity 2`, [se.Curiosity 3] AS `Curiosity 3`"
                         + ", [se.Creativity 1] AS `Creativity 1`, [se.Creativity 2]   AS `Creativity 2`, [se.Creativity 3]  AS `Creativity 3`"
@@ -228,6 +227,7 @@ namespace Recording_Student_Achievements
                 dataGridView1.Columns["Last Name"].Frozen = true;
                 dataGridView1.Columns["First Name"].Frozen = true;
                 */
+
                 connection.Close();
             }
             catch (Exception ex)

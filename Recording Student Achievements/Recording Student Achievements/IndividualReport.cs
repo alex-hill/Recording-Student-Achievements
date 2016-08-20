@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -447,11 +448,33 @@ namespace Recording_Student_Achievements
 
 
             // Write to publisher file (or word file, whatever the fuck we're doing)
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            openFileDialog1.Filter = "Publisher files (*.pub)|*.pub|All files(*)|*.*";
+            openFileDialog1.InitialDirectory = @"Desktop";
+            string file = "";
+
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                file = openFileDialog1.FileName;
+            }
+
             var application = new Microsoft.Office.Interop.Publisher.Application();
             var document = new Microsoft.Office.Interop.Publisher.Document();
+            var mailMerge = document.MailMerge;
 
-            document.Application.Documents.Add(Template: @"C:\Users\rts8039\Desktop\Report Layout 02 (Room 07)");
+            document = application.Open(file);
+            //open for
+            //merge the fields
+            mailMerge.OpenDataSource();
+            mailMerge.Execute(false, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbSendToPrinter);
+            //print each document
 
+            //close for
+            Console.WriteLine(file);
+            application.Quit();
+
+            //document.PrintOutEx();
             //method end
 
 
