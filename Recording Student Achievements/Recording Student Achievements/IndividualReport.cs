@@ -233,6 +233,7 @@ namespace Recording_Student_Achievements
                 readingFinalAssessmentMethod = reader.GetString(14);
                 mathFinalAssessmentMethod = reader.GetString(15);
             }
+
             reader.Close();
             //while end
             OleDbCommand cmdReadingKfNs = new OleDbCommand();
@@ -446,8 +447,10 @@ namespace Recording_Student_Achievements
                 MessageBox.Show("Connection Failed");
             }
 
+            /*
+            IDataAdapter adapter;
 
-            // Write to publisher file (or word file, whatever the fuck we're doing)
+        // Write to publisher file (or word file, whatever the fuck we're doing)
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.Filter = "Publisher files (*.pub)|*.pub|All files(*)|*.*";
@@ -464,7 +467,8 @@ namespace Recording_Student_Achievements
             var mailMerge = document.MailMerge;
 
             document = application.Open(file);
-            //open for
+            //open for            
+
             //merge the fields
             mailMerge.OpenDataSource();
             mailMerge.Execute(false, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbSendToPrinter);
@@ -476,7 +480,23 @@ namespace Recording_Student_Achievements
 
             //document.PrintOutEx();
             //method end
+            */
+            try
+            {
+                Microsoft.Office.Interop.Publisher.Application pubApp = new Microsoft.Office.Interop.Publisher.Application();
 
+                Microsoft.Office.Interop.Publisher.Document doc1 = pubApp.Open(@"C:\Users\t43p4\Downloads\report.pub", true, false, Microsoft.Office.Interop.Publisher.PbSaveOptions.pbDoNotSaveChanges);
+
+            }
+            catch (Win32Exception winex)
+            {
+                MessageBox.Show(winex.ErrorCode.ToString());
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
 
         }
 
