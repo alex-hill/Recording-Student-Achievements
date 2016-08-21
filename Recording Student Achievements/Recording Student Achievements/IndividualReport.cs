@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -200,9 +201,9 @@ namespace Recording_Student_Achievements
             string nextTeacher = "";
             string placementFormula = "";
             string readingReportStatement = "";
-            String readingInitialGrade = "";
-            String readingFinalGrade = "";
-            String readingOverallGrade = "";
+            string readingInitialGrade = "";
+            string readingFinalGrade = "";
+            string readingOverallGrade = "";
 
 
             while (reader.Read())
@@ -446,35 +447,108 @@ namespace Recording_Student_Achievements
                 MessageBox.Show("Connection Failed");
             }
 
+            ArrayList values = new ArrayList();
 
-            // Write to publisher file (or word file, whatever the fuck we're doing)
+
+            // Write to word file
+
+            //select template file
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
-            openFileDialog1.Filter = "Publisher files (*.pub)|*.pub|All files(*)|*.*";
-            openFileDialog1.InitialDirectory = @"Desktop";
+            openFileDialog1.Filter = "Word files (*.docx)|*.docx|All files (*)|*.*";
+            openFileDialog1.InitialDirectory = "Desktop";
             string file = "";
 
-            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 file = openFileDialog1.FileName;
             }
 
-            var application = new Microsoft.Office.Interop.Publisher.Application();
-            var document = new Microsoft.Office.Interop.Publisher.Document();
-            var mailMerge = document.MailMerge;
+            var application = new Microsoft.Office.Interop.Word.Application();
+            var document = new Microsoft.Office.Interop.Word.Document();
 
-            document = application.Open(file);
-            //open for
-            //merge the fields
-            mailMerge.OpenDataSource();
-            mailMerge.Execute(false, Microsoft.Office.Interop.Publisher.PbMailMergeDestination.pbSendToPrinter);
-            //print each document
+            //gets the template file
+            document = application.Documents.Add(Template: @file);
 
-            //close for
-            Console.WriteLine(file);
-            application.Quit();
+            //opens the document to see changes
+            application.Visible = true;
 
-            //document.PrintOutEx();
+            //iterates through each mergefield in the document
+            Console.WriteLine(document.StoryRanges.Count);
+            foreach (Microsoft.Office.Interop.Word.Range range in document.StoryRanges)
+            {
+                Console.WriteLine(range.Fields.Count);
+                foreach (Microsoft.Office.Interop.Word.Field field in range.Fields)
+                {
+                    //checks the field name looking for correct field
+                    if (field.Code.Text.Contains("First Name"))
+                    {
+                        //selects the field
+                        field.Select();
+                        //types the value (cannot be empty string)
+                        application.Selection.TypeText(firstName);
+                        Console.WriteLine(firstName);
+                    }
+                    else if (field.Code.Text.Contains("This Year"))
+                    {
+                        field.Select();
+                        application.Selection.TypeText(currentYear.ToString());
+                    }
+                    else if (field.Code.Text.Contains("Next Year"))
+                    {
+                        field.Select();
+                        application.Selection.TypeText(nextYear.ToString());
+                    }
+                    else if (field.Code.Text.Contains("General Comment"))
+                    {
+                        field.Select();
+                        application.Selection.TypeText(generalComment);
+                    }
+                    else if (field.Code.Text.Contains("Placement Statement"))
+                    {
+                        field.Select();
+                        application.Selection.TypeText(placementFormula);
+                    }
+                    else if (field.Code.Text.Contains("Next Room"))
+                    {
+                        field.Select();
+                        application.Selection.TypeText(nextRoom);
+                    }
+                    else if (field.Code.Text.Contains("Teacher This Year"))
+                    {
+                        OleDbCommand cmd = new OleDbCommand("SELECT `Current Teacher` FROM Room WHERE `Room No` = `" + room + "`");
+                        cmd.Connection = conn;
+                        reader = cmd.ExecuteReader();
+                        string currentTeacher = reader.GetString(0);
+                        field.Select();
+                        application.Selection.TypeText(currentTeacher);
+                    }
+
+                    /*
+                    //way to do so doesn't matter if new fields
+                    string mergeName = field.Code.Text;
+                    string query = "SELECT tablename FROM Relations WHERE field = '" + mergeName + "'";
+                    OleDbCommand cmd = new OleDbCommand(query);
+                    cmd.Connection = conn;
+                    // execute query, store string result of table name in field
+                    OleDbDataReader etcReader = cmd.ExecuteReader();
+                    string tableName = etcReader.GetString(0);
+                    //Query to get actual value to replace mergefield with
+                    string finalQuery = "SELECT '" + mergeName + "' FROM '" + tableName + "' WHERE ";
+                    cmd.CommandText = finalQuery;
+                    etcReader = cmd.ExecuteReader();
+                    //execute finalQuery and store string result
+                    string value = etcReader.GetString(0);
+
+                    field.Select();
+                    application.Selection.TypeText(value);
+                    */
+                }
+            }
+
+            //application.Visible = true;
+            //prints the document
+            //document.PrintOut();
             //method end
 
 
