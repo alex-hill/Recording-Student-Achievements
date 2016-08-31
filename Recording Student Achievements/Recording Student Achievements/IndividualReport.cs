@@ -200,75 +200,77 @@ namespace Recording_Student_Achievements
             application.Visible = true;
 
             //iterates through each mergefield in the document
-            Console.WriteLine(document.StoryRanges.Count);
-            foreach (Microsoft.Office.Interop.Word.Range range in document.StoryRanges)
+            foreach (Microsoft.Office.Interop.Word.Shape range in document.Shapes)
             {
-                Console.WriteLine(range.Fields.Count);
-                foreach (Microsoft.Office.Interop.Word.Field field in range.Fields)
+                if (range.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox)
                 {
-                    //checks the field name looking for correct field
-                    if (field.Code.Text.Contains("First Name"))
+                    foreach (Microsoft.Office.Interop.Word.Field field in range.TextFrame.TextRange.Fields)
                     {
-                        //selects the field
-                        field.Select();
-                        //types the value (cannot be empty string)
-                        application.Selection.TypeText(firstName);
-                        Console.WriteLine(firstName);
-                    }
-                    else if (field.Code.Text.Contains("This Year"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText(currentYear.ToString());
-                    }
-                    else if (field.Code.Text.Contains("Next Year"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText(nextYear.ToString());
-                    }
-                    else if (field.Code.Text.Contains("General Comment"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText(generalComment);
-                    }
-                    else if (field.Code.Text.Contains("Placement Statement"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText(placementFormula);
-                    }
-                    else if (field.Code.Text.Contains("Next Room"))
-                    {
-                        field.Select();
-                        application.Selection.TypeText(nextRoom);
-                    }
-                    else if (field.Code.Text.Contains("Teacher This Year"))
-                    {
-                        OleDbCommand cmd = new OleDbCommand("SELECT `Current Teacher` FROM Room WHERE `Room No` = `" + room + "`");
+                        //just change the shit below, you know :)
+                        //checks the field name looking for correct field
+                        if (field.Code.Text.Contains("First Name"))
+                        {
+                            //selects the field
+                            field.Select();
+                            //types the value (cannot be empty string)
+                            application.Selection.TypeText(firstName);
+                            Console.WriteLine(firstName);
+                        }
+                        else if (field.Code.Text.Contains("This Year"))
+                        {
+                            field.Select();
+                            application.Selection.TypeText(currentYear.ToString());
+                        }
+                        else if (field.Code.Text.Contains("Next Year"))
+                        {
+                            field.Select();
+                            application.Selection.TypeText(nextYear.ToString());
+                        }
+                        else if (field.Code.Text.Contains("General Comment"))
+                        {
+                            field.Select();
+                            application.Selection.TypeText(generalComment);
+                        }
+                        else if (field.Code.Text.Contains("Placement Statement"))
+                        {
+                            field.Select();
+                            application.Selection.TypeText(placementFormula);
+                        }
+                        else if (field.Code.Text.Contains("Next Room"))
+                        {
+                            field.Select();
+                            application.Selection.TypeText(nextRoom);
+                        }
+                        else if (field.Code.Text.Contains("Teacher This Year"))
+                        {
+                            OleDbCommand cmd = new OleDbCommand("SELECT `Current Teacher` FROM Room WHERE `Room No` = `" + room + "`");
+                            cmd.Connection = conn;
+                            reader = cmd.ExecuteReader();
+                            string currentTeacher = reader.GetString(0);
+                            field.Select();
+                            application.Selection.TypeText(currentTeacher);
+                        }
+
+                        /*
+                        //way to do so doesn't matter if new fields
+                        string mergeName = field.Code.Text;
+                        string query = "SELECT tablename FROM Relations WHERE field = '" + mergeName + "'";
+                        OleDbCommand cmd = new OleDbCommand(query);
                         cmd.Connection = conn;
-                        reader = cmd.ExecuteReader();
-                        string currentTeacher = reader.GetString(0);
+                        // execute query, store string result of table name in field
+                        OleDbDataReader etcReader = cmd.ExecuteReader();
+                        string tableName = etcReader.GetString(0);
+                        //Query to get actual value to replace mergefield with
+                        string finalQuery = "SELECT '" + mergeName + "' FROM '" + tableName + "' WHERE ";
+                        cmd.CommandText = finalQuery;
+                        etcReader = cmd.ExecuteReader();
+                        //execute finalQuery and store string result
+                        string value = etcReader.GetString(0);
+
                         field.Select();
-                        application.Selection.TypeText(currentTeacher);
+                        application.Selection.TypeText(value);
+                        */
                     }
-
-                    /*
-                    //way to do so doesn't matter if new fields
-                    string mergeName = field.Code.Text;
-                    string query = "SELECT tablename FROM Relations WHERE field = '" + mergeName + "'";
-                    OleDbCommand cmd = new OleDbCommand(query);
-                    cmd.Connection = conn;
-                    // execute query, store string result of table name in field
-                    OleDbDataReader etcReader = cmd.ExecuteReader();
-                    string tableName = etcReader.GetString(0);
-                    //Query to get actual value to replace mergefield with
-                    string finalQuery = "SELECT '" + mergeName + "' FROM '" + tableName + "' WHERE ";
-                    cmd.CommandText = finalQuery;
-                    etcReader = cmd.ExecuteReader();
-                    //execute finalQuery and store string result
-                    string value = etcReader.GetString(0);
-
-                    field.Select();
-                    application.Selection.TypeText(value);
-                    */
                 }
             }
 
