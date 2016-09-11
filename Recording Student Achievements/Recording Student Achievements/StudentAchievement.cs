@@ -493,16 +493,16 @@ namespace Recording_Student_Achievements
         private UpdateCalculations uc;
         private void calculateLbl_Click(object sender, EventArgs e)
         {
-            if (!ns.Visible && !ns.IsDisposed)
+            if (!uc.Visible && !uc.IsDisposed)
             {
                 // Add the message
-                ns.Show();
+                uc.Show();
             }
             // Can now add more than one student (previously crashed if tried to add another student)
-            if (ns.IsDisposed)
+            if (uc.IsDisposed)
             {
-                ns = new NewStudent();
-                ns.Show();
+                uc = new UpdateCalculations();
+                uc.Show();
             }
         }
     }
