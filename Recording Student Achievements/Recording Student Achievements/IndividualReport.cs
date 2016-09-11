@@ -135,6 +135,7 @@ namespace Recording_Student_Achievements
                 try
                 {
                     OleDbDataReader reader = cmd.ExecuteReader();
+                    
                     if (!reader.HasRows)
                     {
                         if (check == 1)
@@ -171,7 +172,6 @@ namespace Recording_Student_Achievements
 
         private void accessDB(OleDbDataReader reader)
         {
-            
 
             ArrayList values = new ArrayList();
 
@@ -212,37 +212,36 @@ namespace Recording_Student_Achievements
                         //selects the field
                         field.Select();
                         //types the value (cannot be empty string)
-                        application.Selection.TypeText(firstName);
-                        Console.WriteLine(firstName);
+                        application.Selection.TypeText("Tae");
                     }
                     else if (field.Code.Text.Contains("This Year"))
                     {
                         field.Select();
-                        application.Selection.TypeText(currentYear.ToString());
+                        application.Selection.TypeText("2016");
                     }
                     else if (field.Code.Text.Contains("Next Year"))
                     {
                         field.Select();
-                        application.Selection.TypeText(nextYear.ToString());
+                        application.Selection.TypeText("2017");
                     }
                     else if (field.Code.Text.Contains("General Comment"))
                     {
                         field.Select();
-                        application.Selection.TypeText(generalComment);
+                        application.Selection.TypeText("This is the general comment");
                     }
                     else if (field.Code.Text.Contains("Placement Statement"))
                     {
                         field.Select();
-                        application.Selection.TypeText(placementFormula);
+                        application.Selection.TypeText("This is the placement formula");
                     }
                     else if (field.Code.Text.Contains("Next Room"))
                     {
                         field.Select();
-                        application.Selection.TypeText(nextRoom);
+                        application.Selection.TypeText("19");
                     }
                     else if (field.Code.Text.Contains("Teacher This Year"))
                     {
-                        OleDbCommand cmd = new OleDbCommand("SELECT `Current Teacher` FROM Room WHERE `Room No` = `" + room + "`");
+                        OleDbCommand cmd = new OleDbCommand("SELECT `Current Teacher` FROM Room WHERE `Room No` = `" + 7 + "`");
                         cmd.Connection = conn;
                         reader = cmd.ExecuteReader();
                         string currentTeacher = reader.GetString(0);
