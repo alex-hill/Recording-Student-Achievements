@@ -53,7 +53,7 @@
             this.genderCombo = new System.Windows.Forms.ComboBox();
             this.ethnicityCombo = new System.Windows.Forms.ComboBox();
             this.roomCombo = new System.Windows.Forms.ComboBox();
-            this.nsn = new System.Windows.Forms.TextBox();
+            this.nsn = new Recording_Student_Achievements.NumericTextBox();
             this.fundingLevelCombo = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
@@ -87,7 +87,6 @@
             this.label3.Size = new System.Drawing.Size(137, 20);
             this.label3.TabIndex = 0;
             this.label3.Text = "Family Name legal";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label4
             // 
@@ -98,7 +97,6 @@
             this.label4.Size = new System.Drawing.Size(123, 20);
             this.label4.TabIndex = 0;
             this.label4.Text = "First Name legal";
-            this.label4.Click += new System.EventHandler(this.label3_Click);
             // 
             // label5
             // 
@@ -109,7 +107,6 @@
             this.label5.Size = new System.Drawing.Size(121, 20);
             this.label5.TabIndex = 0;
             this.label5.Text = "Preferred Name";
-            this.label5.Click += new System.EventHandler(this.label3_Click);
             // 
             // label6
             // 
@@ -120,7 +117,6 @@
             this.label6.Size = new System.Drawing.Size(84, 20);
             this.label6.TabIndex = 0;
             this.label6.Text = "Year Level";
-            this.label6.Click += new System.EventHandler(this.label3_Click);
             // 
             // label7
             // 
@@ -131,7 +127,6 @@
             this.label7.Size = new System.Drawing.Size(112, 20);
             this.label7.TabIndex = 0;
             this.label7.Text = "Room Number";
-            this.label7.Click += new System.EventHandler(this.label3_Click);
             // 
             // label8
             // 
@@ -142,7 +137,6 @@
             this.label8.Size = new System.Drawing.Size(63, 20);
             this.label8.TabIndex = 0;
             this.label8.Text = "Gender";
-            this.label8.Click += new System.EventHandler(this.label3_Click);
             // 
             // label9
             // 
@@ -153,7 +147,6 @@
             this.label9.Size = new System.Drawing.Size(102, 20);
             this.label9.TabIndex = 0;
             this.label9.Text = "Date Of Birth";
-            this.label9.Click += new System.EventHandler(this.label3_Click);
             // 
             // label10
             // 
@@ -164,7 +157,6 @@
             this.label10.Size = new System.Drawing.Size(69, 20);
             this.label10.TabIndex = 0;
             this.label10.Text = "Ethnicity";
-            this.label10.Click += new System.EventHandler(this.label3_Click);
             // 
             // label11
             // 
@@ -175,7 +167,6 @@
             this.label11.Size = new System.Drawing.Size(42, 20);
             this.label11.TabIndex = 0;
             this.label11.Text = "NSN";
-            this.label11.Click += new System.EventHandler(this.label3_Click);
             // 
             // label12
             // 
@@ -186,7 +177,6 @@
             this.label12.Size = new System.Drawing.Size(146, 20);
             this.label12.TabIndex = 0;
             this.label12.Text = "Funding Year Level";
-            this.label12.Click += new System.EventHandler(this.label3_Click);
             // 
             // label13
             // 
@@ -197,7 +187,6 @@
             this.label13.Size = new System.Drawing.Size(83, 20);
             this.label13.TabIndex = 0;
             this.label13.Text = "Start Date";
-            this.label13.Click += new System.EventHandler(this.label3_Click);
             // 
             // button1
             // 
@@ -206,24 +195,26 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 28);
             this.button1.TabIndex = 1;
+            this.button1.TabStop = false;
             this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // familyNameAlias
             // 
             this.familyNameAlias.Location = new System.Drawing.Point(198, 64);
             this.familyNameAlias.Name = "familyNameAlias";
             this.familyNameAlias.Size = new System.Drawing.Size(96, 20);
-            this.familyNameAlias.TabIndex = 2;
+            this.familyNameAlias.TabIndex = 0;
+            this.familyNameAlias.Text = "a";
             // 
             // familyNameLegal
             // 
             this.familyNameLegal.Location = new System.Drawing.Point(198, 94);
             this.familyNameLegal.Name = "familyNameLegal";
             this.familyNameLegal.Size = new System.Drawing.Size(96, 20);
-            this.familyNameLegal.TabIndex = 2;
-            this.familyNameLegal.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.familyNameLegal.TabIndex = 1;
+            this.familyNameLegal.Text = "b";
             // 
             // firstNameLegal
             // 
@@ -231,32 +222,37 @@
             this.firstNameLegal.Name = "firstNameLegal";
             this.firstNameLegal.Size = new System.Drawing.Size(96, 20);
             this.firstNameLegal.TabIndex = 2;
+            this.firstNameLegal.Text = "c";
             // 
             // preferredName
             // 
             this.preferredName.Location = new System.Drawing.Point(198, 153);
             this.preferredName.Name = "preferredName";
             this.preferredName.Size = new System.Drawing.Size(96, 20);
-            this.preferredName.TabIndex = 2;
+            this.preferredName.TabIndex = 3;
+            this.preferredName.Text = "d";
             // 
             // dateOfBirth
             // 
             this.dateOfBirth.Location = new System.Drawing.Point(198, 241);
             this.dateOfBirth.Name = "dateOfBirth";
             this.dateOfBirth.Size = new System.Drawing.Size(96, 20);
-            this.dateOfBirth.TabIndex = 2;
+            this.dateOfBirth.TabIndex = 6;
+            this.dateOfBirth.Text = "20/07/1995";
             // 
             // startDate
             // 
             this.startDate.Location = new System.Drawing.Point(198, 389);
             this.startDate.Name = "startDate";
             this.startDate.Size = new System.Drawing.Size(96, 20);
-            this.startDate.TabIndex = 2;
+            this.startDate.TabIndex = 11;
+            this.startDate.Text = "1/08/2016";
             // 
             // yearLevelCombo
             // 
             this.yearLevelCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.yearLevelCombo.FormattingEnabled = true;
+            this.yearLevelCombo.ItemHeight = 13;
             this.yearLevelCombo.Items.AddRange(new object[] {
             "1",
             "2",
@@ -268,24 +264,26 @@
             this.yearLevelCombo.Location = new System.Drawing.Point(198, 180);
             this.yearLevelCombo.Name = "yearLevelCombo";
             this.yearLevelCombo.Size = new System.Drawing.Size(96, 21);
-            this.yearLevelCombo.TabIndex = 3;
+            this.yearLevelCombo.TabIndex = 4;
             // 
             // genderCombo
             // 
             this.genderCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.genderCombo.FormattingEnabled = true;
+            this.genderCombo.ItemHeight = 13;
             this.genderCombo.Items.AddRange(new object[] {
             "Male",
             "Female"});
             this.genderCombo.Location = new System.Drawing.Point(198, 209);
             this.genderCombo.Name = "genderCombo";
             this.genderCombo.Size = new System.Drawing.Size(96, 21);
-            this.genderCombo.TabIndex = 4;
+            this.genderCombo.TabIndex = 5;
             // 
             // ethnicityCombo
             // 
             this.ethnicityCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ethnicityCombo.FormattingEnabled = true;
+            this.ethnicityCombo.ItemHeight = 13;
             this.ethnicityCombo.Items.AddRange(new object[] {
             "Austrailian",
             "British/Irish",
@@ -303,7 +301,7 @@
             this.ethnicityCombo.Location = new System.Drawing.Point(198, 267);
             this.ethnicityCombo.Name = "ethnicityCombo";
             this.ethnicityCombo.Size = new System.Drawing.Size(96, 21);
-            this.ethnicityCombo.TabIndex = 5;
+            this.ethnicityCombo.TabIndex = 7;
             // 
             // roomCombo
             // 
@@ -331,14 +329,16 @@
             this.roomCombo.Location = new System.Drawing.Point(198, 327);
             this.roomCombo.Name = "roomCombo";
             this.roomCombo.Size = new System.Drawing.Size(96, 21);
-            this.roomCombo.TabIndex = 6;
+            this.roomCombo.TabIndex = 9;
             // 
             // nsn
             // 
+            this.nsn.AllowSpace = false;
             this.nsn.Location = new System.Drawing.Point(198, 301);
             this.nsn.Name = "nsn";
             this.nsn.Size = new System.Drawing.Size(96, 20);
-            this.nsn.TabIndex = 2;
+            this.nsn.TabIndex = 8;
+            this.nsn.Text = "1000000000";
             // 
             // fundingLevelCombo
             // 
@@ -355,8 +355,7 @@
             this.fundingLevelCombo.Location = new System.Drawing.Point(198, 356);
             this.fundingLevelCombo.Name = "fundingLevelCombo";
             this.fundingLevelCombo.Size = new System.Drawing.Size(96, 21);
-            this.fundingLevelCombo.TabIndex = 7;
-            this.fundingLevelCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.fundingLevelCombo.TabIndex = 10;
             // 
             // NewStudent
             // 
@@ -422,7 +421,7 @@
         private System.Windows.Forms.ComboBox genderCombo;
         private System.Windows.Forms.ComboBox ethnicityCombo;
         private System.Windows.Forms.ComboBox roomCombo;
-        private System.Windows.Forms.TextBox nsn;
+        private NumericTextBox nsn;
         private System.Windows.Forms.ComboBox fundingLevelCombo;
         private System.Windows.Forms.ComboBox yearLevelCombo;
     }

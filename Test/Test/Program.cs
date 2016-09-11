@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Recording_Student_Achievements
+namespace Test
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Recording_Student_Achievements
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StudentAchievement());
+            Application.Run(new Form1());
         }
     }
 }
