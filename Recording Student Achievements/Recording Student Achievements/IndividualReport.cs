@@ -93,15 +93,13 @@ namespace Recording_Student_Achievements
 
             if (firstName != null && lastName != null)
             {
-                cmd = new OleDbCommand("SELECT [s.Family Name Legal], [s.Preferred Name], [s.Room Number], [s.Gender], "
-                + "[r.Final Assessment Level], [m.KF1], [m.KF2], [m.NS1], "
-                + "[m.NS2], [se.General Comment], [se.Next Room Number], [m.Overall Assessment], "
-                + "[w.Initial Assessment], [w.Final Assessment], [m.Final Assessment Method], [r.Final Assessment Method]"
-                + "FROM (((([Student] s "
+                cmd = new OleDbCommand("SELECT * "
+                + "FROM ((((([Student] s "
                 + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
                 + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN"
                 + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
                 + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
+                + "INNER JOIN [Calculated] c ON c.[NSN] = s.[NSN])"
 
                 + "WHERE [Family Name Legal] = '" + lastName + "' AND [First Name Legal] = '" + firstName + "'; ");
                 cmd.Connection = conn;
@@ -109,19 +107,18 @@ namespace Recording_Student_Achievements
             }
             else if (nsnNumber != null)
             {
-                cmd = new OleDbCommand("SELECT [s.Family Name Legal], [s.Preferred Name], [s.Room Number], [s.Gender], "
-                + "[r.Final Assessment Level], [m.KF1], [m.KF2], [m.NS1], "
-                + "[m.NS2], [se.General Comment], [se.Next Room Number], [m.Overall Assessment], "
-                + "[w.Initial Assessment], [w.Final Assessment], [m.Final Assessment Method], [r.Final Assessment Method]"
-                + "FROM (((([Student] s "
+                cmd = new OleDbCommand("SELECT * "
+                + "FROM ((((([Student] s "
 
-                        + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+                + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
-                        + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+                + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
 
-                        + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+                + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
 
-                        + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN])"
+                + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN])"
+
+                + "INNER JOIN [Calculated] c ON c.[NSN] = s.[NSN])"
 
                 + "WHERE s.[NSN] = '" + Int32.Parse(nsn) + "'; ");
                 cmd.Connection = conn;
@@ -150,7 +147,7 @@ namespace Recording_Student_Achievements
                     }
                     else
                     {
-                        accessDB(reader);
+                        accessDB(cmd);
                     }
                     reader.Close();
                     conn.Close();
@@ -169,16 +166,14 @@ namespace Recording_Student_Achievements
             this.Close();
         }
 
-        private void accessDB(OleDbDataReader reader)
+        private void accessDB(OleDbCommand cmd)
         {
-            
+            OleDbDataAdapter daa = new OleDbDataAdapter(cmd);
+            DataTable mainTable = new DataTable();
+            daa.Fill(mainTable);
 
             ArrayList values = new ArrayList();
 
-
-            // Write to word file
-
-            //select template file
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.Filter = "Word files (*.docx)|*.docx|All files (*)|*.*";
@@ -199,57 +194,32 @@ namespace Recording_Student_Achievements
             //opens the document to see changes
             application.Visible = true;
 
+            OleDbCommand merge = new OleDbCommand("SELECT * FROM [Merge]");
+            
             //iterates through each mergefield in the document
-            foreach (Microsoft.Office.Interop.Word.Shape range in document.Shapes)
+            foreach (Microsoft.Office.Interop.Word.Shape shape in application.ActiveDocument.Shapes)
             {
-                if (range.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox)
+                
+                if(shape.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox)
                 {
-                    foreach (Microsoft.Office.Interop.Word.Field field in range.TextFrame.TextRange.Fields)
+                    foreach (Microsoft.Office.Interop.Word.Field field in shape.TextFrame.TextRange.Fields)
                     {
-                        //just change the shit below, you know :)
-                        //checks the field name looking for correct field
-                        if (field.Code.Text.Contains("First Name"))
+                        merge.Connection = conn;
+                        OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                        DataTable mergeTable = new DataTable();
+                        da.Fill(mergeTable);
+                        int i = 0;
+                        foreach (DataRow drr in mainTable.Rows)
                         {
-                            //selects the field
-                            field.Select();
-                            //types the value (cannot be empty string)
-                            application.Selection.TypeText("Tae");
+                            foreach (DataRow dr in mergeTable.Rows)
+                            {
+                                if (field.Code.Text.Contains(dr["Merge Field"].ToString()))
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText(drr[dr["Database Field"].ToString()].ToString());
+                                }
+                            }
                         }
-                        else if (field.Code.Text.Contains("This Year"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText("2016");
-                        }
-                        else if (field.Code.Text.Contains("Next Year"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText("2017");
-                        }
-                        else if (field.Code.Text.Contains("General Comment"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText("This is the General Comment");
-                        }
-                        else if (field.Code.Text.Contains("Placement Statement"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText("Tae will be placed in room 19");
-                        }
-                        else if (field.Code.Text.Contains("Next Room"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText("19");
-                        }
-                        else if (field.Code.Text.Contains("Teacher This Year"))
-                        {
-                            OleDbCommand cmd = new OleDbCommand("SELECT `Current Teacher` FROM Room WHERE `Room No` = `" + 7 + "`");
-                            cmd.Connection = conn;
-                            reader = cmd.ExecuteReader();
-                            string currentTeacher = reader.GetString(0);
-                            field.Select();
-                            application.Selection.TypeText(currentTeacher);
-                        }
-
                         /*
                         //way to do so doesn't matter if new fields
                         string mergeName = field.Code.Text;

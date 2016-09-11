@@ -196,7 +196,7 @@ namespace Recording_Student_Achievements
         string dataSummary;
         string checkSums;
 
-        string studentsWellBellow, studentsBellow, studentsAt, studentsAbove, studentsWellAbove;
+        string studentsWellBelow, studentsBelow, studentsAt, studentsAbove, studentsWellAbove;
 
         public Calculations()
         {
@@ -1164,49 +1164,49 @@ namespace Recording_Student_Achievements
             int writingCode = Int32.Parse(writingNSAchievementCode);
             int mathCode = Int32.Parse(mathNSAchievementCode);
 
-            studentsWellBellow = studentsBellow = studentsAt = studentsAbove = studentsWellAbove = "XXX";
+            studentsWellBelow = studentsBelow = studentsAt = studentsAbove = studentsWellAbove = "XXX";
 
             dataSummary = readingNSAchievementCode + "R " + writingNSAchievementCode + "W " + mathNSAchievementCode + "M";
             checkSums = (readingCode + writingCode + mathCode).ToString();
 
             if(readingCode == 1)
             {
-                studentsWellBellow = "1";
+                studentsWellBelow = "1";
                 if(writingCode == 1)
                 {
-                    studentsWellBellow += "1";
+                    studentsWellBelow += "1";
                     if (mathCode == 1)
                     {
-                        studentsWellBellow += "1";
+                        studentsWellBelow += "1";
                     }
                     else
                     {
-                        studentsWellBellow += "X";
+                        studentsWellBelow += "X";
                     }
                 }
                 else
                 {
-                    studentsWellBellow += "X";
+                    studentsWellBelow += "X";
                 }
             }
             else if (readingCode == 2)
             {
-                studentsBellow = "1";
+                studentsBelow = "1";
                 if (writingCode == 1)
                 {
-                    studentsBellow += "1";
+                    studentsBelow += "1";
                     if (mathCode == 1)
                     {
-                        studentsBellow += "1";
+                        studentsBelow += "1";
                     }
                     else
                     {
-                        studentsBellow += "X";
+                        studentsBelow += "X";
                     }
                 }
                 else
                 {
-                    studentsBellow += "X";
+                    studentsBelow += "X";
                 }
             }
             else if (readingCode == 3)
@@ -1234,7 +1234,7 @@ namespace Recording_Student_Achievements
                 studentsAbove = "1";
                 if (writingCode == 1)
                 {
-                    studentsWellBellow += "1";
+                    studentsWellBelow += "1";
                     if (mathCode == 1)
                     {
                         studentsAbove += "1";
@@ -1573,7 +1573,7 @@ namespace Recording_Student_Achievements
             + "'" + participatingContributingStatement + "', '" + thinking + "', '" + thinkingPercent + "', '" + thinkingStatement + "', '" + lst + "', "
             + "'" + lstPercent + "', '" + lstStatement + "', '" + numActivitiesStr + "', '" + sportsActivitiesStr + "', '" + overallAcademic + "', "
             + "'" + teachersCup + "', '" + yesHumanValues + "', '" + totalHumanValues + "', '" + readingProgressCheck + "', '" + writingProgressCheck + "', "
-            + "'" + mathProgressCheck + "', '" + dataSummary + "', '" + checkSums + "', '" + studentsWellBellow + "', '" + studentsBellow + "', "
+            + "'" + mathProgressCheck + "', '" + dataSummary + "', '" + checkSums + "', '" + studentsWellBelow + "', '" + studentsBelow + "', "
             + "'" + studentsAt + "', '" + studentsAbove + "', '" + studentsWellAbove + "')");
 
             
