@@ -1640,6 +1640,7 @@ namespace Recording_Student_Achievements
             catch (Exception ex)
             {
                 MessageBox.Show("Error" + ex);
+                conn.Close();
             }
 
 
@@ -1647,19 +1648,22 @@ namespace Recording_Student_Achievements
 
         private void updateTable(string NSN)
         {
+            /*
             OleDbCommand deleteCmd = new OleDbCommand("DELETE FROM [Calculated] WHERE [NSN] = '" + NSN + "';");
             deleteCmd.Connection = conn;
             int deleteSuccess = deleteCmd.ExecuteNonQuery();
 
             if (deleteSuccess < 1)
             {
-                MessageBox.Show("Updating Database Failed");
+                MessageBox.Show("Deleting Database Failed");
             }
             else
             {
-                MessageBox.Show("Database has been Successfully Updated");
+                MessageBox.Show("Database has been Successfully Deleted");
             }
+            */
 
+            // Use table that contains relationship between Calculated table and the variables here
             OleDbCommand relationshipCmd = new OleDbCommand("SELECT *"
                  + " FROM [Database Relationship]; ");
 
@@ -1669,27 +1673,209 @@ namespace Recording_Student_Achievements
             DataTable relationshipTable = new DataTable();
             relationshipAdapter.Fill(relationshipTable);
 
+            string debugging = "";
+
+            // Generate Update statement
             string update = "Update [Calculated] SET ";
             int i = 0;
             int len = relationshipTable.Rows.Count;
             foreach (DataRow drr in relationshipTable.Rows)
             {
                 string calc = drr["Calculated Field"].ToString();
-                var sys = drr["System Field"].ToString();
+                string sys = drr["System Field"].ToString();
+                debugging += "\"" + calc + ": \" + " + sys + "\n   ";
+                
                 if (i == len - 1)
                 {
-                    update += "[" + calc + "] = " + sys + ";";
+                    update += "[" + calc + "] = '" + sys + "' ";
                 }
                 else
                 {
-                    update += "[" + calc + "] = " + sys + ", ";
+                    update += "[" + calc + "] = '" + sys + "', ";
                 }
-                
+                i++;
+
+
             }
-            update += "WHERE [NSN] = '" + NSN + "';";
            
+            update += "WHERE [NSN] = '" + NSN + "';";
+            
+            Console.WriteLine("NSN: " + NSN
+ + "\nTeacher This Year: " + teacherThisYear
+ + "\nSchool Year Ordinal: " + schoolYearOrdinal
+ + "\nNext Teacher: " + nextTeacher
+ + "\nPlacement Statement: " + placementStatement
+ + "\nNext Room Statement: " + nextRoomStatement
+ + "\nHeShe: " + heShe
+ + "\nHisHer: " + hisHer
+ + "\nHimHer: " + himHer
+ + "\nGeneral Comment Length: " + generalCommentLength
+ + "\nReading Initial Statement: " + readingInitialStatement
+ + "\nReading Final Statement: " + readingFinalStatement
+ + "\nReading KF1: " + readingKF1
+ + "\nReading KF2: " + readingKF2
+ + "\nReading NS1: " + readingNS1
+ + "\nReading NS2: " + readingNS2
+ + "\nReading Final Code: " + readingFinalCode
+ + "\nReading NS Achievement Timeframe: " + readingNSAchievementTimeframe
+ + "\nReading NS Achievement Statement: " + readingNSAchievementStatement
+ + "\nReading NS Achieve Level: " + readingNSAchieveLevel
+ + "\nReading NS Achievement OTJ: " + readingNSAchievementOTJ
+ + "\nReading NS Achievement Comp: " + readingNSAchievementComp
+ + "\nReading NS Achievement OTJ vs Comp: " + readingNSAchievementOTJVsComp
+ + "\nReading NS Progress Timeframe: " + readingNSProgressTimeframe
+ + "\nReading NS Progress Statement: " + readingNSProgressStatement
+ + "\nReading NS Progress Level: " + readingNSProgressLevel
+ + "\nReading NS Progress OTJ: " + readingNSProgressOTJ
+ + "\nReading NS Progress Comp: " + readingNSProgressComp
+ + "\nReading NS Progress OTJ vs Comp: " + readingNSProgressOTJVsComp
+ + "\nReading Effort Level: " + readingEffortLevel
+ + "\nReading Effort Statement: " + readingEffortStatement
+ + "\nReading Comment Length: " + readingCommentLength
+ + "\nWriting Initial Grade: " + writingInitialGrade
+ + "\nWriting Final Grade: " + writingFinalGrade
+ + "\nWriting Overall Grade: " + writingOverallGrade
+ + "\nWriting Overall Assessment: " + writingOverallAssessment
+ + "\nWriting KF1: " + writingKF1
+ + "\nWriting KF2: " + writingKF2
+ + "\nWriting NS1: " + writingNS1
+ + "\nWriting NS2: " + writingNS2
+ + "\nWriting NS3 Statement: " + writingNS3Statement
+ + "\nWriting NS Achievement Timeframe: " + writingNSAchievementTimeframe
+ + "\nWriting NS Achievement Statement: " + writingNSAchievementStatement
+ + "\nWriting NS Achieve Level: " + writingNSAchieveLevel
+ + "\nWriting NS Achievement OTJ: " + writingNSAchievementOTJ
+ + "\nWriting NS Achievement Comp: " + writingNSAchievementComp
+ + "\nWriting NS Achievement OTJ vs Comp: " + writingNSAchievementOTJVsComp
+ + "\nWriting NS Progress Timeframe: " + writingNSProgressTimeframe
+ + "\nWriting NS Progress Statement: " + writingNSProgressStatement
+ + "\nWriting NS Progress Level: " + writingNSProgressLevel
+ + "\nWriting NS Progress OTJ: " + writingNSProgressOTJ
+ + "\nWriting NS Progress Comp: " + writingNSProgressComp
+ + "\nWriting NS Progress OTJ vs Comp: " + writingNSProgressOTJVsComp
+ + "\nWriting Effort Level: " + writingEffortLevel
+ + "\nWriting Effort Statement: " + writingEffortStatement
+ + "\nWriting Comment Length: " + writingCommentLength
+ + "\nMath KF1 Statement: " + mathKf1Statement
+ + "\nMath KF2 Statement: " + mathKf2Statement
+ + "\nMath KF3 Statement: " + mathKf3Statement
+ + "\nMath KF4 Statement: " + mathKf4Statement
+ + "\nMath NS1 Statement: " + mathNS1Statement
+ + "\nMath NS2 Statement: " + mathNS2Statement
+ + "\nMath NA Stage Check: " + mathNAStageCheck
+ + "\nMath NA Average: " + mathNAAverage
+ + "\nMath NA Round: " + mathNARound
+ + "\nMath NS Achievement Timeframe: " + mathNSAchievementTimeframe
+ + "\nMath NS Achievement Statement: " + mathNSAchievementStatement
+ + "\nMath NS Achieve Level: " + mathNSAchieveLevel
+ + "\nMath NS Achievement OTJ: " + mathNSAchievementOTJ
+ + "\nMath NS Achievement Comp: " + mathNSAchievementComp
+ + "\nMath NS Achievement OTJ vs Comp: " + mathNSAchievementOTJVsComp
+ + "\nMath NS Progress Timeframe: " + mathNSProgressTimeframe
+ + "\nMath NS Progress Statement: " + mathNSProgressStatement
+ + "\nMath NS Progress Level: " + mathNSProgressLevel
+ + "\nMath NS Progress OTJ: " + mathNSProgressOTJ
+ + "\nMath NS Progress Comp: " + mathNSProgressComp
+ + "\nMath NS Progress OTJ vs Comp: " + mathNSProgressOTJVsComp
+ + "\nMath Effort Level: " + mathEffortLevel
+ + "\nMath Effort Statement: " + mathEffortStatement
+ + "\nMath Comment Length: " + mathCommentLength
+ + "\nMath Final Grade: " + mathFinalGrade
+ + "\nMath Final Initial Grade: " + mathInitialGrade
+ + "\nManaging Self: " + managingSelf
+ + "\nManaging Self Percent: " + managingSelfPercent
+ + "\nManaging Self Statement: " + managingSelfStatement
+ + "\nRelation To Others: " + relationToOthers
+ + "\nRelation To Others Percent: " + relationToOthersPercent
+ + "\nRelation To Others Statement: " + relationToOthersStatement
+ + "\nParticipating Contributing: " + participatingContributing
+ + "\nParticipating Contributing Percent: " + participatingContributingPercent
+ + "\nParticipating Contributing Statement: " + participatingContributingStatement
+ + "\nThinking: " + thinking
+ + "\nThinking Percent: " + thinkingPercent
+ + "\nThinking Statement: " + thinkingStatement
+ + "\nLST: " + lst
+ + "\nLST Percent: " + lstPercent
+ + "\nLST Statement: " + lstStatement
+ + "\nActivities Count: " + numActivitiesStr
+ + "\nSports Count: " + sportsActivitiesStr
+ + "\nOverall Academic: " + overallAcademic
+ + "\nAll Human Values: " + yesHumanValues
+ + "\nTotal Human Values: " + totalHumanValues
+ + "\nReading Progress Check: " + readingProgressCheck
+ + "\nWriting Progress Check: " + writingProgressCheck
+ + "\nMath Progress Check: " + mathProgressCheck
+ + "\nData Summary: " + dataSummary
+ + "\nStudents Well Below: " + studentsWellBelow
+ + "\nStudents Below: " + studentsBelow
+ + "\nStudents At: " + studentsAt
+ + "\nStudents Above: " + studentsAbove
+ + "\nStudents Well Above: " + studentsWellAbove
+ + "\nCheck Sum: " + checkSums);
+            //Using Previous IF statement to create update statement
             OleDbCommand updateCmd = new OleDbCommand(update);
 
+            //Manually updating
+            updateCmd = new OleDbCommand("Update [Calculated] SET [NSN] ='" + NSN+ "', [Teacher This Year] ='" + teacherThisYear
+                + "', [School Year Ordinal] ='" + schoolYearOrdinal+ "', [Next Teacher] ='" + nextTeacher
+                + "', [Placement Statement] ='" + placementStatement+ "', [Next Room Statement] ='" + nextRoomStatement
+                + "', [HeShe] ='" + heShe+ "', [HisHer] ='" + hisHer+ "', [HimHer] ='" + himHer
+                + "', [General Comment Length] ='" + generalCommentLength+ "', [Reading Initial Statement] ='" + readingInitialStatement
+                + "', [Reading Final Statement] ='" + readingFinalStatement+ "', [Reading KF1] ='" + readingKF1
+                + "', [Reading KF2] ='" + readingKF2+ "', [Reading NS1] ='" + readingNS1+ "', [Reading NS2] ='" + readingNS2
+                + "', [Reading Final Code] ='" + readingFinalCode+ "', [Reading NS Achievement Timeframe] ='" + readingNSAchievementTimeframe
+                + "', [Reading NS Achievement Statement] ='" + readingNSAchievementStatement
+                + "', [Reading NS Achieve Level] ='" + readingNSAchieveLevel+ "', [Reading NS Achievement OTJ] ='" + readingNSAchievementOTJ
+                + "', [Reading NS Achievement Comp] ='" + readingNSAchievementComp
+                + "', [Reading NS Achievement OTJ vs Comp] ='" + readingNSAchievementOTJVsComp
+                + "', [Reading NS Progress Timeframe] ='" + readingNSProgressTimeframe
+                + "', [Reading NS Progress Statement] ='" + readingNSProgressStatement
+                + "', [Reading NS Progress Level] ='" + readingNSProgressLevel
+                + "', [Reading NS Progress OTJ] ='" + readingNSProgressOTJ
+                + "', [Reading NS Progress Comp] ='" + readingNSProgressComp
+                + "', [Reading NS Progress OTJ vs Comp] ='" + readingNSProgressOTJVsComp
+                + "', [Reading Effort Level] ='" + readingEffortLevel+ "', [Reading Effort Statement] ='" + readingEffortStatement
+                + "', [Reading Comment Length] ='" + readingCommentLength+ "', [Writing Initial Grade] ='" + writingInitialGrade
+                + "', [Writing Final Grade] ='" + writingFinalGrade+ "', [Writing Overall Grade] ='" + writingOverallGrade
+                + "', [Writing Overall Assessment] ='" + writingOverallAssessment+ "', [Writing KF1] ='" + writingKF1
+                + "', [Writing KF2] ='" + writingKF2+ "', [Writing NS1] ='" + writingNS1+ "', [Writing NS2] ='" + writingNS2
+                + "', [Writing NS3 Statement] ='" + writingNS3Statement+ "', [Writing NS Achievement Timeframe] ='" + writingNSAchievementTimeframe
+                + "', [Writing NS Achievement Statement] ='" + writingNSAchievementStatement+ "', [Writing NS Achieve Level] ='" + writingNSAchieveLevel
+                + "', [Writing NS Achievement OTJ] ='" + writingNSAchievementOTJ+ "', [Writing NS Achievement Comp] ='" + writingNSAchievementComp
+                + "', [Writing NS Achievement OTJ vs Comp] ='" + writingNSAchievementOTJVsComp
+                + "', [Writing NS Progress Timeframe] ='" + writingNSProgressTimeframe
+                + "', [Writing NS Progress Statement] ='" + writingNSProgressStatement+ "', [Writing NS Progress Level] ='" + writingNSProgressLevel
+                + "', [Writing NS Progress OTJ] ='" + writingNSProgressOTJ+ "', [Writing NS Progress Comp] ='" + writingNSProgressComp
+                + "', [Writing NS Progress OTJ vs Comp] ='" + writingNSProgressOTJVsComp+ "', [Writing Effort Level] ='" + writingEffortLevel
+                + "', [Writing Effort Statement] ='" + writingEffortStatement+ "', [Writing Comment Length] ='" + writingCommentLength
+                + "', [Math KF1 Statement] ='" + mathKf1Statement+ "', [Math KF2 Statement] ='" + mathKf2Statement
+                + "', [Math KF3 Statement] ='" + mathKf3Statement+ "', [Math KF4 Statement] ='" + mathKf4Statement
+                + "', [Math NS1 Statement] ='" + mathNS1Statement+ "', [Math NS2 Statement] ='" + mathNS2Statement
+                + "', [Math NA Stage Check] ='" + mathNAStageCheck+ "', [Math NA Average] ='" + mathNAAverage+ "', [Math NA Round] ='" + mathNARound
+                + "', [Math NS Achievement Timeframe] ='" + mathNSAchievementTimeframe
+                + "', [Math NS Achievement Statement] ='" + mathNSAchievementStatement+ "', [Math NS Achieve Level] ='" + mathNSAchieveLevel
+                + "', [Math NS Achievement OTJ] ='" + mathNSAchievementOTJ+ "', [Math NS Achievement Comp] ='" + mathNSAchievementComp
+                + "', [Math NS Achievement OTJ vs Comp] ='" + mathNSAchievementOTJVsComp
+                + "', [Math NS Progress Timeframe] ='" + mathNSProgressTimeframe+ "', [Math NS Progress Statement] ='" + mathNSProgressStatement
+                + "', [Math NS Progress Level] ='" + mathNSProgressLevel+ "', [Math NS Progress OTJ] ='" + mathNSProgressOTJ
+                + "', [Math NS Progress Comp] ='" + mathNSProgressComp+ "', [Math NS Progress OTJ vs Comp] ='" + mathNSProgressOTJVsComp
+                + "', [Math Effort Level] ='" + mathEffortLevel+ "', [Math Effort Statement] ='" + mathEffortStatement
+                + "', [Math Comment Length] ='" + mathCommentLength+ "', [Math Final Grade] ='" + mathFinalGrade
+                + "', [Math Final Initial Grade] ='" + mathInitialGrade+ "', [Managing Self] ='" + managingSelf
+                + "', [Managing Self Percent] ='" + managingSelfPercent+ "', [Managing Self Statement] ='" + managingSelfStatement
+                + "', [Relation To Others] ='" + relationToOthers+ "', [Relation To Others Percent] ='" + relationToOthersPercent
+                + "', [Relation To Others Statement] ='" + relationToOthersStatement+ "', [Participating Contributing] ='" + participatingContributing
+                + "', [Participating Contributing Percent] ='" + participatingContributingPercent
+                + "', [Participating Contributing Statement] ='" + participatingContributingStatement+ "', [Thinking] ='" + thinking
+                + "', [Thinking Percent] ='" + thinkingPercent+ "', [Thinking Statement] ='" + thinkingStatement+ "', [LST] ='" + lst
+                + "', [LST Percent] ='" + lstPercent+ "', [LST Statement] ='" + lstStatement+ "', [Activities Count] ='" + numActivitiesStr
+                + "', [Sports Count] ='" + sportsActivitiesStr+ "', [Overall Academic] ='" + overallAcademic
+                + "', [All Human Values] ='" + yesHumanValues+ "', [Total Human Values] ='" + totalHumanValues
+                + "', [Reading Progress Check] ='" + readingProgressCheck+ "', [Writing Progress Check] ='" + writingProgressCheck
+                + "', [Math Progress Check] ='" + mathProgressCheck+ "', [Data Summary] ='" + dataSummary
+                + "', [Students Well Below] ='" + studentsWellBelow+ "', [Students Below] ='" + studentsBelow+ "', [Students At] ='" + studentsAt
+                + "', [Students Above] ='" + studentsAbove+ "', [Students Well Above] ='" + studentsWellAbove
+                + "', [Check Sum] ='" + checkSums + "' WHERE [NSN] = "+ NSN + ";");
             updateCmd.Connection = conn;
             int rowCount = updateCmd.ExecuteNonQuery();
 
