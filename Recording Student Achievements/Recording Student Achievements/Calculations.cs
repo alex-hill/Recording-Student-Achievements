@@ -19,7 +19,7 @@ namespace Recording_Student_Achievements
         string NSProgress;
         string nextRoom;
         string generalComment;
-        
+
 
         string readingInitialAssessmentMethod;
         string readingFinalAssessmentMethod;
@@ -29,7 +29,7 @@ namespace Recording_Student_Achievements
         string readingNSProgressCode;
         string readingEffort;
         string readingComment;
-        
+
         string writingInitialAssessment;
         string writingFinalAssessment;
         string writingNS3Code;
@@ -90,7 +90,7 @@ namespace Recording_Student_Achievements
         string heShe, hisHer, himHer;
         string generalCommentLength;
         //Reading
-        
+
         string readingInitialStatement;
         string readingFinalStatement;
         string readingKF1;
@@ -185,7 +185,7 @@ namespace Recording_Student_Achievements
 
         string numActivitiesStr, sportsActivitiesStr;
 
-        
+
         string overallAcademic;
         string teachersCup;
         string yesHumanValues;
@@ -200,6 +200,7 @@ namespace Recording_Student_Achievements
 
         public Calculations()
         {
+            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
 
         }
 
@@ -212,6 +213,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment] = '" + readingInitialAssessment + "'; ");
             cmdReadingInitialStatement.Connection = conn;
             OleDbDataReader reader = cmdReadingInitialStatement.ExecuteReader();
+            reader.Read();
             readingInitialStatement = reader.GetString(0);
             if (readingInitialAssessmentMethod.Equals("PROBE"))
             {
@@ -228,6 +230,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment] = '" + readingFinalAssessment + "'; ");
             cmdReadingFinalStatement.Connection = conn;
             reader = cmdReadingFinalStatement.ExecuteReader();
+            reader.Read();
             readingFinalStatement = reader.GetString(0);
             if (readingFinalAssessmentMethod.Equals("PROBE"))
             {
@@ -244,6 +247,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment] = '" + readingFinalAssessment + "'; ");
             cmdReadingKF1.Connection = conn;
             reader = cmdReadingKF1.ExecuteReader();
+            reader.Read();
             readingKF1 = reader.GetString(0);
             readingKF2 = reader.GetString(1);
             readingNS1 = reader.GetString(2);
@@ -257,6 +261,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Year Code] = '" + NSAchieve + "'; ");
             cmdReadingNSTimeframeAchieve.Connection = conn;
             reader = cmdReadingNSTimeframeAchieve.ExecuteReader();
+            reader.Read();
             readingNSAchievementTimeframe = reader.GetString(0);
             readingNSAchievementStatement = reader.GetString(1);
 
@@ -286,6 +291,7 @@ namespace Recording_Student_Achievements
             + " WHERE [National Standard Code] = '" + readingNSAchievementCode + "'; ");
             cmdReadingNSAchievementOTJ.Connection = conn;
             reader = cmdReadingNSAchievementOTJ.ExecuteReader();
+            reader.Read();
             readingNSAchievementOTJ = reader.GetString(0);
 
             // NS Reading Achievemet (Comp)
@@ -294,13 +300,15 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment] = '" + readingFinalAssessment + "'; ");
             cmdReadingNSAchievementComp.Connection = conn;
             reader = cmdReadingNSAchievementComp.ExecuteReader();
+            reader.Read();
             readingNSAchievementComp = reader.GetString(0);
 
             // NS Achievement OTJ vs COMP
-            if(readingNSAchievementOTJVsComp.Equals(readingNSAchievementComp))
+            if (readingNSAchievementOTJVsComp.Equals(readingNSAchievementComp))
             {
                 readingNSAchievementOTJVsComp = "1";
-            }else
+            }
+            else
             {
                 readingNSAchievementOTJVsComp = "0";
             }
@@ -313,6 +321,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Year Code] = '" + NSProgress + "'; ");
             cmdReadingNSTimeframeProgress.Connection = conn;
             reader = cmdReadingNSTimeframeProgress.ExecuteReader();
+            reader.Read();
             readingNSProgressTimeframe = reader.GetString(0);
             readingNSProgressStatement = reader.GetString(1);
 
@@ -336,6 +345,7 @@ namespace Recording_Student_Achievements
             + " WHERE [National Standard Code] = '" + readingNSProgressCode + "'; ");
             cmdReadingNSProgressOTJ.Connection = conn;
             reader = cmdReadingNSProgressOTJ.ExecuteReader();
+            reader.Read();
             readingNSProgressOTJ = reader.GetString(0);
 
             // NS Reading Progress (Comp)
@@ -344,6 +354,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment] = '" + readingFinalAssessment + "'; ");
             cmdReadingNSProgressComp.Connection = conn;
             reader = cmdReadingNSProgressComp.ExecuteReader();
+            reader.Read();
             readingNSProgressComp = reader.GetString(0);
 
             // NS Progress OTJ vs COMP
@@ -376,6 +387,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Effort Code] = '" + readingEffort + "'; ");
             cmdReadingEffortStatement.Connection = conn;
             reader = cmdReadingEffortStatement.ExecuteReader();
+            reader.Read();
             readingEffortStatement = reader.GetString(0);
 
             //Reading Comment Length
@@ -393,6 +405,7 @@ namespace Recording_Student_Achievements
                     + " WHERE [Writing Level] = '" + writingInitialAssessment + "'; ");
             cmdWritingInitialGrade.Connection = conn;
             OleDbDataReader reader = cmdWritingInitialGrade.ExecuteReader();
+            reader.Read();
             writingInitialGrade = reader.GetString(0);
 
             //Final Grade
@@ -401,13 +414,15 @@ namespace Recording_Student_Achievements
                     + " WHERE [Writing Level] = '" + writingFinalAssessment + "'; ");
             cmdWritingFinalGrade.Connection = conn;
             reader = cmdWritingFinalGrade.ExecuteReader();
+            reader.Read();
             writingFinalGrade = reader.GetString(0);
 
             //Overall Grade
-            if(Int32.Parse(writingInitialGrade) < Int32.Parse(writingFinalGrade))
+            if (Int32.Parse(writingInitialGrade) < Int32.Parse(writingFinalGrade))
             {
                 writingOverallGrade = writingFinalGrade;
-            }else
+            }
+            else
             {
                 writingOverallGrade = writingInitialGrade;
             }
@@ -418,6 +433,7 @@ namespace Recording_Student_Achievements
                     + " WHERE [Grade] = '" + writingOverallGrade + "'; ");
             cmdWritingOverallAssessment.Connection = conn;
             reader = cmdWritingOverallAssessment.ExecuteReader();
+            reader.Read();
             writingOverallAssessment = reader.GetString(0);
 
             //KF 1 2, NS 1, 2
@@ -426,6 +442,7 @@ namespace Recording_Student_Achievements
                     + " WHERE [Writing Level] = '" + writingOverallAssessment + "'; ");
             cmdWritingKF1.Connection = conn;
             reader = cmdWritingKF1.ExecuteReader();
+            reader.Read();
             writingKF1 = reader.GetString(0);
             writingKF2 = reader.GetString(1);
             writingNS1 = reader.GetString(2);
@@ -437,6 +454,7 @@ namespace Recording_Student_Achievements
                     + " WHERE [Code] = '" + writingNS3Code + "'; ");
             cmdWritingNS3Statement.Connection = conn;
             reader = cmdWritingNS3Statement.ExecuteReader();
+            reader.Read();
             writingNS3Statement = reader.GetString(0);
 
             //Achieve
@@ -447,6 +465,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Year Code] = '" + NSAchieve + "'; ");
             cmdWritingNSTimeframeAchieve.Connection = conn;
             reader = cmdWritingNSTimeframeAchieve.ExecuteReader();
+            reader.Read();
             writingNSAchievementTimeframe = reader.GetString(0);
             writingNSAchievementStatement = reader.GetString(1);
 
@@ -476,6 +495,7 @@ namespace Recording_Student_Achievements
             + " WHERE [National Standard Code] = '" + writingNSAchievementCode + "'; ");
             cmdWritingNSAchievementOTJ.Connection = conn;
             reader = cmdWritingNSAchievementOTJ.ExecuteReader();
+            reader.Read();
             writingNSAchievementOTJ = reader.GetString(0);
 
             // NS Writing Achievemet (Comp)
@@ -484,6 +504,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment] = '" + writingFinalAssessment + "'; ");
             cmdWritingNSAchievementComp.Connection = conn;
             reader = cmdWritingNSAchievementComp.ExecuteReader();
+            reader.Read();
             writingNSAchievementComp = reader.GetString(0);
 
             // NS Achievement OTJ vs COMP
@@ -502,6 +523,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Year Code] = '" + NSProgress + "'; ");
             cmdWritingNSTimeframeProgress.Connection = conn;
             reader = cmdWritingNSTimeframeProgress.ExecuteReader();
+            reader.Read();
             writingNSProgressTimeframe = reader.GetString(0);
             writingNSProgressStatement = reader.GetString(1);
 
@@ -525,6 +547,7 @@ namespace Recording_Student_Achievements
             + " WHERE [National Standard Code] = '" + writingNSProgressCode + "'; ");
             cmdWritingNSProgressOTJ.Connection = conn;
             reader = cmdWritingNSProgressOTJ.ExecuteReader();
+            reader.Read();
             writingNSProgressOTJ = reader.GetString(0);
 
             // NS Writing Progress (Comp)
@@ -533,6 +556,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment] = '" + writingFinalAssessment + "'; ");
             cmdWritingNSProgressComp.Connection = conn;
             reader = cmdWritingNSProgressComp.ExecuteReader();
+            reader.Read();
             writingNSProgressComp = reader.GetString(0);
 
             // NS Progress OTJ vs COMP
@@ -565,6 +589,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Effort Code] = '" + writingEffort + "'; ");
             cmdWritingEffortStatement.Connection = conn;
             reader = cmdWritingEffortStatement.ExecuteReader();
+            reader.Read();
             writingEffortStatement = reader.GetString(0);
 
             //Writing Comment Length
@@ -581,6 +606,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Maths Code] = '" + mathKf1 + "'; ");
             cmdMathKf1.Connection = conn;
             OleDbDataReader reader = cmdMathKf1.ExecuteReader();
+            reader.Read();
             mathKf1Statement = reader.GetString(0);
 
             // Math KF1
@@ -589,6 +615,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Maths Code] = '" + mathKf2 + "'; ");
             cmdMathKf2.Connection = conn;
             reader = cmdMathKf2.ExecuteReader();
+            reader.Read();
             mathKf2Statement = reader.GetString(0);
 
             // Math KF1
@@ -597,6 +624,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Maths Code] = '" + mathKf3 + "'; ");
             cmdMathKf3.Connection = conn;
             reader = cmdMathKf3.ExecuteReader();
+            reader.Read();
             mathKf3Statement = reader.GetString(0);
 
             // Math KF1
@@ -605,6 +633,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Maths Code] = '" + mathKf4 + "'; ");
             cmdMathKf4.Connection = conn;
             reader = cmdMathKf4.ExecuteReader();
+            reader.Read();
             mathKf4Statement = reader.GetString(0);
 
             // Math NS1
@@ -613,6 +642,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Maths Code] = '" + mathNs1 + "'; ");
             cmdMathNS1.Connection = conn;
             reader = cmdMathNS1.ExecuteReader();
+            reader.Read();
             mathNS1Statement = reader.GetString(0);
 
             // Math NS1
@@ -621,8 +651,9 @@ namespace Recording_Student_Achievements
             + " WHERE [Maths Code] = '" + mathNs2 + "'; ");
             cmdMathNS2.Connection = conn;
             reader = cmdMathNS2.ExecuteReader();
+            reader.Read();
             mathNS2Statement = reader.GetString(0);
-            
+
             // Average and Rounding
             string mathNA1 = mathKf1.Substring(0, 1);
             string mathNA2 = mathKf2.Substring(0, 1);
@@ -630,7 +661,7 @@ namespace Recording_Student_Achievements
             string mathNA4 = mathKf4.Substring(0, 1);
             string mathNA5 = mathNs1.Substring(0, 1);
             string mathNA6 = mathNs2.Substring(0, 1);
-            double n = (Int32.Parse(mathNA1) + Int32.Parse(mathNA2) + Int32.Parse(mathNA3) + Int32.Parse(mathNA4) + Int32.Parse(mathNA5) + Int32.Parse(mathNA6))/6;
+            double n = (Int32.Parse(mathNA1) + Int32.Parse(mathNA2) + Int32.Parse(mathNA3) + Int32.Parse(mathNA4) + Int32.Parse(mathNA5) + Int32.Parse(mathNA6)) / 6;
             mathNAAverage = n.ToString();
             mathNARound = Math.Ceiling(n).ToString();
 
@@ -640,15 +671,17 @@ namespace Recording_Student_Achievements
             + " WHERE [Stage] = '" + mathOverallAssessment + "'; ");
             cmdMathPos2.Connection = conn;
             reader = cmdMathPos2.ExecuteReader();
+            reader.Read();
 
             //Math Final Grade
             mathFinalGrade = reader.GetString(0);
             string a = reader.GetString(0);
-            int b = Int32.Parse(a) - Int32.Parse(mathNARound) ;
-            if(b == 0)
+            int b = Int32.Parse(a) - Int32.Parse(mathNARound);
+            if (b == 0)
             {
                 mathNAStageCheck = "1";
-            }else
+            }
+            else
             {
                 mathNAStageCheck = "0";
             }
@@ -659,6 +692,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Year Code] = '" + NSAchieve + "'; ");
             cmdMathNSTimeframeAchieve.Connection = conn;
             reader = cmdMathNSTimeframeAchieve.ExecuteReader();
+            reader.Read();
             mathNSAchievementTimeframe = reader.GetString(0);
             mathNSAchievementStatement = reader.GetString(1);
 
@@ -688,6 +722,7 @@ namespace Recording_Student_Achievements
             + " WHERE [National Standard Code] = '" + mathNSAchievementCode + "'; ");
             cmdMathNSAchievementOTJ.Connection = conn;
             reader = cmdMathNSAchievementOTJ.ExecuteReader();
+            reader.Read();
             mathNSAchievementOTJ = reader.GetString(0);
 
             // NS Math Achievemet (Comp)
@@ -696,6 +731,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment] = '" + mathFinalGrade + "'; ");
             cmdMathNSAchievementComp.Connection = conn;
             reader = cmdMathNSAchievementComp.ExecuteReader();
+            reader.Read();
             mathNSAchievementComp = reader.GetString(0);
 
             // NS Achievement OTJ vs COMP
@@ -714,6 +750,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Year Code] = '" + NSProgress + "'; ");
             cmdMathNSTimeframeProgress.Connection = conn;
             reader = cmdMathNSTimeframeProgress.ExecuteReader();
+            reader.Read();
             mathNSProgressTimeframe = reader.GetString(0);
             mathNSProgressStatement = reader.GetString(1);
 
@@ -737,6 +774,7 @@ namespace Recording_Student_Achievements
             + " WHERE [National Standard Code] = '" + mathNSProgressCode + "'; ");
             cmdMathNSProgressOTJ.Connection = conn;
             reader = cmdMathNSProgressOTJ.ExecuteReader();
+            reader.Read();
             mathNSProgressOTJ = reader.GetString(0);
 
             // NS Math Progress (Comp)
@@ -745,6 +783,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment] = '" + mathFinalGrade + "'; ");
             cmdMathNSProgressComp.Connection = conn;
             reader = cmdMathNSProgressComp.ExecuteReader();
+            reader.Read();
             mathNSProgressComp = reader.GetString(0);
 
             // NS Progress OTJ vs COMP
@@ -777,6 +816,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Effort Code] = '" + mathEffort + "'; ");
             cmdMathEffortStatement.Connection = conn;
             reader = cmdMathEffortStatement.ExecuteReader();
+            reader.Read();
             mathEffortStatement = reader.GetString(0);
 
             //Math Comment Length
@@ -787,12 +827,13 @@ namespace Recording_Student_Achievements
 
         private void curiosity()
         {
-            
+
             OleDbCommand cmdCuriosity1 = new OleDbCommand("SELECT [Assessment]"
             + " FROM [School Assessment]"
             + " WHERE [Assessment Code] = '" + curiosity1 + "'; ");
             cmdCuriosity1.Connection = conn;
             OleDbDataReader reader = cmdCuriosity1.ExecuteReader();
+            reader.Read();
             curiosity1Statement = reader.GetString(0);
 
             OleDbCommand cmdCuriosity2 = new OleDbCommand("SELECT [Assessment]"
@@ -800,6 +841,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + curiosity2 + "'; ");
             cmdCuriosity2.Connection = conn;
             reader = cmdCuriosity2.ExecuteReader();
+            reader.Read();
             curiosity2Statement = reader.GetString(0);
 
             OleDbCommand cmdCuriosity3 = new OleDbCommand("SELECT [Assessment]"
@@ -807,6 +849,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + curiosity3 + "'; ");
             cmdCuriosity3.Connection = conn;
             reader = cmdCuriosity3.ExecuteReader();
+            reader.Read();
             curiosity3Statement = reader.GetString(0);
 
             OleDbCommand cmdCuriosity4 = new OleDbCommand("SELECT [Assessment]"
@@ -814,6 +857,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + curiosity4 + "'; ");
             cmdCuriosity4.Connection = conn;
             reader = cmdCuriosity4.ExecuteReader();
+            reader.Read();
             curiosity4Statement = reader.GetString(0);
 
             OleDbCommand cmdCuriosity5 = new OleDbCommand("SELECT [Assessment]"
@@ -821,6 +865,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + curiosity5 + "'; ");
             cmdCuriosity5.Connection = conn;
             reader = cmdCuriosity5.ExecuteReader();
+            reader.Read();
             curiosity5Statement = reader.GetString(0);
 
             OleDbCommand cmdCuriosity6 = new OleDbCommand("SELECT [Assessment]"
@@ -828,6 +873,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + curiosity6 + "'; ");
             cmdCuriosity6.Connection = conn;
             reader = cmdCuriosity6.ExecuteReader();
+            reader.Read();
             curiosity6Statement = reader.GetString(0);
         }
 
@@ -839,6 +885,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + creativity1 + "'; ");
             cmdCreativity1.Connection = conn;
             OleDbDataReader reader = cmdCreativity1.ExecuteReader();
+            reader.Read();
             creativity1Statement = reader.GetString(0);
 
             OleDbCommand cmdCreativity2 = new OleDbCommand("SELECT [Assessment]"
@@ -846,6 +893,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + creativity2 + "'; ");
             cmdCreativity2.Connection = conn;
             reader = cmdCreativity2.ExecuteReader();
+            reader.Read();
             creativity2Statement = reader.GetString(0);
 
             OleDbCommand cmdCreativity3 = new OleDbCommand("SELECT [Assessment]"
@@ -853,6 +901,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + creativity3 + "'; ");
             cmdCreativity3.Connection = conn;
             reader = cmdCreativity3.ExecuteReader();
+            reader.Read();
             creativity3Statement = reader.GetString(0);
 
             OleDbCommand cmdCreativity4 = new OleDbCommand("SELECT [Assessment]"
@@ -860,6 +909,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + creativity4 + "'; ");
             cmdCreativity4.Connection = conn;
             reader = cmdCreativity4.ExecuteReader();
+            reader.Read();
             creativity4Statement = reader.GetString(0);
 
             OleDbCommand cmdCreativity5 = new OleDbCommand("SELECT [Assessment]"
@@ -867,6 +917,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + creativity5 + "'; ");
             cmdCreativity5.Connection = conn;
             reader = cmdCreativity5.ExecuteReader();
+            reader.Read();
             creativity5Statement = reader.GetString(0);
 
             OleDbCommand cmdCreativity6 = new OleDbCommand("SELECT [Assessment]"
@@ -874,6 +925,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + creativity6 + "'; ");
             cmdCreativity6.Connection = conn;
             reader = cmdCreativity6.ExecuteReader();
+            reader.Read();
             creativity6Statement = reader.GetString(0);
         }
 
@@ -885,6 +937,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + community1 + "'; ");
             cmdCommunity1.Connection = conn;
             OleDbDataReader reader = cmdCommunity1.ExecuteReader();
+            reader.Read();
             community1Statement = reader.GetString(0);
 
             OleDbCommand cmdCommunity2 = new OleDbCommand("SELECT [Assessment]"
@@ -892,6 +945,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + community2 + "'; ");
             cmdCommunity2.Connection = conn;
             reader = cmdCommunity2.ExecuteReader();
+            reader.Read();
             community2Statement = reader.GetString(0);
 
             OleDbCommand cmdCommunity3 = new OleDbCommand("SELECT [Assessment]"
@@ -899,6 +953,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + community3 + "'; ");
             cmdCommunity3.Connection = conn;
             reader = cmdCommunity3.ExecuteReader();
+            reader.Read();
             community3Statement = reader.GetString(0);
 
             OleDbCommand cmdCommunity4 = new OleDbCommand("SELECT [Assessment]"
@@ -906,6 +961,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + community4 + "'; ");
             cmdCommunity4.Connection = conn;
             reader = cmdCommunity4.ExecuteReader();
+            reader.Read();
             community4Statement = reader.GetString(0);
 
             OleDbCommand cmdCommunity5 = new OleDbCommand("SELECT [Assessment]"
@@ -913,6 +969,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + community5 + "'; ");
             cmdCommunity5.Connection = conn;
             reader = cmdCommunity5.ExecuteReader();
+            reader.Read();
             community5Statement = reader.GetString(0);
 
             OleDbCommand cmdCommunity6 = new OleDbCommand("SELECT [Assessment]"
@@ -920,6 +977,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + community6 + "'; ");
             cmdCommunity6.Connection = conn;
             reader = cmdCommunity6.ExecuteReader();
+            reader.Read();
             community6Statement = reader.GetString(0);
         }
 
@@ -931,6 +989,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + sustainability1 + "'; ");
             cmdsustainability1.Connection = conn;
             OleDbDataReader reader = cmdsustainability1.ExecuteReader();
+            reader.Read();
             sustainability1Statement = reader.GetString(0);
 
             OleDbCommand cmdsustainability2 = new OleDbCommand("SELECT [Assessment]"
@@ -938,6 +997,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + sustainability2 + "'; ");
             cmdsustainability2.Connection = conn;
             reader = cmdsustainability2.ExecuteReader();
+            reader.Read();
             sustainability2Statement = reader.GetString(0);
 
             OleDbCommand cmdsustainability3 = new OleDbCommand("SELECT [Assessment]"
@@ -945,6 +1005,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + sustainability3 + "'; ");
             cmdsustainability3.Connection = conn;
             reader = cmdsustainability3.ExecuteReader();
+            reader.Read();
             sustainability3Statement = reader.GetString(0);
 
             OleDbCommand cmdsustainability4 = new OleDbCommand("SELECT [Assessment]"
@@ -952,6 +1013,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + sustainability4 + "'; ");
             cmdsustainability4.Connection = conn;
             reader = cmdsustainability4.ExecuteReader();
+            reader.Read();
             sustainability4Statement = reader.GetString(0);
 
             OleDbCommand cmdsustainability5 = new OleDbCommand("SELECT [Assessment]"
@@ -959,6 +1021,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + sustainability5 + "'; ");
             cmdsustainability5.Connection = conn;
             reader = cmdsustainability5.ExecuteReader();
+            reader.Read();
             sustainability5Statement = reader.GetString(0);
 
             OleDbCommand cmdsustainability6 = new OleDbCommand("SELECT [Assessment]"
@@ -966,6 +1029,7 @@ namespace Recording_Student_Achievements
             + " WHERE [Assessment Code] = '" + sustainability6 + "'; ");
             cmdsustainability6.Connection = conn;
             reader = cmdsustainability6.ExecuteReader();
+            reader.Read();
             sustainability6Statement = reader.GetString(0);
         }
 
@@ -1002,26 +1066,30 @@ namespace Recording_Student_Achievements
             managingSelf = (cur3 + cur6 + cre6 + com1 + com2 + com3 + com4 + sus2 + sus3 + sus4).ToString();
             double managingSelfDec = ((Double.Parse(managingSelf) - 2)) / 40;
             managingSelfPercent = ((int)(managingSelfDec) * 100).ToString();
-            if (managingSelfDec >= 0.25) {
+            if (managingSelfDec >= 0.25)
+            {
                 if (managingSelfDec >= 0.5)
                 {
                     if (managingSelfDec >= 0.75)
                     {
                         managingSelfStatement = "Awesome";
-                    }else
+                    }
+                    else
                     {
                         managingSelfStatement = "Admirable";
                     }
-                }else
+                }
+                else
                 {
                     managingSelfStatement = "Acceptable";
                 }
-            }else
+            }
+            else
             {
                 managingSelfStatement = "Awesome";
             }
 
-            relationToOthers = (cre5 + com1 + com2 +com4 + com5 + com6).ToString();
+            relationToOthers = (cre5 + com1 + com2 + com4 + com5 + com6).ToString();
             double relationToOthersDec = (Double.Parse(relationToOthers) - 1) / 24;
             relationToOthersPercent = ((int)(relationToOthersDec) * 100).ToString();
             if (relationToOthersDec >= 0.25)
@@ -1048,7 +1116,7 @@ namespace Recording_Student_Achievements
             }
 
 
-            participatingContributing = (cur1 + cre3 + cre4 + com3 + com5+ com6 + sus1 + sus2 + sus4).ToString();
+            participatingContributing = (cur1 + cre3 + cre4 + com3 + com5 + com6 + sus1 + sus2 + sus4).ToString();
             double participatingContributingDec = (Double.Parse(participatingContributing) - 2) / 36;
             participatingContributingPercent = ((int)(participatingContributingDec) * 100).ToString();
             if (participatingContributingDec >= 0.25)
@@ -1133,7 +1201,8 @@ namespace Recording_Student_Achievements
             if (honesty.Equals("1") && excellence.Equals("1") && aroha.Equals("1") && respect.Equals("1") && trust.Equals("1"))
             {
                 yesHumanValues = "1";
-            }else
+            }
+            else
             {
                 totalHumanValues = (Int32.Parse(honesty) + Int32.Parse(excellence) + Int32.Parse(aroha) + Int32.Parse(respect) + Int32.Parse(trust)).ToString();
             }
@@ -1149,7 +1218,7 @@ namespace Recording_Student_Achievements
             if (Int32.Parse(writingInitialGrade) < Int32.Parse(writingFinalGrade))
             {
                 writingProgressCheck = "1";
-                
+
             }
             if (Int32.Parse(mathInitialGrade) < Int32.Parse(mathFinalGrade))
             {
@@ -1169,10 +1238,10 @@ namespace Recording_Student_Achievements
             dataSummary = readingNSAchievementCode + "R " + writingNSAchievementCode + "W " + mathNSAchievementCode + "M";
             checkSums = (readingCode + writingCode + mathCode).ToString();
 
-            if(readingCode == 1)
+            if (readingCode == 1)
             {
                 studentsWellBelow = "1";
-                if(writingCode == 1)
+                if (writingCode == 1)
                 {
                     studentsWellBelow += "1";
                     if (mathCode == 1)
@@ -1249,7 +1318,8 @@ namespace Recording_Student_Achievements
                     studentsAbove += "X";
                 }
             }
-            else if (readingCode == 5) {
+            else if (readingCode == 5)
+            {
                 studentsWellAbove = "1";
                 if (writingCode == 1)
                 {
@@ -1293,259 +1363,277 @@ namespace Recording_Student_Achievements
 
         public void Calculate()
         {
-            OleDbCommand allStudents = new OleDbCommand();
-
-            allStudents = new OleDbCommand("SELECT [NSN]"
-            + " FROM [Student]; ");
-            allStudents.Connection = conn;
-
-
-            OleDbDataAdapter da = new OleDbDataAdapter(allStudents);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-
-            foreach (DataRow dr in dt.Rows)
+            try
             {
-                string NSN = dr["NSN"].ToString();
+                conn.Open();
+                OleDbCommand allStudents = new OleDbCommand();
 
-                OleDbCommand cmd = new OleDbCommand();
+                allStudents = new OleDbCommand("SELECT [NSN]"
+            + " FROM [Student]; ");
 
-                cmd = new OleDbCommand("SELECT * "
-                    + "FROM (((([Student] s "
-                    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
-                    + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
-                    + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
-                    + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
+                allStudents.Connection = conn;
+
+                OleDbDataAdapter allData = new OleDbDataAdapter(allStudents);
+                DataTable allTable = new DataTable();
+                allData.Fill(allTable);
+
+                foreach (DataRow dr in allTable.Rows)
+                {
+                    string NSN = dr["NSN"].ToString();
+
+                    OleDbCommand cmd = new OleDbCommand();
+
+                    cmd = new OleDbCommand("SELECT * "
+                        + "FROM (((([Student] s "
+                        + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+                        + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+                        + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+                        + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
+
+                        + "WHERE s.[NSN] = '" + NSN + "'; ");
+                    cmd.Connection = conn;
+                    OleDbDataAdapter daa = new OleDbDataAdapter(cmd);
+                    DataTable dtt = new DataTable();
+                    daa.Fill(dtt);
+
+
+                    foreach (DataRow drr in dtt.Rows)
+                    {
+                        firstName = drr["Preferred Name"].ToString();
+                        gender = drr["Gender"].ToString();
+                        room = drr["Room Number"].ToString();
+                        NSAchieve = drr["National Standard Achieve"].ToString();
+                        NSProgress = drr["National Standard Progress"].ToString();
+                        nextRoom = drr["Next Room Number"].ToString();
+                        generalComment = drr["General Comment"].ToString();
+
+                        readingInitialAssessmentMethod = drr["Reading Initial Assessment Method"].ToString();
+                        readingFinalAssessmentMethod = drr["Reading Final Assessment Method"].ToString();
+                        readingInitialAssessment = drr["Reading Initial Assessment Level"].ToString();
+                        readingFinalAssessment = drr["Reading Final Assessment Level"].ToString();
+                        readingNSAchievementCode = drr["Reading NS Achievement Code"].ToString();
+                        readingNSProgressCode = drr["Reading NS Progress"].ToString();
+                        readingEffort = drr["Reading Effort"].ToString();
+                        readingComment = drr["Reading Comment"].ToString();
+
+                        writingInitialAssessment = drr["Writing Initial Assessment"].ToString();
+                        writingFinalAssessment = drr["Writing Final Assessment"].ToString();
+                        writingNS3Code = drr["Writing NS3 Code"].ToString();
+                        writingNSAchievementCode = drr["Writing NS Achievement Code"].ToString();
+                        writingNSProgressCode = drr["Writing NS Progress Code"].ToString();
+                        writingEffort = drr["Writing Effort"].ToString();
+                        writingComment = drr["Writing Comment"].ToString();
+
+                        mathFinalAssessmentMethod = drr["Math Final Assessment Method"].ToString();
+                        mathInitialAssessmentLevel = drr["Math Initial Assessment Level"].ToString();
+                        mathOverallAssessment = drr["Math Overall Assessment"].ToString();
+                        mathKf1 = drr["Math KF1"].ToString();
+                        mathKf2 = drr["Math KF2"].ToString();
+                        mathKf3 = drr["Math KF3"].ToString();
+                        mathKf4 = drr["Math KF4"].ToString();
+                        mathNs1 = drr["Math NS1"].ToString();
+                        mathNs2 = drr["Math NS2"].ToString();
+                        mathNSAchievementCode = drr["Math NS Achievement Code"].ToString();
+                        mathNSProgressCode = drr["Math NS Progress Code"].ToString();
+                        mathEffort = drr["Math Effort"].ToString();
+                        mathComment = drr["Math Comment"].ToString();
+
+                        curiosity1 = drr["Curiosity 1"].ToString();
+                        curiosity2 = drr["Curiosity 2"].ToString();
+                        curiosity3 = drr["Curiosity 3"].ToString();
+                        curiosity4 = drr["Curiosity 4"].ToString();
+                        curiosity5 = drr["Curiosity 5"].ToString();
+                        curiosity6 = drr["Curiosity 6"].ToString();
+                        creativity1 = drr["Creativity 1"].ToString();
+                        creativity2 = drr["Creativity 2"].ToString();
+                        creativity3 = drr["Creativity 3"].ToString();
+                        creativity4 = drr["Creativity 4"].ToString();
+                        creativity5 = drr["Creativity 5"].ToString();
+                        creativity6 = drr["Creativity 6"].ToString();
+                        community1 = drr["Community 1"].ToString();
+                        community2 = drr["Community 2"].ToString();
+                        community3 = drr["Community 3"].ToString();
+                        community4 = drr["Community 4"].ToString();
+                        community5 = drr["Community 5"].ToString();
+                        community6 = drr["Community 6"].ToString();
+                        sustainability1 = drr["Sustainability 1"].ToString();
+                        sustainability2 = drr["Sustainability 2"].ToString();
+                        sustainability3 = drr["Sustainability 3"].ToString();
+                        sustainability4 = drr["Sustainability 4"].ToString();
+                        sustainability5 = drr["Sustainability 5"].ToString();
+                        sustainability6 = drr["Sustainability 6"].ToString();
+
+                        honesty = drr["Honesty"].ToString();
+                        excellence = drr["Excellence"].ToString();
+                        aroha = drr["Aroha"].ToString();
+                        respect = drr["Respect"].ToString();
+                        trust = drr["Trust"].ToString();
+
+                        //Current Teacher
+                        OleDbCommand cmdTeacherThisYear = new OleDbCommand("SELECT [Current Teacher]"
+                        + " FROM [Room]"
+                        + " WHERE [Room No] = '" + room.ToString() + "'; ");
+                        cmdTeacherThisYear.Connection = conn;
+                        OleDbDataReader reader = cmdTeacherThisYear.ExecuteReader();
+                        reader.Read();
+                        teacherThisYear = reader.GetString(0);
+
+                        //School Year Ordinal
+                        OleDbCommand cmdSchoolYearOrdinal = new OleDbCommand("SELECT [Achievement Ordinal]"
+                        + " FROM [National Standard Codes]"
+                        + " WHERE [National Standard Code] = '" + NSAchieve + "'; ");
+                        cmdSchoolYearOrdinal.Connection = conn;
+
+                        reader = cmdSchoolYearOrdinal.ExecuteReader();
+                        reader.Read();
+                        schoolYearOrdinal = reader.GetString(0);
+
+                        //Next Teacher
+                        OleDbCommand cmdNextTeacher = new OleDbCommand("SELECT [Next Year Teacher]"
+                        + " FROM [Room]"
+                        + " WHERE [Room No] = '" + nextRoom + "'; ");
+                        cmdNextTeacher.Connection = conn;
+                        reader = cmdNextTeacher.ExecuteReader();
+                        reader.Read();
+                        nextTeacher = reader.GetString(0);
+
+                        //Placement Statement
+
+                        if (nextTeacher.Equals("Leaving"))
+                        {
+                            placementStatement = "Our records show that " + firstName + " will be leaving Laingholm Primary School - "
+                                + "'The Greatest Little School in the Universe' - at the end of this year. As a school we would like "
+                                + "to take the opportunity to wish " + firstName + " well for the future in the belief that "
+                                + firstName + " will continue to 'Reach for the Stars'.";
+                        }
+                        else
+                        {
+                            placementStatement = "Over the past few months we have given very careful consideration to "
+                                + firstName + "’s classroom placement for 2016. As a school we endeavour to personalise "
+                                + "the learning for each student. We take into account academic performance, friendship "
+                                + " groups and a number of other factors when placing a student in a particular class.";
+                        }
+
+                        // Next Room Statement
+
+                        if (nextRoom.Equals("99"))
+                        {
+                            nextRoomStatement = "Best wishes from all the staff and students at Laingholm Primary School, "
+                                + "'The Greatest Little School in the Universe'. Ko te pae tawhiti whaaia kia tata, ko te pae tata whakamaua kia tiina.";
+                        }
+                        else
+                        {
+                            nextRoomStatement = "In 2016 " + firstName + "  will be in Room " + nextRoom + "  with " + nextTeacher;
+                        }
+
+                        // He/She
+
+                        if (gender.Equals("Male"))
+                        {
+                            heShe = "he";
+                            hisHer = "his";
+                            himHer = "him";
+                        }
+                        else
+                        {
+                            heShe = "she";
+                            hisHer = "her";
+                            himHer = "her";
+                        }
+
+                        generalCommentLength = generalComment.Length.ToString();
+
+                        OleDbCommand cmdReadingFinalCode = new OleDbCommand("SELECT [Reading Code]"
+                        + " FROM [Reading National Standards]"
+                        + " WHERE [Assessment] = '" + readingFinalAssessment + "'; ");
+                        cmdReadingFinalCode.Connection = conn;
+                        reader = cmdReadingFinalCode.ExecuteReader();
+                        reader.Read();
+                        readingFinalCode = reader.GetString(0);
+
+                        OleDbCommand cmdMathInitialGrade = new OleDbCommand("SELECT [Position1]"
+                        + " FROM [Math Reverse Lookup]"
+                        + " WHERE [Stage] = '" + mathInitialAssessmentLevel + "'; ");
+                        cmdMathInitialGrade.Connection = conn;
+                        reader = cmdMathInitialGrade.ExecuteReader();
+                        reader.Read();
+                        Console.WriteLine(reader.GetString(0));
+                        mathInitialGrade = reader.GetString(0);
+
+
+                        allCalculations();
+
+                        overallAcademic = ((Double.Parse(readingFinalCode) / 2) + (Double.Parse(writingOverallGrade)) + (Double.Parse(mathFinalGrade) * 2)).ToString();
+
+                    }
+
+                    int numActivities = 0;
+                    int sportsActivities = 0;
+
+                    // Cultural Activities
+                    OleDbCommand cmdActivitiesCount = new OleDbCommand("SELECT * "
+                    + "FROM ([Cultural Activities] c"
+                    + "INNER JOIN [Sports Activities] s ON m.[NSN] = c.[NSN]) "
+                    + "INNER JOIN [Extra Activities] e ON e.[NSN] = c.[NSN]) "
 
                     + "WHERE s.[NSN] = '" + NSN + "'; ");
+                    cmdActivitiesCount.Connection = conn;
+                    OleDbDataAdapter activitiesAdaptar = new OleDbDataAdapter(cmdActivitiesCount);
+                    DataTable activitiesDT = new DataTable();
+                    activitiesAdaptar.Fill(activitiesDT);
 
-                OleDbDataAdapter daa = new OleDbDataAdapter(cmd);
-                DataTable dtt = new DataTable();
-                daa.Fill(dtt);
-
-                foreach (DataRow drr in dtt.Rows)
-                {
-                    firstName = drr["Preferred Name"].ToString();
-                    gender = drr["Gender"].ToString();
-                    room = drr["Room Number"].ToString();
-                    NSAchieve = drr["National Standard Achieve"].ToString();
-                    NSProgress = drr["National Standard Progress"].ToString();
-                    nextRoom = drr["Next Room Number"].ToString();
-                    generalComment = drr["General Comment"].ToString();
-
-                    readingInitialAssessmentMethod = drr["Reading Initial Assessment Method"].ToString();
-                    readingFinalAssessmentMethod = drr["Reading Final Assessment Method"].ToString();
-                    readingInitialAssessment = drr["Reading Initial Assessment Level"].ToString();
-                    readingFinalAssessment = drr["Reading Final Assessment Level"].ToString();
-                    readingNSAchievementCode = drr["Reading NS Achievement Code"].ToString();
-                    readingNSProgressCode = drr["Reading NS Progress"].ToString();
-                    readingEffort = drr["Reading Effort"].ToString();
-                    readingComment = drr["Reading Comment"].ToString();
-
-                    writingInitialAssessment = drr["Writing Initial Assessment"].ToString();
-                    writingFinalAssessment = drr["Writing Final Assessment"].ToString();
-                    writingNS3Code = drr["Writing NS3 Code"].ToString();
-                    writingNSAchievementCode = drr["Writing NS Achievement Code"].ToString();
-                    writingNSProgressCode = drr["Writing NS Progress Code"].ToString();
-                    writingEffort = drr["Writing Effort"].ToString();
-                    writingComment = drr["Writing Comment"].ToString();
-
-                    mathFinalAssessmentMethod = drr["Math Final Assessment Method"].ToString();
-                    mathInitialAssessmentLevel = drr["Math Initial Assessment Method"].ToString();
-                    mathOverallAssessment = drr["Math Overall Assessment"].ToString();
-                    mathKf1 = drr["Math KF1"].ToString();
-                    mathKf2 = drr["Math KF2"].ToString();
-                    mathKf3 = drr["Math KF3"].ToString();
-                    mathKf4 = drr["Math KF4"].ToString();
-                    mathNs1 = drr["Math NS1"].ToString();
-                    mathNs2 = drr["Math NS2"].ToString();
-                    mathNSAchievementCode = drr["Math NS Achievement Code"].ToString();
-                    mathNSProgressCode = drr["Math NS Progress Code"].ToString();
-                    mathEffort = drr["Math Effort"].ToString();
-                    mathComment = drr["Math Comment"].ToString();
-
-                    curiosity1 = drr["Curiosity 1"].ToString();
-                    curiosity2 = drr["Curiosity 2"].ToString();
-                    curiosity3 = drr["Curiosity 3"].ToString();
-                    curiosity4 = drr["Curiosity 4"].ToString();
-                    curiosity5 = drr["Curiosity 5"].ToString();
-                    curiosity6 = drr["Curiosity 6"].ToString();
-                    creativity1 = drr["Creativity 1"].ToString();
-                    creativity2 = drr["Creativity 2"].ToString();
-                    creativity3 = drr["Creativity 3"].ToString();
-                    creativity4 = drr["Creativity 4"].ToString();
-                    creativity5 = drr["Creativity 5"].ToString();
-                    creativity6 = drr["Creativity 6"].ToString();
-                    community1 = drr["Community 1"].ToString();
-                    community2 = drr["Community 2"].ToString();
-                    community3 = drr["Community 3"].ToString();
-                    community4 = drr["Community 4"].ToString();
-                    community5 = drr["Community 5"].ToString();
-                    community6 = drr["Community 6"].ToString();
-                    sustainability1 = drr["Sustainability 1"].ToString();
-                    sustainability2 = drr["Sustainability 2"].ToString();
-                    sustainability3 = drr["Sustainability 3"].ToString();
-                    sustainability4 = drr["Sustainability 4"].ToString();
-                    sustainability5 = drr["Sustainability 5"].ToString();
-                    sustainability6 = drr["Sustainability 6"].ToString();
-
-                    honesty = drr["Honesty"].ToString();
-                    excellence = drr["Excellence"].ToString();
-                    aroha = drr["Aroha"].ToString();
-                    respect = drr["Respect"].ToString();
-                    trust = drr["Trust"].ToString();
-
-                    //Current Teacher
-                    OleDbCommand cmdTeacherThisYear = new OleDbCommand("SELECT [Current Teacher]"
-                    + " FROM [Room]"
-                    + " WHERE [Room No] = '" + room + "'; ");
-                    cmdTeacherThisYear.Connection = conn;
-                    OleDbDataReader reader = cmdTeacherThisYear.ExecuteReader();
-                    teacherThisYear = reader.GetString(0);
-
-                    //School Year Ordinal
-                    OleDbCommand cmdSchoolYearOrdinal = new OleDbCommand("SELECT [Achievement Ordinal]"
-                    + " FROM [National Standard Codes]"
-                    + " WHERE [National Standard Code] = '" + NSAchieve + "'; ");
-                    cmdSchoolYearOrdinal.Connection = conn;
-                    reader = cmdSchoolYearOrdinal.ExecuteReader();
-                    schoolYearOrdinal = reader.GetString(0);
-
-                    //Next Teacher
-                    OleDbCommand cmdNextTeacher = new OleDbCommand("SELECT [Next Year Teacher]"
-                    + " FROM [Room]"
-                    + " WHERE [Room No] = '" + nextRoom + "'; ");
-                    cmdNextTeacher.Connection = conn;
-                    reader = cmdNextTeacher.ExecuteReader();
-                    nextTeacher = reader.GetString(0);
-
-                    //Placement Statement
-
-                    if (nextTeacher.Equals("Leaving"))
+                    foreach (DataRow dtRow in activitiesDT.Rows)
                     {
-                        placementStatement = "Our records show that " + firstName + " will be leaving Laingholm Primary School - "
-                            + "'The Greatest Little School in the Universe' - at the end of this year. As a school we would like "
-                            + "to take the opportunity to wish " + firstName + " well for the future in the belief that "
-                            + firstName + " will continue to 'Reach for the Stars'.";
-                    }
-                    else
-                    {
-                        placementStatement = "Over the past few months we have given very careful consideration to "
-                            + firstName + "’s classroom placement for 2016. As a school we endeavour to personalise "
-                            + "the learning for each student. We take into account academic performance, friendship "
-                            + " groups and a number of other factors when placing a student in a particular class.";
-                    }
-
-                    // Next Room Statement
-
-                    if (nextRoom.Equals("99"))
-                    {
-                        nextRoomStatement = "Best wishes from all the staff and students at Laingholm Primary School, "
-                            + "'The Greatest Little School in the Universe'. Ko te pae tawhiti whaaia kia tata, ko te pae tata whakamaua kia tiina.";
-                    }
-                    else
-                    {
-                        nextRoomStatement = "In 2016 " + firstName + "  will be in Room " + nextRoom + "  with " + nextTeacher;
-                    }
-
-                    // He/She
-
-                    if (gender.Equals("Male"))
-                    {
-                        heShe = "he";
-                        hisHer = "his";
-                        himHer = "him";
-                    }
-                    else
-                    {
-                        heShe = "she";
-                        hisHer = "her";
-                        himHer = "her";
-                    }
-
-                    generalCommentLength = generalComment.Length.ToString();
-
-                    OleDbCommand cmdReadingFinalCode = new OleDbCommand("SELECT [Reading Code]"
-                    + " FROM [Reading National Standards]"
-                    + " WHERE [Assessment] = '" + readingFinalAssessment + "'; ");
-                    cmdReadingFinalCode.Connection = conn;
-                    reader = cmdReadingFinalCode.ExecuteReader();
-                    readingFinalCode = reader.GetString(0);
-
-                    OleDbCommand cmdMathInitialGrade = new OleDbCommand("SELECT [Position1]"
-                    + " FROM [Math Reverse Lookup]"
-                    + " WHERE [Stage] = '" + mathInitialAssessmentLevel + "'; ");
-                    cmdMathInitialGrade.Connection = conn;
-                    reader = cmdMathInitialGrade.ExecuteReader();
-                    mathInitialGrade = reader.GetString(0);
-                    
-
-                    allCalculations();
-
-                    overallAcademic = ((Double.Parse(readingFinalCode) / 2) + (Double.Parse(writingOverallGrade)) + (Double.Parse(mathFinalGrade) * 2)).ToString();
-
-                }
-
-                int numActivities = 0;
-                int sportsActivities = 0;
-
-                // Cultural Activities
-                OleDbCommand cmdActivitiesCount = new OleDbCommand("SELECT * "
-                + "FROM ([Cultural Activities] c"
-                + "INNER JOIN [Sports Activities] s ON m.[NSN] = c.[NSN]) "
-                + "INNER JOIN [Extra Activities] e ON e.[NSN] = c.[NSN]) "
-
-                + "WHERE s.[NSN] = '" + NSN + "'; ");
-                cmdActivitiesCount.Connection = conn;
-                OleDbDataAdapter activitiesAdaptar = new OleDbDataAdapter(cmdActivitiesCount);
-                DataTable activitiesDT = new DataTable();
-                activitiesAdaptar.Fill(activitiesDT);
-
-                foreach (DataRow dtRow in activitiesDT.Rows)
-                {
-                    foreach (DataColumn dtCol in activitiesDT.Columns)
-                    {
-                        if((dtRow[dtCol].ToString()).Equals("1"))
+                        foreach (DataColumn dtCol in activitiesDT.Columns)
                         {
-                            numActivities++;
+                            if ((dtRow[dtCol].ToString()).Equals("1"))
+                            {
+                                numActivities++;
+                            }
                         }
                     }
-                }
 
-                numActivitiesStr = numActivities.ToString();
+                    numActivitiesStr = numActivities.ToString();
 
 
-                // Sports Activities
-                OleDbCommand cmdSportsCount = new OleDbCommand("SELECT * "
-                + "FROM ([Cultural Activities] c"
-                + "INNER JOIN [Sports Activities] s ON m.[NSN] = c.[NSN]) "
-                + "INNER JOIN [Extra Activities] e ON e.[NSN] = c.[NSN]) "
+                    // Sports Activities
+                    OleDbCommand cmdSportsCount = new OleDbCommand("SELECT * "
+                    + "FROM ([Cultural Activities] c"
+                    + "INNER JOIN [Sports Activities] s ON m.[NSN] = c.[NSN]) "
+                    + "INNER JOIN [Extra Activities] e ON e.[NSN] = c.[NSN]) "
 
-                + "WHERE s.[NSN] = '" + NSN + "'; ");
-                cmdSportsCount.Connection = conn;
-                OleDbDataAdapter sportsAdapter = new OleDbDataAdapter(cmdSportsCount);
-                DataTable sportsDT = new DataTable();
-                sportsAdapter.Fill(sportsDT);
+                    + "WHERE s.[NSN] = '" + NSN + "'; ");
+                    cmdSportsCount.Connection = conn;
+                    OleDbDataAdapter sportsAdapter = new OleDbDataAdapter(cmdSportsCount);
+                    DataTable sportsDT = new DataTable();
+                    sportsAdapter.Fill(sportsDT);
 
-                foreach (DataRow dtRow in sportsDT.Rows)
-                {
-                    foreach (DataColumn dtCol in sportsDT.Columns)
+                    foreach (DataRow dtRow in sportsDT.Rows)
                     {
-                        if ((dtRow[dtCol].ToString()).Equals("1"))
+                        foreach (DataColumn dtCol in sportsDT.Columns)
                         {
-                            sportsActivities++;
+                            if ((dtRow[dtCol].ToString()).Equals("1"))
+                            {
+                                sportsActivities++;
+                            }
                         }
                     }
+                    sportsActivitiesStr = sportsActivities.ToString();
+
+                    /*
+                     * Updating Table
+                     * */
+                    updateTable(NSN);
+
                 }
-                sportsActivitiesStr = sportsActivities.ToString();
-
-                /*
-                 * Updating Table
-                 * */
-                updateTable(NSN);
-
+                conn.Close();
             }
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error" + ex);
+            }
+
+
         }
 
         private void updateTable(string NSN)
@@ -1576,19 +1664,20 @@ namespace Recording_Student_Achievements
             + "'" + mathProgressCheck + "', '" + dataSummary + "', '" + checkSums + "', '" + studentsWellBelow + "', '" + studentsBelow + "', "
             + "'" + studentsAt + "', '" + studentsAbove + "', '" + studentsWellAbove + "')");
 
-            
+
             cmd.Connection = conn;
             int rowCount = cmd.ExecuteNonQuery();
 
-            if(rowCount < 1)
+            if (rowCount < 1)
             {
                 MessageBox.Show("Updating Database Failed");
-            }else
+            }
+            else
             {
                 MessageBox.Show("Database has been Successfully Updated");
             }
 
-            
+
         }
     }
 }
