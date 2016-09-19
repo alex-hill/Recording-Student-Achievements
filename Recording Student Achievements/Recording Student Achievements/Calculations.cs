@@ -187,6 +187,7 @@ namespace Recording_Student_Achievements
 
         string numActivitiesStr, sportsActivitiesStr;
 
+        
 
         string overallAcademic;
         string teachersCup;
@@ -199,6 +200,8 @@ namespace Recording_Student_Achievements
         string checkSums;
 
         string studentsWellBelow, studentsBelow, studentsAt, studentsAbove, studentsWellAbove;
+
+        
 
         public Calculations()
         {
@@ -1069,8 +1072,9 @@ namespace Recording_Student_Achievements
             int sus6 = Int32.Parse(sustainability6);
 
             managingSelf = (cur3 + cur6 + cre6 + com1 + com2 + com3 + com4 + sus2 + sus3 + sus4).ToString();
-            double managingSelfDec = ((Double.Parse(managingSelf) - 2)) / 40;
-            managingSelfPercent = ((int)(managingSelfDec) * 100).ToString();
+            double managingSelfDec = Math.Round(((Double.Parse(managingSelf) - 2)) / 40, 2);
+
+            managingSelfPercent = ((managingSelfDec) * 100).ToString();
             if (managingSelfDec >= 0.25)
             {
                 if (managingSelfDec >= 0.5)
@@ -1095,8 +1099,8 @@ namespace Recording_Student_Achievements
             }
 
             relationToOthers = (cre5 + com1 + com2 + com4 + com5 + com6).ToString();
-            double relationToOthersDec = (Double.Parse(relationToOthers) - 1) / 24;
-            relationToOthersPercent = ((int)(relationToOthersDec) * 100).ToString();
+            double relationToOthersDec = Math.Round((Double.Parse(relationToOthers) - 1) / 24, 2);
+            relationToOthersPercent = ((relationToOthersDec) * 100).ToString();
             if (relationToOthersDec >= 0.25)
             {
                 if (relationToOthersDec >= 0.5)
@@ -1122,8 +1126,8 @@ namespace Recording_Student_Achievements
 
 
             participatingContributing = (cur1 + cre3 + cre4 + com3 + com5 + com6 + sus1 + sus2 + sus4).ToString();
-            double participatingContributingDec = (Double.Parse(participatingContributing) - 2) / 36;
-            participatingContributingPercent = ((int)(participatingContributingDec) * 100).ToString();
+            double participatingContributingDec = Math.Round((Double.Parse(participatingContributing) - 2) / 36, 2);
+            participatingContributingPercent = ((participatingContributingDec) * 100).ToString();
             if (participatingContributingDec >= 0.25)
             {
                 if (participatingContributingDec >= 0.5)
@@ -1148,8 +1152,8 @@ namespace Recording_Student_Achievements
             }
 
             thinking = (cur1 + cur2 + cur4 + cur5 + cur6 + cre1 + cre2 + cre6 + sus1 + sus3 + sus5 + sus6).ToString();
-            double thinkingDec = (Double.Parse(thinking) - 2) / 48;
-            thinkingPercent = ((int)(thinkingDec) * 100).ToString();
+            double thinkingDec = Math.Round((Double.Parse(thinking) - 2) / 48, 2);
+            thinkingPercent = ((thinkingDec) * 100).ToString();
             if (thinkingDec >= 0.25)
             {
                 if (thinkingDec >= 0.5)
@@ -1174,8 +1178,8 @@ namespace Recording_Student_Achievements
             }
 
             lst = (cur1 + cur3 + cur4 + cur5 + cre1 + cre2 + cre3 + cre4 + cre5 + sus5 + sus6).ToString();
-            double lstDec = Double.Parse(lst) / 44;
-            lstPercent = ((int)(lstDec) * 100).ToString();
+            double lstDec = Math.Round(Double.Parse(lst) / 44, 2);
+            lstPercent = ((lstDec) * 100).ToString();
             if (lstDec >= 0.25)
             {
                 if (lstDec >= 0.5)
@@ -1628,14 +1632,13 @@ namespace Recording_Student_Achievements
                         (Double.Parse(mathFinalGrade) * 2) +
                         (Double.Parse(sportsActivitiesStr) * 2) +
                         (Double.Parse(numActivitiesStr) - Double.Parse(sportsActivitiesStr))).ToString();
-
                     /*
                      * Updating Table
                      * */
                     updateTable(NSN);
 
                 }
-                
+                conn.Close();
             }
             catch (Exception ex)
             {
@@ -1665,7 +1668,7 @@ namespace Recording_Student_Achievements
 
             // Use table that contains relationship between Calculated table and the variables here
             OleDbCommand relationshipCmd = new OleDbCommand("SELECT *"
-                 + " FROM [Database Relationship]; ");
+                 + " FROM [Calculated]; ");
 
             relationshipCmd.Connection = conn;
 
@@ -1673,33 +1676,198 @@ namespace Recording_Student_Achievements
             DataTable relationshipTable = new DataTable();
             relationshipAdapter.Fill(relationshipTable);
 
-            string debugging = "";
+
 
             // Generate Update statement
             string update = "Update [Calculated] SET ";
             int i = 0;
-            int len = relationshipTable.Rows.Count;
-            foreach (DataRow drr in relationshipTable.Rows)
+            Dictionary<string, string> dict = createDictionary(NSN);
+            int len = dict.Count;
+            /*
+            foreach (DataColumn drr in relationshipTable.Columns)
             {
-                string calc = drr["Calculated Field"].ToString();
-                string sys = drr["System Field"].ToString();
-                debugging += "\"" + calc + ": \" + " + sys + "\n   ";
-                
+                string calc = drr.ColumnName;
+
+                Console.WriteLine(calc + ": " + dict[calc]);
+                //var sys = drr["System Field"].ToString();
                 if (i == len - 1)
                 {
-                    update += "[" + calc + "] = '" + sys + "' ";
+                    update += "[" + calc + "] = '" + dict[calc] + "' ";
                 }
                 else
                 {
-                    update += "[" + calc + "] = '" + sys + "', ";
+                    update += "[" + calc + "] = '" + dict[calc] + "', ";
                 }
                 i++;
 
-
             }
-           
-            update += "WHERE [NSN] = '" + NSN + "';";
+            */
+            foreach (KeyValuePair<string, string> pair in dict)
+            {
+                string field = pair.Key;
+                string value = pair.Value;
+
+                if (i == len - 1)
+                {
+                    update += "[" + field + "] = '" + value + "' ";
+                }
+                else
+                {
+                    update += "[" + field + "] = '" + value + "', ";
+                }
+                Console.WriteLine(i);
+                i++;
+            }
+
+
+            update += "WHERE NSN = '" + NSN + "';";
+            Console.WriteLine(update);
+            //Using Previous IF statement to create update statement
+            OleDbCommand updateCmd = new OleDbCommand(update);
+
+            //Manually updating
+
+            updateCmd.Connection = conn;
+            int rowCount = updateCmd.ExecuteNonQuery();
+
+            if (rowCount < 1)
+            {
+                MessageBox.Show("Updating Database Failed");
+            }
+            else
+            {
+                MessageBox.Show("Database has been Successfully Updated");
+            }
+
             
+        }
+
+        private Dictionary<string, string> createDictionary(string NSN)
+        {
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict["NSN"] = NSN;
+            dict["Teacher This Year"] = teacherThisYear;
+            dict["School Year Ordinal"] = schoolYearOrdinal;
+            dict["Next Teacher"] = nextTeacher;
+            dict["Placement Statement"] = placementStatement;
+            dict["Next Room Statement"] = nextRoomStatement;
+            dict["HeShe"] = heShe;
+            dict["HisHer"] = hisHer;
+            dict["HimHer"] = himHer;
+            dict["General Comment Length"] = generalCommentLength;
+            dict["Reading Initial Statement"] = readingInitialStatement;
+            dict["Reading Final Statement"] = readingFinalStatement;
+            dict["Reading KF1"] = readingKF1;
+            dict["Reading KF2"] = readingKF2;
+            dict["Reading NS1"] = readingNS1;
+            dict["Reading NS2"] = readingNS2;
+            dict["Reading Final Code"] = readingFinalCode;
+            dict["Reading NS Achievement Timeframe"] = readingNSAchievementTimeframe;
+            dict["Reading NS Achievement Statement"] = readingNSAchievementStatement;
+            dict["Reading NS Achieve Level"] = readingNSAchieveLevel;
+            dict["Reading NS Achievement OTJ"] = readingNSAchievementOTJ;
+            dict["Reading NS Achievement Comp"] = readingNSAchievementComp;
+            dict["Reading NS Achievement OTJ vs Comp"] = readingNSAchievementOTJVsComp;
+            dict["Reading NS Progress Timeframe"] = readingNSProgressTimeframe;
+            dict["Reading NS Progress Statement"] = readingNSProgressStatement;
+            dict["Reading NS Progress Level"] = readingNSProgressLevel;
+            dict["Reading NS Progress OTJ"] = readingNSProgressOTJ;
+            dict["Reading NS Progress Comp"] = readingNSProgressComp;
+            dict["Reading NS Progress OTJ vs Comp"] = readingNSProgressOTJVsComp;
+            dict["Reading Effort Level"] = readingEffortLevel;
+            dict["Reading Effort Statement"] = readingEffortStatement;
+            dict["Reading Comment Length"] = readingCommentLength;
+            /*
+            dict["Writing Initial Grade"] = writingInitialGrade;
+            dict["Writing Final Grade"] = writingFinalGrade;
+            dict["Writing Overall Grade"] = writingOverallGrade;
+            dict["Writing Overall Assessment"] = writingOverallAssessment;
+            dict["Writing KF1"] = writingKF1;
+            dict["Writing KF2"] = writingKF2;
+            dict["Writing NS1"] = writingNS1;
+            dict["Writing NS2"] = writingNS2;
+            dict["Writing NS3 Statement"] = writingNS3Statement;
+            dict["Writing NS Achievement Timeframe"] = writingNSAchievementTimeframe;
+            dict["Writing NS Achievement Statement"] = writingNSAchievementStatement;
+            dict["Writing NS Achieve Level"] = writingNSAchieveLevel;
+            dict["Writing NS Achievement OTJ"] = writingNSAchievementOTJ;
+            dict["Writing NS Achievement Comp"] = writingNSAchievementComp;
+            dict["Writing NS Achievement OTJ vs Comp"] = writingNSAchievementOTJVsComp;
+            dict["Writing NS Progress Timeframe"] = writingNSProgressTimeframe;
+            dict["Writing NS Progress Statement"] = writingNSProgressStatement;
+            dict["Writing NS Progress Level"] = writingNSProgressLevel;
+            dict["Writing NS Progress OTJ"] = writingNSProgressOTJ;
+            dict["Writing NS Progress Comp"] = writingNSProgressComp;
+            dict["Writing NS Progress OTJ vs Comp"] = writingNSProgressOTJVsComp;
+            dict["Writing Effort Level"] = writingEffortLevel;
+            dict["Writing Effort Statement"] = writingEffortStatement;
+            dict["Writing Comment Length"] = writingCommentLength;
+            dict["Math KF1 Statement"] = mathKf1Statement;
+            dict["Math KF2 Statement"] = mathKf2Statement;
+            dict["Math KF3 Statement"] = mathKf3Statement;
+            dict["Math KF4 Statement"] = mathKf4Statement;
+            dict["Math NS1 Statement"] = mathNS1Statement;
+            dict["Math NS2 Statement"] = mathNS2Statement;
+            dict["Math NA Stage Check"] = mathNAStageCheck;
+            dict["Math NA Average"] = mathNAAverage;
+            dict["Math NA Round"] = mathNARound;
+            dict["Math NS Achievement Timeframe"] = mathNSAchievementTimeframe;
+            dict["Math NS Achievement Statement"] = mathNSAchievementStatement;
+            dict["Math NS Achieve Level"] = mathNSAchieveLevel;
+            dict["Math NS Achievement OTJ"] = mathNSAchievementOTJ;
+            dict["Math NS Achievement Comp"] = mathNSAchievementComp;
+            dict["Math NS Achievement OTJ vs Comp"] = mathNSAchievementOTJVsComp;
+            dict["Math NS Progress Timeframe"] = mathNSProgressTimeframe;
+            dict["Math NS Progress Statement"] = mathNSProgressStatement;
+            dict["Math NS Progress Level"] = mathNSProgressLevel;
+            dict["Math NS Progress OTJ"] = mathNSProgressOTJ;
+            dict["Math NS Progress Comp"] = mathNSProgressComp;
+            dict["Math NS Progress OTJ vs Comp"] = mathNSProgressOTJVsComp;
+            dict["Math Effort Level"] = mathEffortLevel;
+            dict["Math Effort Statement"] = mathEffortStatement;
+            dict["Math Comment Length"] = mathCommentLength;
+            dict["Math Final Grade"] = mathFinalGrade;
+            dict["Math Final Initial Grade"] = mathInitialGrade;
+            dict["Managing Self"] = managingSelf;
+            dict["Managing Self Percent"] = managingSelfPercent;
+            dict["Managing Self Statement"] = managingSelfStatement;
+            dict["Relation To Others"] = relationToOthers;
+            dict["Relation To Others Percent"] = relationToOthersPercent;
+            dict["Relation To Others Statement"] = relationToOthersStatement;
+            dict["Participating Contributing"] = participatingContributing;
+            dict["Participating Contributing Percent"] = participatingContributingPercent;
+            dict["Participating Contributing Statement"] = participatingContributingStatement;
+            dict["Thinking"] = thinking;
+            dict["Thinking Percent"] = thinkingPercent;
+            dict["Thinking Statement"] = thinkingStatement;
+            dict["LST"] = lst;
+            dict["LST Percent"] = lstPercent;
+            dict["LST Statement"] = lstStatement;
+            dict["Activities Count"] = numActivitiesStr;
+            dict["Sports Count"] = sportsActivitiesStr;
+            dict["Overall Academic"] = overallAcademic;
+            dict["All Human Values"] = yesHumanValues;
+            dict["Total Human Values"] = totalHumanValues;
+            dict["Reading Progress Check"] = readingProgressCheck;
+            dict["Writing Progress Check"] = writingProgressCheck;
+            dict["Math Progress Check"] = mathProgressCheck;
+            dict["Data Summary"] = dataSummary;
+            dict["Students Well Below"] = studentsWellBelow;
+            dict["Students Below"] = studentsBelow;
+            dict["Students At"] = studentsAt;
+            dict["Students Above"] = studentsAbove;
+            dict["Students Well Above"] = studentsWellAbove;
+            dict["Check Sum"] = checkSums;
+            */
+            //debugging(NSN);
+            
+            return dict;
+        }
+
+       
+        private void debugging(string NSN)
+        {
+
             Console.WriteLine("NSN: " + NSN
  + "\nTeacher This Year: " + teacherThisYear
  + "\nSchool Year Ordinal: " + schoolYearOrdinal
@@ -1812,83 +1980,9 @@ namespace Recording_Student_Achievements
  + "\nStudents Above: " + studentsAbove
  + "\nStudents Well Above: " + studentsWellAbove
  + "\nCheck Sum: " + checkSums);
-            //Using Previous IF statement to create update statement
-            OleDbCommand updateCmd = new OleDbCommand(update);
 
-            //Manually updating
-            updateCmd = new OleDbCommand("Update [Calculated] SET [NSN] ='" + NSN+ "', [Teacher This Year] ='" + teacherThisYear
-                + "', [School Year Ordinal] ='" + schoolYearOrdinal+ "', [Next Teacher] ='" + nextTeacher
-                + "', [Placement Statement] ='" + placementStatement+ "', [Next Room Statement] ='" + nextRoomStatement
-                + "', [HeShe] ='" + heShe+ "', [HisHer] ='" + hisHer+ "', [HimHer] ='" + himHer
-                + "', [General Comment Length] ='" + generalCommentLength+ "', [Reading Initial Statement] ='" + readingInitialStatement
-                + "', [Reading Final Statement] ='" + readingFinalStatement+ "', [Reading KF1] ='" + readingKF1
-                + "', [Reading KF2] ='" + readingKF2+ "', [Reading NS1] ='" + readingNS1+ "', [Reading NS2] ='" + readingNS2
-                + "', [Reading Final Code] ='" + readingFinalCode+ "', [Reading NS Achievement Timeframe] ='" + readingNSAchievementTimeframe
-                + "', [Reading NS Achievement Statement] ='" + readingNSAchievementStatement
-                + "', [Reading NS Achieve Level] ='" + readingNSAchieveLevel+ "', [Reading NS Achievement OTJ] ='" + readingNSAchievementOTJ
-                + "', [Reading NS Achievement Comp] ='" + readingNSAchievementComp
-                + "', [Reading NS Achievement OTJ vs Comp] ='" + readingNSAchievementOTJVsComp
-                + "', [Reading NS Progress Timeframe] ='" + readingNSProgressTimeframe
-                + "', [Reading NS Progress Statement] ='" + readingNSProgressStatement
-                + "', [Reading NS Progress Level] ='" + readingNSProgressLevel
-                + "', [Reading NS Progress OTJ] ='" + readingNSProgressOTJ
-                + "', [Reading NS Progress Comp] ='" + readingNSProgressComp
-                + "', [Reading NS Progress OTJ vs Comp] ='" + readingNSProgressOTJVsComp
-                + "', [Reading Effort Level] ='" + readingEffortLevel+ "', [Reading Effort Statement] ='" + readingEffortStatement
-                + "', [Reading Comment Length] ='" + readingCommentLength+ "', [Writing Initial Grade] ='" + writingInitialGrade
-                + "', [Writing Final Grade] ='" + writingFinalGrade+ "', [Writing Overall Grade] ='" + writingOverallGrade
-                + "', [Writing Overall Assessment] ='" + writingOverallAssessment+ "', [Writing KF1] ='" + writingKF1
-                + "', [Writing KF2] ='" + writingKF2+ "', [Writing NS1] ='" + writingNS1+ "', [Writing NS2] ='" + writingNS2
-                + "', [Writing NS3 Statement] ='" + writingNS3Statement+ "', [Writing NS Achievement Timeframe] ='" + writingNSAchievementTimeframe
-                + "', [Writing NS Achievement Statement] ='" + writingNSAchievementStatement+ "', [Writing NS Achieve Level] ='" + writingNSAchieveLevel
-                + "', [Writing NS Achievement OTJ] ='" + writingNSAchievementOTJ+ "', [Writing NS Achievement Comp] ='" + writingNSAchievementComp
-                + "', [Writing NS Achievement OTJ vs Comp] ='" + writingNSAchievementOTJVsComp
-                + "', [Writing NS Progress Timeframe] ='" + writingNSProgressTimeframe
-                + "', [Writing NS Progress Statement] ='" + writingNSProgressStatement+ "', [Writing NS Progress Level] ='" + writingNSProgressLevel
-                + "', [Writing NS Progress OTJ] ='" + writingNSProgressOTJ+ "', [Writing NS Progress Comp] ='" + writingNSProgressComp
-                + "', [Writing NS Progress OTJ vs Comp] ='" + writingNSProgressOTJVsComp+ "', [Writing Effort Level] ='" + writingEffortLevel
-                + "', [Writing Effort Statement] ='" + writingEffortStatement+ "', [Writing Comment Length] ='" + writingCommentLength
-                + "', [Math KF1 Statement] ='" + mathKf1Statement+ "', [Math KF2 Statement] ='" + mathKf2Statement
-                + "', [Math KF3 Statement] ='" + mathKf3Statement+ "', [Math KF4 Statement] ='" + mathKf4Statement
-                + "', [Math NS1 Statement] ='" + mathNS1Statement+ "', [Math NS2 Statement] ='" + mathNS2Statement
-                + "', [Math NA Stage Check] ='" + mathNAStageCheck+ "', [Math NA Average] ='" + mathNAAverage+ "', [Math NA Round] ='" + mathNARound
-                + "', [Math NS Achievement Timeframe] ='" + mathNSAchievementTimeframe
-                + "', [Math NS Achievement Statement] ='" + mathNSAchievementStatement+ "', [Math NS Achieve Level] ='" + mathNSAchieveLevel
-                + "', [Math NS Achievement OTJ] ='" + mathNSAchievementOTJ+ "', [Math NS Achievement Comp] ='" + mathNSAchievementComp
-                + "', [Math NS Achievement OTJ vs Comp] ='" + mathNSAchievementOTJVsComp
-                + "', [Math NS Progress Timeframe] ='" + mathNSProgressTimeframe+ "', [Math NS Progress Statement] ='" + mathNSProgressStatement
-                + "', [Math NS Progress Level] ='" + mathNSProgressLevel+ "', [Math NS Progress OTJ] ='" + mathNSProgressOTJ
-                + "', [Math NS Progress Comp] ='" + mathNSProgressComp+ "', [Math NS Progress OTJ vs Comp] ='" + mathNSProgressOTJVsComp
-                + "', [Math Effort Level] ='" + mathEffortLevel+ "', [Math Effort Statement] ='" + mathEffortStatement
-                + "', [Math Comment Length] ='" + mathCommentLength+ "', [Math Final Grade] ='" + mathFinalGrade
-                + "', [Math Final Initial Grade] ='" + mathInitialGrade+ "', [Managing Self] ='" + managingSelf
-                + "', [Managing Self Percent] ='" + managingSelfPercent+ "', [Managing Self Statement] ='" + managingSelfStatement
-                + "', [Relation To Others] ='" + relationToOthers+ "', [Relation To Others Percent] ='" + relationToOthersPercent
-                + "', [Relation To Others Statement] ='" + relationToOthersStatement+ "', [Participating Contributing] ='" + participatingContributing
-                + "', [Participating Contributing Percent] ='" + participatingContributingPercent
-                + "', [Participating Contributing Statement] ='" + participatingContributingStatement+ "', [Thinking] ='" + thinking
-                + "', [Thinking Percent] ='" + thinkingPercent+ "', [Thinking Statement] ='" + thinkingStatement+ "', [LST] ='" + lst
-                + "', [LST Percent] ='" + lstPercent+ "', [LST Statement] ='" + lstStatement+ "', [Activities Count] ='" + numActivitiesStr
-                + "', [Sports Count] ='" + sportsActivitiesStr+ "', [Overall Academic] ='" + overallAcademic
-                + "', [All Human Values] ='" + yesHumanValues+ "', [Total Human Values] ='" + totalHumanValues
-                + "', [Reading Progress Check] ='" + readingProgressCheck+ "', [Writing Progress Check] ='" + writingProgressCheck
-                + "', [Math Progress Check] ='" + mathProgressCheck+ "', [Data Summary] ='" + dataSummary
-                + "', [Students Well Below] ='" + studentsWellBelow+ "', [Students Below] ='" + studentsBelow+ "', [Students At] ='" + studentsAt
-                + "', [Students Above] ='" + studentsAbove+ "', [Students Well Above] ='" + studentsWellAbove
-                + "', [Check Sum] ='" + checkSums + "' WHERE [NSN] = "+ NSN + ";");
-            updateCmd.Connection = conn;
-            int rowCount = updateCmd.ExecuteNonQuery();
-
-            if (rowCount < 1)
-            {
-                MessageBox.Show("Updating Database Failed");
-            }
-            else
-            {
-                MessageBox.Show("Database has been Successfully Updated");
-            }
-
-            conn.Close();
+           
         }
+        
     }
 }
