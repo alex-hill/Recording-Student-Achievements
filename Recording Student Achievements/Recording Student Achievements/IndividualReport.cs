@@ -108,7 +108,9 @@ namespace Recording_Student_Achievements
             else if (nsnNumber != null)
             {
                 cmd = new OleDbCommand("SELECT * "
-                + "FROM ((((([Student] s "
+                + "FROM (((((([Student] s "
+
+                + "INNER JOIN [Cultural Activities] ca on ca.[NSN] = s.[NSN])"
 
                 + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
@@ -147,6 +149,7 @@ namespace Recording_Student_Achievements
                     }
                     else
                     {
+                        reader.Close();
                         accessDB(cmd);
                     }
                     reader.Close();
@@ -197,7 +200,7 @@ namespace Recording_Student_Achievements
             OleDbCommand merge = new OleDbCommand("SELECT * FROM [Merge]");
             
             //iterates through each mergefield in the document
-            foreach (Microsoft.Office.Interop.Word.Shape shape in application.ActiveDocument.Shapes)
+            /*foreach (Microsoft.Office.Interop.Word.Shape shape in application.ActiveDocument.Shapes)
             {
                 
                 if(shape.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox)
@@ -205,40 +208,53 @@ namespace Recording_Student_Achievements
                     foreach (Microsoft.Office.Interop.Word.Field field in shape.TextFrame.TextRange.Fields)
                     {
                         merge.Connection = conn;
-                        OleDbDataAdapter da = new OleDbDataAdapter(cmd);
+                        OleDbDataAdapter da = new OleDbDataAdapter(merge);
                         DataTable mergeTable = new DataTable();
                         da.Fill(mergeTable);
-                        int i = 0;
+                        
                         foreach (DataRow drr in mainTable.Rows)
                         {
                             foreach (DataRow dr in mergeTable.Rows)
                             {
                                 if (field.Code.Text.Contains(dr["Merge Field"].ToString()))
                                 {
+                                    Console.WriteLine("Merge Field: " + dr["Merge Field"].ToString());
+                                    Console.WriteLine("Database Field: " + drr[dr["Database Field"].ToString()].ToString());
+                                    field.Select();
+                                    application.Selection.TypeText(drr[dr["Database Field"].ToString()].ToString());
+                                }
+                            }
+
+                    }
+                }*/
+
+
+            merge.Connection = conn;
+            OleDbDataAdapter da = new OleDbDataAdapter(merge);
+            DataTable mergeTable = new DataTable();
+            da.Fill(mergeTable);
+
+            foreach (DataRow drr in mainTable.Rows)
+            {
+                foreach (DataRow dr in mergeTable.Rows)
+                {
+                    foreach (Microsoft.Office.Interop.Word.Shape shape in application.ActiveDocument.Shapes)
+                    {
+
+                        if (shape.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox)
+                        {
+                            foreach (Microsoft.Office.Interop.Word.Field field in shape.TextFrame.TextRange.Fields)
+                            {
+
+                                if (field.Code.Text.Contains(dr["Merge Field"].ToString()))
+                                {
+                                    Console.WriteLine("Merge Field: " + dr["Merge Field"].ToString());
+                                    Console.WriteLine("Database Field: " + drr[dr["Database Field"].ToString()].ToString());
                                     field.Select();
                                     application.Selection.TypeText(drr[dr["Database Field"].ToString()].ToString());
                                 }
                             }
                         }
-                        /*
-                        //way to do so doesn't matter if new fields
-                        string mergeName = field.Code.Text;
-                        string query = "SELECT tablename FROM Relations WHERE field = '" + mergeName + "'";
-                        OleDbCommand cmd = new OleDbCommand(query);
-                        cmd.Connection = conn;
-                        // execute query, store string result of table name in field
-                        OleDbDataReader etcReader = cmd.ExecuteReader();
-                        string tableName = etcReader.GetString(0);
-                        //Query to get actual value to replace mergefield with
-                        string finalQuery = "SELECT '" + mergeName + "' FROM '" + tableName + "' WHERE ";
-                        cmd.CommandText = finalQuery;
-                        etcReader = cmd.ExecuteReader();
-                        //execute finalQuery and store string result
-                        string value = etcReader.GetString(0);
-
-                        field.Select();
-                        application.Selection.TypeText(value);
-                        */
                     }
                 }
             }
@@ -247,6 +263,7 @@ namespace Recording_Student_Achievements
             //prints the document
             //document.PrintOut();
             //method end
+
 
 
         }
