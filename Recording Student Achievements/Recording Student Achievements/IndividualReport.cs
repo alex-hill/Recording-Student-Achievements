@@ -87,6 +87,7 @@ namespace Recording_Student_Achievements
         private void checkValue(String nsn, String firstName, String lastName)
         {
             OleDbCommand cmd = new OleDbCommand();
+            OleDbCommand cmd2 = new OleDbCommand();
             // 1 means firstName and lastName being used
             // 2 means nsn being used
             int check = 0;
@@ -102,13 +103,18 @@ namespace Recording_Student_Achievements
                 + "INNER JOIN [Calculated] c ON c.[NSN] = s.[NSN])"
 
                 + "WHERE [Family Name Legal] = '" + lastName + "' AND [First Name Legal] = '" + firstName + "'; ");
+
+                cmd2 = new OleDbCommand("SELECT * FROM [Sports Activities] sa WHERE [Family Name Legal] = '" + lastName + "' AND [First Name Legal] = '" + firstName + "'; ");
                 cmd.Connection = conn;
+                cmd2.Connection = conn;
                 check = 1;
             }
             else if (nsnNumber != null)
             {
                 cmd = new OleDbCommand("SELECT * "
-                + "FROM (((((([Student] s "
+                + "FROM ((((((([Student] s "
+
+                + "INNER JOIN [Extra Activities] ea on ea.[NSN] = s.[NSN])"
 
                 + "INNER JOIN [Cultural Activities] ca on ca.[NSN] = s.[NSN])"
 
@@ -123,7 +129,11 @@ namespace Recording_Student_Achievements
                 + "INNER JOIN [Calculated] c ON c.[NSN] = s.[NSN])"
 
                 + "WHERE s.[NSN] = '" + Int32.Parse(nsn) + "'; ");
+
+                cmd2 = new OleDbCommand("SELECT * FROM [Sports Activities] sa WHERE sa.[NSN] = '" + Int32.Parse(nsn) + "';");
+
                 cmd.Connection = conn;
+                cmd2.Connection = conn;
                 check = 2;
             }
 
@@ -150,7 +160,7 @@ namespace Recording_Student_Achievements
                     else
                     {
                         reader.Close();
-                        accessDB(cmd);
+                        accessDB(cmd, cmd2);
                     }
                     reader.Close();
                     conn.Close();
@@ -169,11 +179,16 @@ namespace Recording_Student_Achievements
             this.Close();
         }
 
-        private void accessDB(OleDbCommand cmd)
+        private void accessDB(OleDbCommand cmd, OleDbCommand cmd2)
         {
             OleDbDataAdapter daa = new OleDbDataAdapter(cmd);
             DataTable mainTable = new DataTable();
             daa.Fill(mainTable);
+            OleDbDataAdapter extra = new OleDbDataAdapter(cmd2);
+            DataTable extraTable = new DataTable();
+            extra.Fill(extraTable);
+
+            mainTable.Merge(extraTable);
 
             ArrayList values = new ArrayList();
 
@@ -245,19 +260,140 @@ namespace Recording_Student_Achievements
                         {
                             foreach (Microsoft.Office.Interop.Word.Field field in shape.TextFrame.TextRange.Fields)
                             {
-
                                 if (field.Code.Text.Contains(dr["Merge Field"].ToString()))
                                 {
-                                    Console.WriteLine("Merge Field: " + dr["Merge Field"].ToString());
-                                    Console.WriteLine("Database Field: " + drr[dr["Database Field"].ToString()].ToString());
+                                    if(field.Code.Text.Contains("Kapa Haka") || field.Code.Text.Contains("Jump jam"))
+                                    {
+                                        Console.WriteLine("Merge Field: " + dr["Merge Field"].ToString());
+                                        Console.WriteLine("Database Field: " + drr[dr["Database Field"].ToString()].ToString());
+                                    }
                                     field.Select();
                                     application.Selection.TypeText(drr[dr["Database Field"].ToString()].ToString());
+                                }
+                                else if (field.Code.Text.Contains("This Year"))
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText(DateTime.Now.Year.ToString());
+                                }
+                                else if (field.Code.Text.Contains("Next Year"))
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((DateTime.Now.Year+1).ToString());
+                                }
+                                else if (field.Code.Text.Contains("Math Effort Below"))
+                                {
+                                    field.Select();
+                                    if (drr["Math Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Math Effort At"))
+                                {
+                                    field.Select();
+                                    if (drr["Math Effort Level"].Equals("3"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Math Effort Above"))
+                                {
+                                    field.Select();
+                                    if (drr["Math Effort Level"].Equals("4"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Reading Effort Below"))
+                                {
+                                    field.Select();
+                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Reading Effort At"))
+                                {
+                                    field.Select();
+                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Reading Effort Above"))
+                                {
+                                    field.Select();
+                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Writing Effort Below"))
+                                {
+                                    field.Select();
+                                    if (drr["Writing Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Writing Effort At"))
+                                {
+                                    field.Select();
+                                    if (drr["Writing Effort Level"].Equals("3"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Writing Effort Above"))
+                                {
+                                    field.Select();
+                                    if (drr["Writing Effort Level"].Equals("4"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
+            Console.WriteLine("Done merging");
 
             //application.Visible = true;
             //prints the document
