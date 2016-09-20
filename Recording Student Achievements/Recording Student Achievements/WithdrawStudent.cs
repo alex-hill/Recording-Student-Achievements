@@ -17,15 +17,26 @@ namespace Recording_Student_Achievements
         public WithdrawStudent()
         {
             InitializeComponent();
-            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Database.xlsx;Persist Security Info=False;Extended Properties=Excel 12.0;"; //For not Alex's laptop
+            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void removeOneStudent_click(object sender, EventArgs e)
         {
-            
-            //conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
-            OleDbCommand cmd = new OleDbCommand("DELETE FROM [Sheet1$] WHERE [First Name Legal] LIKE '%" +  textBox1.Text + "%' AND [Family Name Legal] LIKE '%" + textBox2.Text + "%'");
+            OleDbCommand nsn = new OleDbCommand("SELECT NSN FROM Student WHERE [First Name Legal] LIKE '%" + legalNameTxtBox.Text + "%' AND [Famile Name Legal] LIKE '%" + familyNameTxtBox.Text + "%';");
+            nsn.Connection = conn;
+            OleDbDataReader reader = nsn.ExecuteReader();
+            string nssn = reader.GetString(0);
 
+            OleDbCommand cmd = new OleDbCommand("DELETE FROM Student WHERE [First Name Legal] LIKE '%" + legalNameTxtBox.Text + "%' AND [Family Name Legal] LIKE '%" + familyNameTxtBox.Text + "%'");
+            OleDbCommand cmd1 = new OleDbCommand("DELETE FROM Calculated WHERE [NSN] LIKE '%" + nssn + "'%");
+            OleDbCommand cmd2 = new OleDbCommand("DELETE FROM [Student Extra] WHERE [NSN] LIKE '%" + nssn + "'%");
+            OleDbCommand cmd3 = new OleDbCommand("DELETE FROM Reading WHERE [NSN] LIKE '%" + nssn + "'%");
+            OleDbCommand cmd4 = new OleDbCommand("DELETE FROM Writing WHERE [NSN] LIKE '%" + nssn + "'%");
+            OleDbCommand cmd5 = new OleDbCommand("DELETE FROM Mathematics WHERE [NSN] LIKE '%" + nssn + "'%");
+            OleDbCommand cmd6 = new OleDbCommand("DELETE FROM [Cultural Activities] WHERE [NSN] LIKE '%" + nssn + "'%");
+            OleDbCommand cmd7 = new OleDbCommand("DELETE FROM [Extra Activities] WHERE [NSN] LIKE '%" + nssn + "'%");
+            OleDbCommand cmd8 = new OleDbCommand("DELETE FROM [Sports Activities] WHERE [NSN] LIKE '%" + nssn + "'%");
+            // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;
 
             conn.Open();
@@ -36,6 +47,14 @@ namespace Recording_Student_Achievements
                 try
                 {
                     cmd.ExecuteNonQuery();
+                    cmd1.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
+                    cmd3.ExecuteNonQuery();
+                    cmd4.ExecuteNonQuery();
+                    cmd5.ExecuteNonQuery();
+                    cmd6.ExecuteNonQuery();
+                    cmd7.ExecuteNonQuery();
+                    cmd8.ExecuteNonQuery();
                     MessageBox.Show("Data Removed");
                     conn.Close();
                 }
@@ -58,12 +77,10 @@ namespace Recording_Student_Achievements
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void removeAll_click(object sender, EventArgs e)
         {
-            //OleDbConnection conn = new OleDbConnection();
-            //conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True";
 
-            OleDbCommand cmd = new OleDbCommand("DELETE FROM [Sheet1$];");
+            OleDbCommand cmd = new OleDbCommand("DELETE FROM Student;");
 
             // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;
@@ -93,19 +110,5 @@ namespace Recording_Student_Achievements
             this.Close();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
