@@ -87,44 +87,53 @@ namespace Recording_Student_Achievements
         private void checkValue(String nsn, String firstName, String lastName)
         {
             OleDbCommand cmd = new OleDbCommand();
+            OleDbCommand cmd2 = new OleDbCommand();
             // 1 means firstName and lastName being used
             // 2 means nsn being used
             int check = 0;
 
             if (firstName != null && lastName != null)
             {
-                cmd = new OleDbCommand("SELECT [s.Family Name Legal], [s.Preferred Name], [s.Room Number], [s.Gender], "
-                + "[r.Final Assessment Level], [m.KF1], [m.KF2], [m.NS1], "
-                + "[m.NS2], [se.General Comment], [se.Next Room Number], [m.Overall Assessment], "
-                + "[w.Initial Assessment], [w.Final Assessment], [m.Final Assessment Method], [r.Final Assessment Method]"
-                + "FROM (((([Student] s "
+                cmd = new OleDbCommand("SELECT * "
+                + "FROM ((((([Student] s "
                 + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
                 + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN"
                 + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
                 + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
+                + "INNER JOIN [Calculated] c ON c.[NSN] = s.[NSN])"
 
                 + "WHERE [Family Name Legal] = '" + lastName + "' AND [First Name Legal] = '" + firstName + "'; ");
+
+                cmd2 = new OleDbCommand("SELECT * FROM [Sports Activities] sa WHERE [Family Name Legal] = '" + lastName + "' AND [First Name Legal] = '" + firstName + "'; ");
                 cmd.Connection = conn;
+                cmd2.Connection = conn;
                 check = 1;
             }
             else if (nsnNumber != null)
             {
-                cmd = new OleDbCommand("SELECT [s.Family Name Legal], [s.Preferred Name], [s.Room Number], [s.Gender], "
-                + "[r.Final Assessment Level], [m.KF1], [m.KF2], [m.NS1], "
-                + "[m.NS2], [se.General Comment], [se.Next Room Number], [m.Overall Assessment], "
-                + "[w.Initial Assessment], [w.Final Assessment], [m.Final Assessment Method], [r.Final Assessment Method]"
-                + "FROM (((([Student] s "
+                cmd = new OleDbCommand("SELECT * "
+                + "FROM ((((((([Student] s "
 
-                        + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+                + "INNER JOIN [Extra Activities] ea on ea.[NSN] = s.[NSN])"
 
-                        + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+                + "INNER JOIN [Cultural Activities] ca on ca.[NSN] = s.[NSN])"
 
-                        + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+                + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
-                        + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN])"
+                + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN])"
+
+                + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN])"
+
+                + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN])"
+
+                + "INNER JOIN [Calculated] c ON c.[NSN] = s.[NSN])"
 
                 + "WHERE s.[NSN] = '" + Int32.Parse(nsn) + "'; ");
+
+                cmd2 = new OleDbCommand("SELECT * FROM [Sports Activities] sa WHERE sa.[NSN] = '" + Int32.Parse(nsn) + "';");
+
                 cmd.Connection = conn;
+                cmd2.Connection = conn;
                 check = 2;
             }
 
@@ -150,7 +159,8 @@ namespace Recording_Student_Achievements
                     }
                     else
                     {
-                        accessDB(reader);
+                        reader.Close();
+                        accessDB(cmd, cmd2);
                     }
                     reader.Close();
                     conn.Close();
@@ -169,16 +179,19 @@ namespace Recording_Student_Achievements
             this.Close();
         }
 
-        private void accessDB(OleDbDataReader reader)
+        private void accessDB(OleDbCommand cmd, OleDbCommand cmd2)
         {
-            
+            OleDbDataAdapter daa = new OleDbDataAdapter(cmd);
+            DataTable mainTable = new DataTable();
+            daa.Fill(mainTable);
+            OleDbDataAdapter extra = new OleDbDataAdapter(cmd2);
+            DataTable extraTable = new DataTable();
+            extra.Fill(extraTable);
+
+            mainTable.Merge(extraTable);
 
             ArrayList values = new ArrayList();
 
-
-            // Write to word file
-
-            //select template file
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
             openFileDialog1.Filter = "Word files (*.docx)|*.docx|All files (*)|*.*";
@@ -199,85 +212,194 @@ namespace Recording_Student_Achievements
             //opens the document to see changes
             application.Visible = true;
 
+            OleDbCommand merge = new OleDbCommand("SELECT * FROM [Merge]");
+            
             //iterates through each mergefield in the document
-            foreach (Microsoft.Office.Interop.Word.Shape range in document.Shapes)
+            /*foreach (Microsoft.Office.Interop.Word.Shape shape in application.ActiveDocument.Shapes)
             {
-                if (range.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox)
+                
+                if(shape.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox)
                 {
-                    foreach (Microsoft.Office.Interop.Word.Field field in range.TextFrame.TextRange.Fields)
+                    foreach (Microsoft.Office.Interop.Word.Field field in shape.TextFrame.TextRange.Fields)
                     {
-                        //just change the shit below, you know :)
-                        //checks the field name looking for correct field
-                        if (field.Code.Text.Contains("First Name"))
+                        merge.Connection = conn;
+                        OleDbDataAdapter da = new OleDbDataAdapter(merge);
+                        DataTable mergeTable = new DataTable();
+                        da.Fill(mergeTable);
+                        
+                        foreach (DataRow drr in mainTable.Rows)
                         {
-                            //selects the field
-                            field.Select();
-                            //types the value (cannot be empty string)
-                            application.Selection.TypeText(firstName);
-                            Console.WriteLine(firstName);
-                        }
-                        else if (field.Code.Text.Contains("This Year"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText(currentYear.ToString());
-                        }
-                        else if (field.Code.Text.Contains("Next Year"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText(nextYear.ToString());
-                        }
-                        else if (field.Code.Text.Contains("General Comment"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText(generalComment);
-                        }
-                        else if (field.Code.Text.Contains("Placement Statement"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText(placementFormula);
-                        }
-                        else if (field.Code.Text.Contains("Next Room"))
-                        {
-                            field.Select();
-                            application.Selection.TypeText(nextRoom);
-                        }
-                        else if (field.Code.Text.Contains("Teacher This Year"))
-                        {
-                            OleDbCommand cmd = new OleDbCommand("SELECT `Current Teacher` FROM Room WHERE `Room No` = `" + room + "`");
-                            cmd.Connection = conn;
-                            reader = cmd.ExecuteReader();
-                            string currentTeacher = reader.GetString(0);
-                            field.Select();
-                            application.Selection.TypeText(currentTeacher);
-                        }
+                            foreach (DataRow dr in mergeTable.Rows)
+                            {
+                                if (field.Code.Text.Contains(dr["Merge Field"].ToString()))
+                                {
+                                    Console.WriteLine("Merge Field: " + dr["Merge Field"].ToString());
+                                    Console.WriteLine("Database Field: " + drr[dr["Database Field"].ToString()].ToString());
+                                    field.Select();
+                                    application.Selection.TypeText(drr[dr["Database Field"].ToString()].ToString());
+                                }
+                            }
 
-                        /*
-                        //way to do so doesn't matter if new fields
-                        string mergeName = field.Code.Text;
-                        string query = "SELECT tablename FROM Relations WHERE field = '" + mergeName + "'";
-                        OleDbCommand cmd = new OleDbCommand(query);
-                        cmd.Connection = conn;
-                        // execute query, store string result of table name in field
-                        OleDbDataReader etcReader = cmd.ExecuteReader();
-                        string tableName = etcReader.GetString(0);
-                        //Query to get actual value to replace mergefield with
-                        string finalQuery = "SELECT '" + mergeName + "' FROM '" + tableName + "' WHERE ";
-                        cmd.CommandText = finalQuery;
-                        etcReader = cmd.ExecuteReader();
-                        //execute finalQuery and store string result
-                        string value = etcReader.GetString(0);
+                    }
+                }*/
 
-                        field.Select();
-                        application.Selection.TypeText(value);
-                        */
+
+            merge.Connection = conn;
+            OleDbDataAdapter da = new OleDbDataAdapter(merge);
+            DataTable mergeTable = new DataTable();
+            da.Fill(mergeTable);
+
+            foreach (DataRow drr in mainTable.Rows)
+            {
+                foreach (DataRow dr in mergeTable.Rows)
+                {
+                    foreach (Microsoft.Office.Interop.Word.Shape shape in application.ActiveDocument.Shapes)
+                    {
+
+                        if (shape.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox)
+                        {
+                            foreach (Microsoft.Office.Interop.Word.Field field in shape.TextFrame.TextRange.Fields)
+                            {
+                                if (field.Code.Text.Contains(dr["Merge Field"].ToString()))
+                                {
+                                    if(field.Code.Text.Contains("Kapa Haka") || field.Code.Text.Contains("Jump jam"))
+                                    {
+                                        Console.WriteLine("Merge Field: " + dr["Merge Field"].ToString());
+                                        Console.WriteLine("Database Field: " + drr[dr["Database Field"].ToString()].ToString());
+                                    }
+                                    field.Select();
+                                    application.Selection.TypeText(drr[dr["Database Field"].ToString()].ToString());
+                                }
+                                else if (field.Code.Text.Contains("This Year"))
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText(DateTime.Now.Year.ToString());
+                                }
+                                else if (field.Code.Text.Contains("Next Year"))
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((DateTime.Now.Year+1).ToString());
+                                }
+                                else if (field.Code.Text.Contains("Math Effort Below"))
+                                {
+                                    field.Select();
+                                    if (drr["Math Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Math Effort At"))
+                                {
+                                    field.Select();
+                                    if (drr["Math Effort Level"].Equals("3"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Math Effort Above"))
+                                {
+                                    field.Select();
+                                    if (drr["Math Effort Level"].Equals("4"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Reading Effort Below"))
+                                {
+                                    field.Select();
+                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Reading Effort At"))
+                                {
+                                    field.Select();
+                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Reading Effort Above"))
+                                {
+                                    field.Select();
+                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Writing Effort Below"))
+                                {
+                                    field.Select();
+                                    if (drr["Writing Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Writing Effort At"))
+                                {
+                                    field.Select();
+                                    if (drr["Writing Effort Level"].Equals("3"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Writing Effort Above"))
+                                {
+                                    field.Select();
+                                    if (drr["Writing Effort Level"].Equals("4"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
+            Console.WriteLine("Done merging");
 
             //application.Visible = true;
             //prints the document
             //document.PrintOut();
             //method end
+
 
 
         }

@@ -31,6 +31,7 @@ namespace Recording_Student_Achievements
             ns = new NewStudent();
             ws = new WithdrawStudent();
             ir = new IndividualReport();
+            uc = new UpdateCalculations();
             topBar.Paint += new PaintEventHandler(topBar_Paint);
             topBar.Refresh();
             quickMenuBar.Paint += new PaintEventHandler(quickMenuBar_Paint);
@@ -487,6 +488,22 @@ namespace Recording_Student_Achievements
         private void header_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private UpdateCalculations uc;
+        private void calculateLbl_Click(object sender, EventArgs e)
+        {
+            if (!uc.Visible && !uc.IsDisposed)
+            {
+                // Add the message
+                uc.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (uc.IsDisposed)
+            {
+                uc = new UpdateCalculations();
+                uc.Show();
+            }
         }
     }
 }

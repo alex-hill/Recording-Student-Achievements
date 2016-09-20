@@ -52,6 +52,7 @@ namespace Recording_Student_Achievements
             this.topBar = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.quickMenuBar = new System.Windows.Forms.Panel();
+            this.calculateLbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.geekItPnl.SuspendLayout();
@@ -229,7 +230,7 @@ namespace Recording_Student_Achievements
             this.reportLbl.BackColor = System.Drawing.Color.Transparent;
             this.reportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportLbl.ForeColor = System.Drawing.Color.White;
-            this.reportLbl.Location = new System.Drawing.Point(27, 168);
+            this.reportLbl.Location = new System.Drawing.Point(27, 183);
             this.reportLbl.Name = "reportLbl";
             this.reportLbl.Size = new System.Drawing.Size(60, 20);
             this.reportLbl.TabIndex = 3;
@@ -242,7 +243,7 @@ namespace Recording_Student_Achievements
             this.generateIndiReportLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.generateIndiReportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generateIndiReportLbl.ForeColor = System.Drawing.Color.White;
-            this.generateIndiReportLbl.Location = new System.Drawing.Point(46, 188);
+            this.generateIndiReportLbl.Location = new System.Drawing.Point(46, 203);
             this.generateIndiReportLbl.Name = "generateIndiReportLbl";
             this.generateIndiReportLbl.Size = new System.Drawing.Size(92, 16);
             this.generateIndiReportLbl.TabIndex = 3;
@@ -287,6 +288,7 @@ namespace Recording_Student_Achievements
             this.quickMenuBar.Controls.Add(this.generateIndiReportLbl);
             this.quickMenuBar.Controls.Add(this.studentLbl);
             this.quickMenuBar.Controls.Add(this.reportLbl);
+            this.quickMenuBar.Controls.Add(this.calculateLbl);
             this.quickMenuBar.Controls.Add(this.geekLbl);
             this.quickMenuBar.Controls.Add(this.withdrawStudentLbl);
             this.quickMenuBar.Controls.Add(this.assessmentAdd);
@@ -294,6 +296,20 @@ namespace Recording_Student_Achievements
             this.quickMenuBar.Name = "quickMenuBar";
             this.quickMenuBar.Size = new System.Drawing.Size(153, 618);
             this.quickMenuBar.TabIndex = 10;
+            // 
+            // calculateLbl
+            // 
+            this.calculateLbl.AutoSize = true;
+            this.calculateLbl.BackColor = System.Drawing.Color.Transparent;
+            this.calculateLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.calculateLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calculateLbl.ForeColor = System.Drawing.Color.White;
+            this.calculateLbl.Location = new System.Drawing.Point(46, 168);
+            this.calculateLbl.Name = "calculateLbl";
+            this.calculateLbl.Size = new System.Drawing.Size(107, 16);
+            this.calculateLbl.TabIndex = 3;
+            this.calculateLbl.Text = "Update Calculations";
+            this.calculateLbl.Click += new System.EventHandler(this.calculateLbl_Click);
             // 
             // panel2
             // 
@@ -306,7 +322,7 @@ namespace Recording_Student_Achievements
             this.panel2.Size = new System.Drawing.Size(1363, 651);
             this.panel2.TabIndex = 11;
             // 
-            // Form1
+            // StudentAchievement
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -321,7 +337,7 @@ namespace Recording_Student_Achievements
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1364, 726);
-            this.Name = "Form1";
+            this.Name = "StudentAchievement";
             this.Text = "Student Achievement System";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -355,6 +371,7 @@ namespace Recording_Student_Achievements
         private Panel panel1;
         private Panel quickMenuBar;
         private Panel panel2;
+        private Label calculateLbl;
     }
 }
 
