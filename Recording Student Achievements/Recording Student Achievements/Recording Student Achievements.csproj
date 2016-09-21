@@ -51,11 +51,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Icon 3.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -74,6 +74,12 @@
   <ItemGroup>
     <Compile Include="Calculations.cs" />
     <Compile Include="CustomRectangle.cs" />
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateCalculations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,9 @@
     <Compile Include="WithdrawStudent.Designer.cs">
       <DependentUpon>WithdrawStudent.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UpdateCalculations.resx">
       <DependentUpon>UpdateCalculations.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Drawables\Logo.png" />
+    <Content Include="Icon 3.ico" />
     <Content Include="Table.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
