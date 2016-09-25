@@ -16,30 +16,131 @@ namespace Recording_Student_Achievements
         public Home()
         {
             InitializeComponent();
-            panel1.Paint += new PaintEventHandler(panel1_Paint);
-            panel1.Refresh();
+            ns = new NewStudent();
+            ws = new WithdrawStudent();
+            ir = new IndividualReport();
+            uc = new UpdateCalculations();
+            sa = new StudentAchievement();
         }
 
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private NewStudent ns;
+        private void label6_Click(object sender, EventArgs e)
         {
-            Color c2 = Color.FromArgb(2, 71, 131);
-            Color c1 = Color.FromArgb(2, 71, 131);
-            System.Drawing.Drawing2D.LinearGradientBrush myBrush
-                = new System.Drawing.Drawing2D.LinearGradientBrush(panel1.ClientRectangle, c1, c2, 90);
-
-
-            System.Drawing.Drawing2D.ColorBlend cblend = new System.Drawing.Drawing2D.ColorBlend(4);
-
-            cblend.Colors = new Color[4] { Color.White, c1, c2, c2 };
-            cblend.Positions = new float[4] { 0f, 0.0001f, 0.69f, 1f };
-            myBrush.InterpolationColors = cblend;
-
-
-
-            CustomRectangle.FillRoundedRectangle(e.Graphics, myBrush, new System.Drawing.Rectangle(0, 0, panel1.Width, panel1.Height), 25);
-            myBrush.Dispose();
-            e.Graphics.Dispose();
+            if (!ns.Visible && !ns.IsDisposed)
+            {
+                // Add the message
+                ns.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ns.IsDisposed)
+            {
+                ns = new NewStudent();
+                ns.Show();
+            }
         }
+
+        private WithdrawStudent ws;
+        private void withdrawStudentLbl_Click(object sender, EventArgs e)
+        {
+            if (!ws.Visible && !ws.IsDisposed)
+            {
+                // Add the message
+                ws.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ws.IsDisposed)
+            {
+                ws = new WithdrawStudent();
+                ws.Show();
+            }
+        }
+
+        private void withdrawAllStudentLbl_Click(object sender, EventArgs e)
+        {
+            if (!ws.Visible && !ws.IsDisposed)
+            {
+                // Add the message
+                ws.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ws.IsDisposed)
+            {
+                ws = new WithdrawStudent();
+                ws.Show();
+            }
+        }
+        private IndividualReport ir;
+        private void singleReportLbl_Click(object sender, EventArgs e)
+        {
+            if (!ir.Visible && !ir.IsDisposed)
+            {
+                ir.Show();
+            }
+
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ir.IsDisposed)
+            {
+                ir = new IndividualReport();
+                ir.Show();
+            }
+        }
+        private UpdateCalculations uc;
+        private void updateDatabaseLbl_Click(object sender, EventArgs e)
+        {
+            if (!uc.Visible && !uc.IsDisposed)
+            {
+                // Add the message
+                uc.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (uc.IsDisposed)
+            {
+                uc = new UpdateCalculations();
+                uc.Show();
+            }
+        }
+
+        private StudentAchievement sa;
+        private void geekItLbl_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            sa = new StudentAchievement();
+            if (!sa.Visible && !sa.IsDisposed)
+            {
+                // Add the message
+                sa.Show();
+
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (sa.IsDisposed)
+            {
+                sa = new StudentAchievement();
+                sa.Show();
+            }
+
+            sa.geekLbl_Click(sender, e);
+        }
+
+        private void addAssessmentLbl_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+            if (!sa.Visible && !sa.IsDisposed)
+            {
+                // Add the message
+                sa.Show();
+
+
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (sa.IsDisposed)
+            {
+                sa = new StudentAchievement();
+                sa.Show();
+            }
+            sa.label2_Click(sender, e);
+        }
+
     }
 }

@@ -137,7 +137,7 @@ namespace Recording_Student_Achievements
 
         }
 
-        private void geekLbl_Click(object sender, EventArgs e)
+        public void geekLbl_Click(object sender, EventArgs e)
         {
             geekItPnl.Show();
             geekItPnl.Visible = true;
@@ -266,7 +266,7 @@ namespace Recording_Student_Achievements
             System.Diagnostics.Process.Start("http://www.laingholm.school.nz/Site/Home.ashx");
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        public void label2_Click(object sender, EventArgs e)
         {
             try
             {
