@@ -32,6 +32,7 @@ namespace Recording_Student_Achievements
             ws = new WithdrawStudent();
             ir = new IndividualReport();
             uc = new UpdateCalculations();
+            bs = new BatchStudents();
             topBar.Paint += new PaintEventHandler(topBar_Paint);
             topBar.Refresh();
             quickMenuBar.Paint += new PaintEventHandler(quickMenuBar_Paint);
@@ -503,6 +504,22 @@ namespace Recording_Student_Achievements
             {
                 uc = new UpdateCalculations();
                 uc.Show();
+            }
+        }
+
+        private BatchStudents bs;
+        private void addBatchStudents_Click(object sender, EventArgs e)
+        {
+            if (!bs.Visible && !bs.IsDisposed)
+            {
+                // Add the message
+                bs.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (bs.IsDisposed)
+            {
+                bs = new BatchStudents();
+                bs.Show();
             }
         }
     }
