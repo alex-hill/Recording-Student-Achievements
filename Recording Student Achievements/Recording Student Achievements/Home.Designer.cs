@@ -35,8 +35,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.calculatorLinkLbl = new System.Windows.Forms.Label();
             this.addAssessmentLbl = new System.Windows.Forms.Label();
-            this.mathVennLbl = new System.Windows.Forms.Label();
-            this.writingVennLbl = new System.Windows.Forms.Label();
             this.batchReportLbl = new System.Windows.Forms.Label();
             this.updateDatabaseLbl = new System.Windows.Forms.Label();
             this.geekItLbl = new System.Windows.Forms.Label();
@@ -71,8 +69,6 @@
             this.blueBackground.Controls.Add(this.label4);
             this.blueBackground.Controls.Add(this.calculatorLinkLbl);
             this.blueBackground.Controls.Add(this.addAssessmentLbl);
-            this.blueBackground.Controls.Add(this.mathVennLbl);
-            this.blueBackground.Controls.Add(this.writingVennLbl);
             this.blueBackground.Controls.Add(this.batchReportLbl);
             this.blueBackground.Controls.Add(this.updateDatabaseLbl);
             this.blueBackground.Controls.Add(this.geekItLbl);
@@ -131,7 +127,7 @@
             this.calculatorLinkLbl.AutoSize = true;
             this.calculatorLinkLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calculatorLinkLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calculatorLinkLbl.Location = new System.Drawing.Point(528, 223);
+            this.calculatorLinkLbl.Location = new System.Drawing.Point(528, 206);
             this.calculatorLinkLbl.Name = "calculatorLinkLbl";
             this.calculatorLinkLbl.Size = new System.Drawing.Size(138, 17);
             this.calculatorLinkLbl.TabIndex = 0;
@@ -149,30 +145,6 @@
             this.addAssessmentLbl.TabIndex = 0;
             this.addAssessmentLbl.Text = "Add Assessments by CSV";
             this.addAssessmentLbl.Click += new System.EventHandler(this.addAssessmentLbl_Click);
-            // 
-            // mathVennLbl
-            // 
-            this.mathVennLbl.AutoSize = true;
-            this.mathVennLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.mathVennLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mathVennLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.mathVennLbl.Location = new System.Drawing.Point(284, 203);
-            this.mathVennLbl.Name = "mathVennLbl";
-            this.mathVennLbl.Size = new System.Drawing.Size(118, 17);
-            this.mathVennLbl.TabIndex = 0;
-            this.mathVennLbl.Text = "Math Venn Diagram";
-            // 
-            // writingVennLbl
-            // 
-            this.writingVennLbl.AutoSize = true;
-            this.writingVennLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.writingVennLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.writingVennLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.writingVennLbl.Location = new System.Drawing.Point(284, 186);
-            this.writingVennLbl.Name = "writingVennLbl";
-            this.writingVennLbl.Size = new System.Drawing.Size(129, 17);
-            this.writingVennLbl.TabIndex = 0;
-            this.writingVennLbl.Text = "Writing Venn Diagram";
             // 
             // batchReportLbl
             // 
@@ -254,9 +226,9 @@
             this.readingVennLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.readingVennLbl.Location = new System.Drawing.Point(284, 167);
             this.readingVennLbl.Name = "readingVennLbl";
-            this.readingVennLbl.Size = new System.Drawing.Size(136, 17);
+            this.readingVennLbl.Size = new System.Drawing.Size(141, 17);
             this.readingVennLbl.TabIndex = 0;
-            this.readingVennLbl.Text = "Reading Venn Diagram";
+            this.readingVennLbl.Text = "Generate Excel Diagram";
             // 
             // addStudentCSVLbl
             // 
@@ -296,7 +268,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(518, 203);
+            this.label6.Location = new System.Drawing.Point(518, 186);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 17);
             this.label6.TabIndex = 0;
@@ -398,7 +370,6 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(116, 7);
             this.pictureBox1.Name = "pictureBox1";
@@ -443,8 +414,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label mathVennLbl;
-        private System.Windows.Forms.Label writingVennLbl;
         private System.Windows.Forms.Label withdrawStudentsConditionLbl;
         private System.Windows.Forms.Label readingVennLbl;
         private System.Windows.Forms.Label label16;
