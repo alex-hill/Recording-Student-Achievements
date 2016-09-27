@@ -112,7 +112,11 @@ namespace Recording_Student_Achievements
             else if (nsnNumber != null)
             {
                 cmd = new OleDbCommand("SELECT * "
-                + "FROM ((((([Student] s "
+                + "FROM ((((((([Student] s "
+
+                + "INNER JOIN [Extra Activities] ea on ea.[NSN] = s.[NSN])"
+
+                + "INNER JOIN [Cultural Activities] ca on ca.[NSN] = s.[NSN])"
 
                 + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
@@ -155,7 +159,8 @@ namespace Recording_Student_Achievements
                     }
                     else
                     {
-                        accessDB(cmd);
+                        reader.Close();
+                        accessDB(cmd, cmd2);
                     }
                     reader.Close();
                     conn.Close();
@@ -234,26 +239,157 @@ namespace Recording_Student_Achievements
                                     application.Selection.TypeText(drr[dr["Database Field"].ToString()].ToString());
                                 }
                             }
-                        }
-                        /*
-                        //way to do so doesn't matter if new fields
-                        string mergeName = field.Code.Text;
-                        string query = "SELECT tablename FROM Relations WHERE field = '" + mergeName + "'";
-                        OleDbCommand cmd = new OleDbCommand(query);
-                        cmd.Connection = conn;
-                        // execute query, store string result of table name in field
-                        OleDbDataReader etcReader = cmd.ExecuteReader();
-                        string tableName = etcReader.GetString(0);
-                        //Query to get actual value to replace mergefield with
-                        string finalQuery = "SELECT '" + mergeName + "' FROM '" + tableName + "' WHERE ";
-                        cmd.CommandText = finalQuery;
-                        etcReader = cmd.ExecuteReader();
-                        //execute finalQuery and store string result
-                        string value = etcReader.GetString(0);
 
-                        field.Select();
-                        application.Selection.TypeText(value);
-                        */
+                    }
+                }*/
+
+
+            merge.Connection = conn;
+            OleDbDataAdapter da = new OleDbDataAdapter(merge);
+            DataTable mergeTable = new DataTable();
+            da.Fill(mergeTable);
+
+            foreach (DataRow drr in mainTable.Rows)
+            {
+                foreach (DataRow dr in mergeTable.Rows)
+                {
+                    foreach (Microsoft.Office.Interop.Word.Shape shape in application.ActiveDocument.Shapes)
+                    {
+
+                        if (shape.Type == Microsoft.Office.Core.MsoShapeType.msoTextBox)
+                        {
+                            foreach (Microsoft.Office.Interop.Word.Field field in shape.TextFrame.TextRange.Fields)
+                            {
+                                if (field.Code.Text.Contains(dr["Merge Field"].ToString()))
+                                {
+                                    if(field.Code.Text.Contains("Kapa Haka") || field.Code.Text.Contains("Jump jam"))
+                                    {
+                                        Console.WriteLine("Merge Field: " + dr["Merge Field"].ToString());
+                                        Console.WriteLine("Database Field: " + drr[dr["Database Field"].ToString()].ToString());
+                                    }
+                                    field.Select();
+                                    application.Selection.TypeText(drr[dr["Database Field"].ToString()].ToString());
+                                }
+                                else if (field.Code.Text.Contains("This Year"))
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText(DateTime.Now.Year.ToString());
+                                }
+                                else if (field.Code.Text.Contains("Next Year"))
+                                {
+                                    field.Select();
+                                    application.Selection.TypeText((DateTime.Now.Year+1).ToString());
+                                }
+                                else if (field.Code.Text.Contains("Math Effort Below"))
+                                {
+                                    field.Select();
+                                    if (drr["Math Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Math Effort At"))
+                                {
+                                    field.Select();
+                                    if (drr["Math Effort Level"].Equals("3"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Math Effort Above"))
+                                {
+                                    field.Select();
+                                    if (drr["Math Effort Level"].Equals("4"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Reading Effort Below"))
+                                {
+                                    field.Select();
+                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Reading Effort At"))
+                                {
+                                    field.Select();
+                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Reading Effort Above"))
+                                {
+                                    field.Select();
+                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Writing Effort Below"))
+                                {
+                                    field.Select();
+                                    if (drr["Writing Effort Level"].Equals("2"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Writing Effort At"))
+                                {
+                                    field.Select();
+                                    if (drr["Writing Effort Level"].Equals("3"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                                else if (field.Code.Text.Contains("Writing Effort Above"))
+                                {
+                                    field.Select();
+                                    if (drr["Writing Effort Level"].Equals("4"))
+                                    {
+                                        application.Selection.TypeText("X");
+                                    }
+                                    else
+                                    {
+                                        application.Selection.TypeText(" ");
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
