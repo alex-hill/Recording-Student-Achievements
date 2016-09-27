@@ -72,6 +72,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAssessment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAssessment.Designer.cs">
+      <DependentUpon>AddAssessment.cs</DependentUpon>
+    </Compile>
     <Compile Include="BatchStudents.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,6 +121,9 @@
     <Compile Include="WithdrawStudent.Designer.cs">
       <DependentUpon>WithdrawStudent.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AddAssessment.resx">
+      <DependentUpon>AddAssessment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="BatchStudents.resx">
       <DependentUpon>BatchStudents.cs</DependentUpon>
     </EmbeddedResource>
