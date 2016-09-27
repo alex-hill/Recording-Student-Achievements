@@ -179,6 +179,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Drawables\Logo.png" />
+    <None Include="Drawables\Icon.png" />
     <Content Include="Icon 3.ico" />
     <Content Include="Table.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

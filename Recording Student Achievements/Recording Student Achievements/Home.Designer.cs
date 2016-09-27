@@ -370,6 +370,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackgroundImage = global::Recording_Student_Achievements.Properties.Resources.Icon;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.Location = new System.Drawing.Point(116, 7);
             this.pictureBox1.Name = "pictureBox1";
@@ -421,9 +422,9 @@
         private System.Windows.Forms.Label updateDatabaseLbl;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label withdrawAllStudentLbl;
         private System.Windows.Forms.Label calculatorLinkLbl;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

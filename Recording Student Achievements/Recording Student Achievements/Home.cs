@@ -104,7 +104,7 @@ namespace Recording_Student_Achievements
         private StudentAchievement sa;
         private void geekItLbl_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
             sa = new StudentAchievement();
             if (!sa.Visible && !sa.IsDisposed)
             {
@@ -118,8 +118,9 @@ namespace Recording_Student_Achievements
                 sa = new StudentAchievement();
                 sa.Show();
             }
-
+            Visible = false;
             sa.geekLbl_Click(sender, e);
+
         }
 
         private void addAssessmentLbl_Click(object sender, EventArgs e)
