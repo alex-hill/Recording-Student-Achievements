@@ -39,13 +39,14 @@
             this.updateDatabaseLbl = new System.Windows.Forms.Label();
             this.geekItLbl = new System.Windows.Forms.Label();
             this.withdrawAllStudentLbl = new System.Windows.Forms.Label();
-            this.withdrawStudentsConditionLbl = new System.Windows.Forms.Label();
+            this.deleteAllLbl = new System.Windows.Forms.Label();
             this.withdrawStudentLbl = new System.Windows.Forms.Label();
             this.readingVennLbl = new System.Windows.Forms.Label();
             this.addStudentCSVLbl = new System.Windows.Forms.Label();
             this.singleReportLbl = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -56,6 +57,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.updateTeachersBttn = new System.Windows.Forms.Label();
             this.blueBackground.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -70,16 +72,18 @@
             this.blueBackground.Controls.Add(this.calculatorLinkLbl);
             this.blueBackground.Controls.Add(this.addAssessmentLbl);
             this.blueBackground.Controls.Add(this.batchReportLbl);
+            this.blueBackground.Controls.Add(this.updateTeachersBttn);
             this.blueBackground.Controls.Add(this.updateDatabaseLbl);
             this.blueBackground.Controls.Add(this.geekItLbl);
             this.blueBackground.Controls.Add(this.withdrawAllStudentLbl);
-            this.blueBackground.Controls.Add(this.withdrawStudentsConditionLbl);
+            this.blueBackground.Controls.Add(this.deleteAllLbl);
             this.blueBackground.Controls.Add(this.withdrawStudentLbl);
             this.blueBackground.Controls.Add(this.readingVennLbl);
             this.blueBackground.Controls.Add(this.addStudentCSVLbl);
             this.blueBackground.Controls.Add(this.singleReportLbl);
             this.blueBackground.Controls.Add(this.label16);
             this.blueBackground.Controls.Add(this.label6);
+            this.blueBackground.Controls.Add(this.label7);
             this.blueBackground.Controls.Add(this.label14);
             this.blueBackground.Controls.Add(this.label22);
             this.blueBackground.Controls.Add(this.label21);
@@ -89,7 +93,7 @@
             this.blueBackground.Controls.Add(this.label2);
             this.blueBackground.Location = new System.Drawing.Point(2, 77);
             this.blueBackground.Name = "blueBackground";
-            this.blueBackground.Size = new System.Drawing.Size(730, 267);
+            this.blueBackground.Size = new System.Drawing.Size(730, 280);
             this.blueBackground.TabIndex = 1;
             // 
             // label3
@@ -127,7 +131,7 @@
             this.calculatorLinkLbl.AutoSize = true;
             this.calculatorLinkLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calculatorLinkLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.calculatorLinkLbl.Location = new System.Drawing.Point(528, 206);
+            this.calculatorLinkLbl.Location = new System.Drawing.Point(528, 226);
             this.calculatorLinkLbl.Name = "calculatorLinkLbl";
             this.calculatorLinkLbl.Size = new System.Drawing.Size(138, 17);
             this.calculatorLinkLbl.TabIndex = 0;
@@ -139,7 +143,7 @@
             this.addAssessmentLbl.AutoSize = true;
             this.addAssessmentLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addAssessmentLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.addAssessmentLbl.Location = new System.Drawing.Point(528, 167);
+            this.addAssessmentLbl.Location = new System.Drawing.Point(528, 187);
             this.addAssessmentLbl.Name = "addAssessmentLbl";
             this.addAssessmentLbl.Size = new System.Drawing.Size(147, 17);
             this.addAssessmentLbl.TabIndex = 0;
@@ -163,7 +167,7 @@
             this.updateDatabaseLbl.AutoSize = true;
             this.updateDatabaseLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.updateDatabaseLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateDatabaseLbl.Location = new System.Drawing.Point(528, 126);
+            this.updateDatabaseLbl.Location = new System.Drawing.Point(518, 87);
             this.updateDatabaseLbl.Name = "updateDatabaseLbl";
             this.updateDatabaseLbl.Size = new System.Drawing.Size(105, 17);
             this.updateDatabaseLbl.TabIndex = 0;
@@ -175,7 +179,7 @@
             this.geekItLbl.AutoSize = true;
             this.geekItLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.geekItLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.geekItLbl.Location = new System.Drawing.Point(528, 105);
+            this.geekItLbl.Location = new System.Drawing.Point(528, 144);
             this.geekItLbl.Name = "geekItLbl";
             this.geekItLbl.Size = new System.Drawing.Size(47, 17);
             this.geekItLbl.TabIndex = 0;
@@ -187,24 +191,24 @@
             this.withdrawAllStudentLbl.AutoSize = true;
             this.withdrawAllStudentLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.withdrawAllStudentLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.withdrawAllStudentLbl.Location = new System.Drawing.Point(52, 203);
+            this.withdrawAllStudentLbl.Location = new System.Drawing.Point(52, 186);
             this.withdrawAllStudentLbl.Name = "withdrawAllStudentLbl";
             this.withdrawAllStudentLbl.Size = new System.Drawing.Size(127, 17);
             this.withdrawAllStudentLbl.TabIndex = 0;
             this.withdrawAllStudentLbl.Text = "Withdraw all students";
             this.withdrawAllStudentLbl.Click += new System.EventHandler(this.withdrawAllStudentLbl_Click);
             // 
-            // withdrawStudentsConditionLbl
+            // deleteAllLbl
             // 
-            this.withdrawStudentsConditionLbl.AutoSize = true;
-            this.withdrawStudentsConditionLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.withdrawStudentsConditionLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.withdrawStudentsConditionLbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.withdrawStudentsConditionLbl.Location = new System.Drawing.Point(52, 186);
-            this.withdrawStudentsConditionLbl.Name = "withdrawStudentsConditionLbl";
-            this.withdrawStudentsConditionLbl.Size = new System.Drawing.Size(183, 17);
-            this.withdrawStudentsConditionLbl.TabIndex = 0;
-            this.withdrawStudentsConditionLbl.Text = "Withdraw Students by Condition";
+            this.deleteAllLbl.AutoSize = true;
+            this.deleteAllLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.deleteAllLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteAllLbl.Location = new System.Drawing.Point(52, 226);
+            this.deleteAllLbl.Name = "deleteAllLbl";
+            this.deleteAllLbl.Size = new System.Drawing.Size(91, 17);
+            this.deleteAllLbl.TabIndex = 0;
+            this.deleteAllLbl.Text = "Delete all Data";
+            this.deleteAllLbl.Click += new System.EventHandler(this.deleteAll_Click);
             // 
             // withdrawStudentLbl
             // 
@@ -268,11 +272,21 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(518, 186);
+            this.label6.Location = new System.Drawing.Point(518, 206);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(38, 17);
             this.label6.TabIndex = 0;
             this.label6.Text = "Links";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(42, 206);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 17);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "DELETE";
             // 
             // label14
             // 
@@ -288,7 +302,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(518, 147);
+            this.label22.Location = new System.Drawing.Point(518, 167);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(83, 17);
             this.label22.TabIndex = 0;
@@ -298,7 +312,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(518, 87);
+            this.label21.Location = new System.Drawing.Point(518, 126);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(110, 17);
             this.label21.TabIndex = 0;
@@ -378,12 +392,24 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // updateTeachersBttn
+            // 
+            this.updateTeachersBttn.AutoSize = true;
+            this.updateTeachersBttn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.updateTeachersBttn.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateTeachersBttn.Location = new System.Drawing.Point(518, 105);
+            this.updateTeachersBttn.Name = "updateTeachersBttn";
+            this.updateTeachersBttn.Size = new System.Drawing.Size(101, 17);
+            this.updateTeachersBttn.TabIndex = 0;
+            this.updateTeachersBttn.Text = "Update Teachers";
+            this.updateTeachersBttn.Click += new System.EventHandler(this.updateTeachersLbl_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(733, 340);
+            this.ClientSize = new System.Drawing.Size(733, 358);
             this.Controls.Add(this.blueBackground);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -415,7 +441,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label withdrawStudentsConditionLbl;
         private System.Windows.Forms.Label readingVennLbl;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label21;
@@ -426,5 +451,8 @@
         private System.Windows.Forms.Label calculatorLinkLbl;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label deleteAllLbl;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label updateTeachersBttn;
     }
 }
