@@ -115,56 +115,12 @@ namespace Recording_Student_Achievements
         string checkSums;
 
         string studentsWellBelow, studentsBelow, studentsAt, studentsAbove, studentsWellAbove;
+        string readingEffortLevel, writingEffortLevel, mathEffortLevel = "";
 
         string connectionStr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;";
 
         public Calculations()
         {
-        }
-
-        //Checked
-        private void readingCalculations()
-        {
-            //using (OleDbConnection conn = new OleDbConnection(connectionStr))
-           // {
-               // Dictionary<string, string> 
-
-           // }
-        }
-
-        //Checked
-        private void writingCalculations()
-        {
-            //Dictionary<string, string> 
-
-        }
-
-        //Checked
-        private void mathCalculations()
-        {
-          //  Dictionary<string, string> 
-
-
-        }
-
-        private void curiosity()
-        {
-            //Dictionary<string, string> 
-        }
-
-        private void creativity()
-        {
-           // Dictionary<string, string> 
-        }
-
-        private void community()
-        {
-            //Dictionary<string, string> 
-        }
-
-        private void sustainability()
-        {
-            //Dictionary<string, string> 
         }
 
         private void lifeSkills()
@@ -373,6 +329,48 @@ namespace Recording_Student_Achievements
             dataSummary = readingNSAchievementCode + "R " + writingNSAchievementCode + "W " + mathNSAchievementCode + "M";
             checkSums = (readingCode + writingCode + mathCode).ToString();
 
+            switch(readingEffort)
+            {
+                case "1":
+                    readingEffortLevel = "Below";
+                    break;
+                case "2":
+                    readingEffortLevel = "At";
+                    break;
+                case "3":
+                    readingEffortLevel = "Above";
+                    break;
+
+            }
+
+            switch (writingEffort)
+            {
+                case "1":
+                    writingEffortLevel = "Below";
+                    break;
+                case "2":
+                    writingEffortLevel = "At";
+                    break;
+                case "3":
+                    writingEffortLevel = "Above";
+                    break;
+
+            }
+
+            switch (mathEffort)
+            {
+                case "1":
+                    mathEffortLevel = "Below";
+                    break;
+                case "2":
+                    mathEffortLevel = "At";
+                    break;
+                case "3":
+                    mathEffortLevel = "Above";
+                    break;
+
+            }
+
             if (readingCode == 1)
             {
                 studentsWellBelow = "1";
@@ -474,22 +472,10 @@ namespace Recording_Student_Achievements
                 }
             }
 
-
-
         }
 
         private void allCalculations()
         {
-            /*
-            readingCalculations();
-            writingCalculations();
-            mathCalculations();
-
-            curiosity();
-            creativity();
-            community();
-            sustainability();
-            */
             lifeSkills();
             humanValuesCount();
             progressCheck();
@@ -667,6 +653,8 @@ namespace Recording_Student_Achievements
                                                         }
                                                     }
 
+                                                    string currentYear = DateTime.Now.Year.ToString();
+
                                                     //Placement Statement
                                                     if (generalDict["nextTeacher"].Equals("Leaving"))
                                                     {
@@ -678,7 +666,7 @@ namespace Recording_Student_Achievements
                                                     else
                                                     {
                                                         generalDict["placementStatement"] = "Over the past few months we have given very careful consideration to "
-                                                            + firstName + "’s classroom placement for 2016. As a school we endeavour to personalise "
+                                                            + firstName + "’s classroom placement for " + currentYear + ". As a school we endeavour to personalise "
                                                             + "the learning for each student. We take into account academic performance, friendship "
                                                             + " groups and a number of other factors when placing a student in a particular class.";
                                                     }
@@ -691,7 +679,7 @@ namespace Recording_Student_Achievements
                                                     }
                                                     else
                                                     {
-                                                        generalDict["nextRoomStatement"] = "In 2016 " + firstName + "  will be in Room " + nextRoom + "  with " + generalDict["nextTeacher"];
+                                                        generalDict["nextRoomStatement"] = "In " + currentYear + ", " + firstName + "  will be in Room " + nextRoom + "  with " + generalDict["nextTeacher"];
                                                     }
 
                                                     // He/She
@@ -1690,101 +1678,7 @@ namespace Recording_Student_Achievements
                                                         }
 
                                                     }
-                                                    /*
-                                                    string insert1 = "INSERT INTO [Calculated] (";
-                                                    int i = 0;
-                                                    Dictionary<string, string> dict = createDictionary(NSN);
-                                                    int len = dict.Count / 2;
-                                                    foreach (KeyValuePair<string, string> pair in dict)
-                                                    {
-                                                        string field = pair.Key;
-                                                        string value = pair.Value;
-
-                                                        if (i == (len - 1))
-                                                        {
-                                                            insert1 += "[" + field + "])";
-                                                            break;
-                                                        }
-                                                        else
-                                                        {
-                                                            insert1 += "[" + field + "], ";
-                                                        }
-
-                                                        i++;
-                                                    }
-                                                    insert1 += " VALUES (";
-                                                    i = 0;
-                                                    foreach (KeyValuePair<string, string> pair in dict)
-                                                    {
-                                                        string field = pair.Key;
-                                                        string value = pair.Value;
-
-                                                        if (i == len - 1)
-                                                        {
-                                                            insert1 += "'" + value + "')";
-                                                            break;
-                                                        }
-                                                        else
-                                                        {
-                                                            insert1 += "'" + value + "', ";
-                                                        }
-
-                                                        i++;
-                                                    }
-
-
-                                                    // Generate Update statement
-                                                    string update = "UPDATE [Calculated] SET";
-                                                    int currentPos = i;
-                                                    len = dict.Count;
-                                                    foreach (KeyValuePair<string, string> pair in dict.Skip(len / 2 - 1))
-                                                    {
-                                                        string field = pair.Key;
-                                                        string value = pair.Value;
-
-                                                        if (i == len - 1)
-                                                        {
-                                                            update += "[" + field + "] = '" + value + "' ";
-                                                            break;
-                                                        }
-                                                        else
-                                                        {
-                                                            update += "[" + field + "] = '" + value + "', ";
-                                                        }
-                                                        //Console.WriteLine(field);
-                                                        i++;
-                                                    }
-                                                    update += " WHERE [NSN] = '" + NSN + "';";
-
-                                                    //Console.WriteLine("Insert1: " + insert1);
-                                                    Console.WriteLine("Update: " + update);
-                                                    Dictionary<string, string> insertCmd = new Dictionary<string, string>();
-                                                    insertCmd["insert1"] = insert1;
-                                                    insertCmd["insert2"] = update;
-                                                    foreach (KeyValuePair<string, string> pair in insertCmd)
-                                                    {
-                                                        try
-                                                        {
-                                                            string v = pair.Key;
-
-                                                            using (OleDbCommand dbCmd = new OleDbCommand(pair.Value, conn))
-                                                            {
-                                                                int rowAffected = dbCmd.ExecuteNonQuery();
-
-                                                                if (rowAffected < 1)
-                                                                {
-                                                                    MessageBox.Show("Inserting Data Failed");
-                                                                }
-
-                                                            }
-
-                                                        }
-                                                        catch (Exception e)
-                                                        {
-                                                            MessageBox.Show("Error at " + pair.Key + "\n\n Here is message " + e);
-                                                        }
-                                                    }
-                                                    */
+                                                    
                                                 }
                                             }
                                         }
@@ -1846,6 +1740,7 @@ namespace Recording_Student_Achievements
             dict["Reading NS Progress OTJ"] = readingDict["readingNSProgressOTJ"];
             dict["Reading NS Progress Comp"] = readingDict["readingNSProgressComp"];
             dict["Reading NS Progress OTJ vs Comp"] = readingDict["readingNSProgressOTJVsComp"];
+            dict["Reading Effort Level"] = readingEffortLevel;
             dict["Reading Effort Statement"] = readingDict["readingEffortStatement"];
             dict["Reading Comment Length"] = readingDict["readingCommentLength"];
 
@@ -1870,6 +1765,7 @@ namespace Recording_Student_Achievements
             dict["Writing NS Progress OTJ"] = writingDict["writingNSProgressOTJ"];
             dict["Writing NS Progress Comp"] = writingDict["writingNSProgressComp"];
             dict["Writing NS Progress OTJ vs Comp"] = writingDict["writingNSProgressOTJVsComp"];
+            dict["Writing Effort Level"] = writingEffortLevel;
             dict["Writing Effort Statement"] = writingDict["writingEffortStatement"];
             dict["Writing Comment Length"] = writingDict["writingCommentLength"];
 
@@ -1894,6 +1790,7 @@ namespace Recording_Student_Achievements
             dict["Math NS Progress OTJ"] = mathDict["mathNSProgressOTJ"];
             dict["Math NS Progress Comp"] = mathDict["mathNSProgressComp"];
             dict["Math NS Progress OTJ vs Comp"] = mathDict["mathNSProgressOTJVsComp"];
+            dict["Math Effort Level"] = mathEffortLevel;
             dict["Math Effort Statement"] = mathDict["mathEffortStatement"];
             dict["Math Comment Length"] = mathDict["mathCommentLength"];
             dict["Math Final Grade"] = mathDict["mathFinalGrade"];
