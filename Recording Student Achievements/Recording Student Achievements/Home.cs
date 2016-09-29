@@ -21,6 +21,8 @@ namespace Recording_Student_Achievements
             ir = new IndividualReport();
             uc = new UpdateCalculations();
             sa = new StudentAchievement();
+            da = new DeleteAll();
+            ut = new UpdateTeachers();
         }
 
 
@@ -104,7 +106,7 @@ namespace Recording_Student_Achievements
         private StudentAchievement sa;
         private void geekItLbl_Click(object sender, EventArgs e)
         {
-            this.Close();
+            
             sa = new StudentAchievement();
             if (!sa.Visible && !sa.IsDisposed)
             {
@@ -118,28 +120,56 @@ namespace Recording_Student_Achievements
                 sa = new StudentAchievement();
                 sa.Show();
             }
-
+            Visible = false;
             sa.geekLbl_Click(sender, e);
+
         }
 
         private void addAssessmentLbl_Click(object sender, EventArgs e)
         {
-            this.Close();
+            /*
+             * 
+             */
+        }
 
-            if (!sa.Visible && !sa.IsDisposed)
+        private DeleteAll da;
+        private void deleteAll_Click(object sender, EventArgs e)
+        {
+
+            if (!da.Visible && !da.IsDisposed)
             {
-                // Add the message
-                sa.Show();
+                // Add the mesdage
+                da.Show();
 
 
             }
             // Can now add more than one student (previously crashed if tried to add another student)
-            if (sa.IsDisposed)
+            if (da.IsDisposed)
             {
-                sa = new StudentAchievement();
-                sa.Show();
+                da = new DeleteAll();
+                da.Show();
             }
-            sa.label2_Click(sender, e);
+        }
+
+        
+
+        private UpdateTeachers ut;
+        private void updateTeachersLbl_Click(object sender, EventArgs e)
+        {
+
+            if (!ut.Visible && !ut.IsDisposed)
+            {
+                // Add the mesutge
+                ut.Show();
+
+
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ut.IsDisposed)
+            {
+                ut = new UpdateTeachers();
+                ut.Show();
+            }
         }
 
     }
