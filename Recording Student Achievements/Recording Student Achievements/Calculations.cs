@@ -1695,16 +1695,6 @@ namespace Recording_Student_Achievements
             }
         }
 
-
-
-        private void updateTable(string NSN)
-        {
-
-
-
-
-        }
-
         private Dictionary<string, string> createDictionary(string NSN)
         {
             Dictionary<string, string> dict = new Dictionary<string, string>();

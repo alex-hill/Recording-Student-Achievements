@@ -47,8 +47,37 @@ namespace Recording_Student_Achievements
         private void saveBttn_Click(object sender, EventArgs e)
         {
             teacherGrid.EndEdit(); //very important step
-            da.Update(dataTable);
-            MessageBox.Show("Updated");
+            string update = "UPDATE [Room]"
+                +"SET [Room No] = @room, [Current Teacher] = @current, [Next Year Teacher] = @next "
+                + "WHERE [Room No] = @room";
+            using (OleDbConnection conn = new OleDbConnection(connectionStr))
+            {
+                try
+                {
+                    conn.Open();
+                    foreach(DataRow r in dataTable.Rows)
+                    {
+                        OleDbCommand cmd = conn.CreateCommand();
+                        cmd.CommandText = update;
+                        cmd.Parameters.AddWithValue("@room", r["Room No"]);
+                        cmd.Parameters.AddWithValue("@current", r["Current Teacher"]);
+                        cmd.Parameters.AddWithValue("@next", r["Next Year Teacher"]);
+                        int rowAffected = cmd.ExecuteNonQuery();
+                        if (rowAffected < 1)
+                        {
+                            MessageBox.Show("Deleting Table failed");
+                        }
+                        
+                    }
+                    MessageBox.Show("Successfully Updated");
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex);
+                }
+            }
+           
             DataBind();
            
         }
