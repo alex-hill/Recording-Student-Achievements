@@ -400,21 +400,21 @@ namespace Recording_Student_Achievements
 
                         + "FROM (((((((([Student] s "
 
-                        + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+                        + "LEFT OUTER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
-                        + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN]) "
+                        + "LEFT OUTER JOIN [Reading] r ON r.[NSN] = s.[NSN]) "
 
-                        + "INNER JOIN [Writing] w ON w.[NSN] = s.[NSN]) "
+                        + "LEFT OUTER JOIN [Writing] w ON w.[NSN] = s.[NSN]) "
 
-                        + "INNER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
+                        + "LEFT OUTER JOIN [Mathematics] m ON m.[NSN] = s.[NSN]) "
 
-                        + "INNER JOIN [Calculated] c ON c.[NSN] = s.[NSN])"
+                        + "LEFT OUTER JOIN [Calculated] c ON c.[NSN] = s.[NSN])"
 
-                        + "INNER JOIN [Cultural Activities] ca ON ca.[NSN] = s.[NSN]) "
+                        + "LEFT OUTER JOIN [Cultural Activities] ca ON ca.[NSN] = s.[NSN]) "
                         
-                        + "INNER JOIN [Sports Activities] sa ON sa.[NSN] = s.[NSN]) "
+                        + "LEFT OUTER JOIN [Sports Activities] sa ON sa.[NSN] = s.[NSN]) "
 
-                        + "INNER JOIN [Extra Activities] ea ON ea.[NSN] = s.[NSN]);";
+                        + "LEFT OUTER JOIN [Extra Activities] ea ON ea.[NSN] = s.[NSN]);";
                         
                     using (OleDbCommand allStudents = new OleDbCommand(query, conn))
                     {
