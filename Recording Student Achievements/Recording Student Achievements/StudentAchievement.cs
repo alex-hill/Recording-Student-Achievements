@@ -543,7 +543,6 @@ namespace Recording_Student_Achievements
         }
 
         AddAssessment add;
-        private void label2_Click(object sender, EventArgs e)
         public void label2_Click(object sender, EventArgs e)
         {
             if (!add.Visible && !add.IsDisposed)
@@ -959,7 +958,8 @@ namespace Recording_Student_Achievements
             }
         }
         private AddExtra ae;
-        private void addExtra_Click(object sender, EventArgs e)
+
+        private void addExtra_Click_1(object sender, EventArgs e)
         {
             if (!ae.Visible && !ae.IsDisposed)
             {
