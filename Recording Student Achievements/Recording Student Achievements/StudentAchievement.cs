@@ -368,8 +368,7 @@ namespace Recording_Student_Achievements
                         + "[c.LST] AS `Using Language, Symbols & Text`, "
                         + "[c.LST Percent] AS `SLT Percentage`, "
                         + "[c.LST Statement] AS `SLT Statement`, "
-                        + "[se.General Comment] AS `General Comment`, "
-                        + "[c.General Comment Length] AS `General Comment Length`, "
+                        
                         
                         + "[c.Reading Final Code] AS `Final Reading Code`, "
                         + "[c.Writing Initial Grade] AS `Writing Initial Grade`, "
@@ -377,8 +376,6 @@ namespace Recording_Student_Achievements
                         + "[c.Writing Overall Grade] AS `Final Writing Code`, "
                         + "[c.Math Initial Grade] AS `Initial Grade (Maths)`, "
                         + "[c.Math Final Grade] AS `Final OTJ Grade (Maths)`, "
-                        + "[c.Overall Academic] AS `Overall Academic`, "
-                        + "[c.Teachers Cup] AS `Teachers Cup`, "
                         + "[se.Honesty] AS `Honesty`, "
                         + "[se.Excellence] AS `Excellence`, "
                         + "[se.Aroha] AS `Aroha`, "
@@ -395,7 +392,11 @@ namespace Recording_Student_Achievements
                         + "[c.Students Below] AS `Students Well Below or Below Expectation`, "
                         + "[c.Students At] AS `Students At Expectation`, "
                         + "[c.Students Above] AS `Students Above or Well Above Expectation`, "
-                        + "[c.Students Well Above] AS `Students Well Above Expectation` "
+                        + "[c.Students Well Above] AS `Students Well Above Expectation`, "
+                        + "[se.General Comment] AS `General Comment`, "
+                        + "[c.General Comment Length] AS `General Comment Length`, "
+                        + "[c.Overall Academic] AS `Overall Academic`, "
+                        + "[c.Teachers Cup] AS `Teachers Cup` "
 
                         + "FROM (((((((([Student] s "
 
@@ -425,7 +426,78 @@ namespace Recording_Student_Achievements
                                 dataGridView1.DataSource = dt;
                                 dataGridView1.Columns["Surname"].Frozen = true;
                                 dataGridView1.Columns["First Name"].Frozen = true;
-                                
+
+                                int i = 0;
+                                foreach(DataColumn c in dt.Columns)
+                                {
+
+                                    DataGridViewCellStyle style = new DataGridViewCellStyle();
+                                    style.Alignment =
+                                        DataGridViewContentAlignment.MiddleCenter;
+                                    style.ForeColor = Color.Black;
+                                    
+
+                                    DataGridViewColumn dataGridViewColumn = dataGridView1.Columns[c.ColumnName];
+                                    //Student
+                                    if (i < 23)
+                                    {
+                                        style.BackColor = Color.LightGreen;
+                                    }
+                                    // Reading
+                                    else if (i < 52)
+                                    {
+                                        style.BackColor = Color.Orange;
+                                    }
+                                    //Writing
+                                    else if (i < 80)
+                                    {
+                                        style.BackColor = Color.LightSkyBlue;
+                                    }
+                                    //Math
+                                    else if (i < 119)
+                                    {
+                                        style.BackColor = Color.LightSteelBlue;
+                                    }
+                                    //Activities
+                                    else if (i < 156)
+                                    {
+                                        dataGridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                                        style.BackColor = Color.LightGray;
+                                    }
+                                    //Cur, cre, sus
+                                    else if (i < 220)
+                                    {
+                                        style.BackColor = Color.Yellow;
+                                    }
+                                    // Final Reading
+                                    else if (i < 220)
+                                    {
+                                        style.BackColor = Color.Orange;
+                                    }
+                                    // Final Writing
+                                    else if (i < 222)
+                                    {
+                                        style.BackColor = Color.LightSkyBlue;
+                                    }
+                                    // Final Math
+                                    else if (i < 225)
+                                    {
+                                        style.BackColor = Color.LightSteelBlue;
+                                    }
+                                    // Human
+                                    else if (i < 232)
+                                    {
+                                        style.BackColor = Color.LightPink;
+                                    }
+                                    // Summary
+                                    else
+                                    {
+                                        style.BackColor = Color.MediumPurple;
+                                    }
+                                    dataGridViewColumn.DefaultCellStyle.ApplyStyle(style);
+                                    dataGridViewColumn.HeaderCell.Style = style;
+                                    i++;
+                                }
                             }
                         }
                     }
@@ -915,7 +987,8 @@ namespace Recording_Student_Achievements
                                 dataGridView1.DataSource = dt;
                                 dataGridView1.Columns["Surname"].Frozen = true;
                                 dataGridView1.Columns["First Name"].Frozen = true;
-                                
+
+
                             }
                         }
                     }
@@ -926,6 +999,8 @@ namespace Recording_Student_Achievements
                 }
             }
         }
+
+
 
         private IndividualReport ir;
         private void generateIndiReportLbl_Click(object sender, EventArgs e)
