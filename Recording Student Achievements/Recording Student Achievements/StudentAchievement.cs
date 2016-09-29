@@ -33,6 +33,10 @@ namespace Recording_Student_Achievements
             ws = new WithdrawStudent();
             ir = new IndividualReport();
             uc = new UpdateCalculations();
+            bs = new BatchStudents();
+            add = new AddAssessment();
+            aa = new addActivites();
+            ae = new AddExtra();
             topBar.Paint += new PaintEventHandler(topBar_Paint);
             topBar.Refresh();
             quickMenuBar.Paint += new PaintEventHandler(quickMenuBar_Paint);
@@ -145,8 +149,8 @@ namespace Recording_Student_Achievements
             using (OleDbConnection conn = new OleDbConnection(connectionStr))
             {
 
-                try
-                {
+            try
+            {
                     conn.Open();
                     string query = "SELECT "
                         + "[s.NSN] AS `NSN`, "
@@ -368,8 +372,8 @@ namespace Recording_Student_Achievements
                         + "[c.LST] AS `Using Language, Symbols & Text`, "
                         + "[c.LST Percent] AS `SLT Percentage`, "
                         + "[c.LST Statement] AS `SLT Statement`, "
-                        
-                        
+
+
                         + "[c.Reading Final Code] AS `Final Reading Code`, "
                         + "[c.Writing Initial Grade] AS `Writing Initial Grade`, "
                         + "[c.Writing Final Grade] AS `Writing Final Grade`, "
@@ -417,7 +421,7 @@ namespace Recording_Student_Achievements
                         + "LEFT OUTER JOIN [Extra Activities] ea ON ea.[NSN] = s.[NSN]);";
                         
                     using (OleDbCommand allStudents = new OleDbCommand(query, conn))
-                    {
+                {
                         using (OleDbDataAdapter da = new OleDbDataAdapter(allStudents))
                         {
                             using (DataTable dt = new DataTable())
@@ -429,7 +433,7 @@ namespace Recording_Student_Achievements
 
                                 int i = 0;
                                 foreach(DataColumn c in dt.Columns)
-                                {
+                    {
 
                                     DataGridViewCellStyle style = new DataGridViewCellStyle();
                                     style.Alignment =
@@ -440,38 +444,38 @@ namespace Recording_Student_Achievements
                                     DataGridViewColumn dataGridViewColumn = dataGridView1.Columns[c.ColumnName];
                                     //Student
                                     if (i < 23)
-                                    {
+                        {
                                         style.BackColor = Color.LightGreen;
                                     }
                                     // Reading
                                     else if (i < 52)
-                                    {
+                            {
                                         style.BackColor = Color.Orange;
                                     }
                                     //Writing
                                     else if (i < 80)
-                                    {
+                            {
                                         style.BackColor = Color.LightSkyBlue;
-                                    }
+                            }
                                     //Math
                                     else if (i < 119)
                                     {
                                         style.BackColor = Color.LightSteelBlue;
-                                    }
+                        }
                                     //Activities
                                     else if (i < 156)
                                     {
                                         dataGridViewColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
                                         style.BackColor = Color.LightGray;
-                                    }
+                    }
                                     //Cur, cre, sus
                                     else if (i < 220)
                                     {
                                         style.BackColor = Color.Yellow;
-                                    }
+                }
                                     // Final Reading
                                     else if (i < 220)
-                                    {
+                {
                                         style.BackColor = Color.Orange;
                                     }
                                     // Final Writing
@@ -500,10 +504,10 @@ namespace Recording_Student_Achievements
                                 }
                             }
                         }
-                    }
                 }
-                catch (Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
                     MessageBox.Show("Error: " +  ex);
                 }
             }
@@ -538,167 +542,21 @@ namespace Recording_Student_Achievements
             System.Diagnostics.Process.Start("http://www.laingholm.school.nz/Site/Home.ashx");
         }
 
+        AddAssessment add;
         public void label2_Click(object sender, EventArgs e)
         {
-            try
+            if (!add.Visible && !add.IsDisposed)
             {
-                connection.Open();
-                // Create an instance of the open file dialog box.
-                OpenFileDialog openFileDialog1 = new OpenFileDialog();
-
-                // Set filter options and filter index.
-                openFileDialog1.Filter = "Excel Files (.csv)|*.csv|All Files (*.*)|*.*";
-                openFileDialog1.FilterIndex = 1;
-
-                openFileDialog1.Multiselect = true;
-
-                // Process input if the user clicked OK.
-                if (openFileDialog1.ShowDialog() == DialogResult.OK)
-                {
-                    // Open the selected file to read.
-                    System.IO.Stream fileStream = openFileDialog1.OpenFile();
-
-                    using (System.IO.StreamReader reader = new System.IO.StreamReader(fileStream))
-                    {
-                        String student = reader.ReadLine();
-
-                        String[] values = student.Split(',');
-
-                        String subject = "";
-
-                        if (values[0].Equals("READING"))
-                        {
-                            subject = "Reading";
-                        }
-                        else if (values[0].Equals("Writing"))
-                        {
-                            subject = "Writing";
-                        }
-                        else if (values[0].Equals("Mathematics"))
-                        {
-                            subject = "Mathematics";
+                add.Show();
                         }
 
-                        student = reader.ReadLine();
-                        values = student.Split(',');
-
-                        String roomNo = values[1];
-
-                        reader.ReadLine();
-                        reader.ReadLine();
-                        reader.ReadLine();
-                        reader.ReadLine();
-                        reader.ReadLine();
-
-                        while (!reader.EndOfStream)
-                        {
-                            student = reader.ReadLine();
-                            values = student.Split(',');
-
-
-                            Console.WriteLine(values[0] + "\n" + values[1]);
-                            OleDbCommand cmd = new OleDbCommand("SELECT [NSN] FROM Student WHERE [Preferred Name] LIKE '" + values[0] + "' AND [Family Name Legal] LIKE '" + values[1] + "';");
-
-                            cmd.Connection = connection;
-
-                            OleDbDataReader returnValue = cmd.ExecuteReader();
-
-                            returnValue.Read();
-                            Console.WriteLine(subject);
-                            Console.WriteLine(returnValue.GetValue(0));
-                            int nsn = Int32.Parse((String)returnValue.GetValue(0));
-
-                            returnValue.Close();
-
-                            Console.WriteLine(nsn);
-
-
-
-                            //Insert statements for the different subjects; reading, mathematics, and writing
-                            switch (subject)
-                            {
-
-                                case "Reading":
-                                    for (int i = 0; i < values.Length; ++i)
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ir.IsDisposed)
                                     {
-                                        Console.WriteLine("values[" + i + "] = " + values[i]);
+                add = new AddAssessment();
+                add.Show();
                                     }
-                                    cmd = new OleDbCommand("INSERT INTO Reading (NSN, [Initial Assessment Method], [Initial Assessment Level], [Final Assessment Method], [Final Assessment Level], [NS Achievement Code], " +
-                                        "[NS Progress], Effort, Comment) VALUES(" + nsn + ", [" + values[2] + "], [" + values[3] + "], [" + values[4] + "], [" + values[5] + "], [" + values[6] + "], [" + values[7] + "], [" + values[8] + "], [" + values[9] + "]);");
-
-                                    cmd.Parameters.AddWithValue("@NSN", values[2]);
-                                    cmd.Parameters.AddWithValue("@Initial Assessment Method", values[3]);
-                                    cmd.Parameters.AddWithValue("@Initial Assessment Level", values[4]);
-                                    cmd.Parameters.AddWithValue("@Final Assessment Method", values[5]);
-                                    cmd.Parameters.AddWithValue("@Final Assessment Level", values[6]);
-                                    cmd.Parameters.AddWithValue("@NS Achievement Code", values[7]);
-                                    cmd.Parameters.AddWithValue("@NS Progress", values[8]);
-                                    cmd.Parameters.AddWithValue("@Effort", values[9]);
-                                    // cmd.Parameters.AddWithValue("@Comment", values[10]);
-                                    break;
-                                case "Writing":
-                                    cmd = new OleDbCommand("INSERT INTO Writing (NSN, [Initial Assessment], [Initial Assessment], [Overall Assessment], [NS Code], [NS Achievement Code], " +
-                                        "[NS Progress], Effort, Comment) VALUES(" + nsn + ", [" + values[2] + "], [" + values[3] + "], [" + values[4] + "], [" + values[5] + "], [" + values[6] + "], [" + values[7] + "], [" + values[8] + "], [" + values[9] + "]);");
-
-                                    cmd.Parameters.AddWithValue("@NSN", nsn);
-                                    cmd.Parameters.AddWithValue("@Initial Assessment", values[2]);
-                                    cmd.Parameters.AddWithValue("@Final Assessment", values[3]);
-                                    cmd.Parameters.AddWithValue("@Overall Assessment", values[4]);
-                                    cmd.Parameters.AddWithValue("NS Code", values[5]);
-                                    cmd.Parameters.AddWithValue("NS Achievement Code", values[6]);
-                                    cmd.Parameters.AddWithValue("NS Progress", values[7]);
-                                    cmd.Parameters.AddWithValue("Effort", values[8]);
-                                    cmd.Parameters.AddWithValue("Comment", values[9]);
-                                    break;
-                                case "Mathematics":
-                                    cmd = new OleDbCommand("INSERT INTO Mathematics (NSN, [Initial Assessment Method], [Initial Assessment Level], [Final Assessment Method], [Final Assessment Level], [Overall Assessment], " +
-                                        "[NS Progress], Effort, Comment) VALUES(" + nsn + ", [" + values[2] + "], [" + values[3] + "], [" + values[4] + "], [" + values[5] + "], [" + values[6] + "], [" + values[7] + "], [" + values[8] + "], [" + values[9] + "]);");
-
-                                    cmd.Parameters.AddWithValue("@NSN", nsn);
-                                    cmd.Parameters.AddWithValue("@Initial Assessment Method", values[2]);
-                                    cmd.Parameters.AddWithValue("@Initial Assessment Level", values[3]);
-                                    cmd.Parameters.AddWithValue("@Final Assessment Method", values[4]);
-                                    cmd.Parameters.AddWithValue("Final Assessment Level", values[5]);
-                                    cmd.Parameters.AddWithValue("Overall Assessment", values[6]);
-                                    cmd.Parameters.AddWithValue("NS Progress", values[7]);
-                                    cmd.Parameters.AddWithValue("Effort", values[8]);
-                                    cmd.Parameters.AddWithValue("Comment", values[9]);
-                                    break;
-
-
-                            }
-                            cmd.Connection = connection;
-                            cmd.ExecuteNonQuery();
-                            MessageBox.Show("Data Added");
-
-                            //Displaying the data that was just added
-                            string query = "SELECT * FROM " + subject + " INNER JOIN Student ON (" + subject + ".[NSN] = Student.[NSN]) WHERE Student.[Room Number] = '" + roomNo + "';";
-
-                            cmd.CommandText = query;
-
-                            geekItPnl.Show();
-                            geekItPnl.Visible = true;
-
-
-                            OleDbDataAdapter da = new OleDbDataAdapter(cmd);
-                            DataTable dt = new DataTable();
-                            da.Fill(dt);
-                            dataGridView1.DataSource = dt;
-
                         }
-
-
-                    }
-                    fileStream.Close();
-                }
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
-                connection.Close();
-            }
-        }
 
         private void search_Click(object sender, EventArgs e)
         {
@@ -707,8 +565,8 @@ namespace Recording_Student_Achievements
             using (OleDbConnection conn = new OleDbConnection(connectionStr))
             {
 
-                try
-                {
+            try
+            {
                     conn.Open();
                     string query = "SELECT "
                         + "[s.NSN] AS `NSN`, "
@@ -960,7 +818,7 @@ namespace Recording_Student_Achievements
 
                         + "FROM (((((((([Student] s "
 
-                        + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
+                    + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "
 
                         + "INNER JOIN [Reading] r ON r.[NSN] = s.[NSN]) "
 
@@ -975,7 +833,7 @@ namespace Recording_Student_Achievements
                         + "INNER JOIN [Sports Activities] sa ON sa.[NSN] = s.[NSN]) "
 
                         + "INNER JOIN [Extra Activities] ea ON ea.[NSN] = s.[NSN])"
-                        + "WHERE se.NSN = '" + Int32.Parse(searchByNSN.Text) + "';";
+                    + "WHERE se.NSN = '" + Int32.Parse(searchByNSN.Text) + "';";
 
                     using (OleDbCommand allStudents = new OleDbCommand(query, conn))
                     {
@@ -983,18 +841,18 @@ namespace Recording_Student_Achievements
                         {
                             using (DataTable dt = new DataTable())
                             {
-                                da.Fill(dt);
-                                dataGridView1.DataSource = dt;
+                da.Fill(dt);
+                dataGridView1.DataSource = dt;
                                 dataGridView1.Columns["Surname"].Frozen = true;
-                                dataGridView1.Columns["First Name"].Frozen = true;
+                dataGridView1.Columns["First Name"].Frozen = true;
 
 
                             }
                         }
                     }
-                }
-                catch (Exception ex)
-                {
+            }
+            catch (Exception ex)
+            {
                     MessageBox.Show("Error: " + ex);
                 }
             }
@@ -1068,6 +926,50 @@ namespace Recording_Student_Achievements
         private void summaryBttn_Click(object sender, EventArgs e)
         {
             dataGridView1.FirstDisplayedScrollingColumnIndex = 156;
+        }
+
+        private BatchStudents bs;
+        private void addBatchStudents_Click(object sender, EventArgs e)
+        {
+            if (!bs.Visible && !bs.IsDisposed)
+            {
+                // Add the message
+                bs.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (bs.IsDisposed)
+            {
+                bs = new BatchStudents();
+                bs.Show();
+            }
+        }
+
+        private addActivites aa;
+        private void addActivites_Click(object sender, EventArgs e)
+        {
+            if(!aa.Visible && !aa.IsDisposed)
+            {
+                aa.Show();
+            }
+            if(aa.IsDisposed)
+            {
+                aa = new addActivites();
+                aa.Show();
+            }
+        }
+        private AddExtra ae;
+
+        private void addExtra_Click_1(object sender, EventArgs e)
+        {
+            if (!ae.Visible && !ae.IsDisposed)
+            {
+                ae.Show();
+            }
+            if (ae.IsDisposed)
+            {
+                ae = new AddExtra();
+                ae.Show();
+            }
         }
     }
 }

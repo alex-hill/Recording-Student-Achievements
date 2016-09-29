@@ -51,10 +51,10 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(4, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(317, 32);
+            this.label1.Size = new System.Drawing.Size(320, 48);
             this.label1.TabIndex = 8;
-            this.label1.Text = "The button below will update all the calculated fields \n(ie. Reading Initial Stat" +
-    "ement, Placement Statement). \nThis process may take a few minutes";
+            this.label1.Text = "The button below will update all the calculated fields \r\n(ie. Reading Initial Sta" +
+    "tement, Placement Statement). \r\nThis process may take a few minutes";
             // 
             // button1
             // 
