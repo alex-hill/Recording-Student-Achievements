@@ -52,6 +52,8 @@ namespace Recording_Student_Achievements
             this.topBar = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.quickMenuBar = new System.Windows.Forms.Panel();
+            this.addActivites = new System.Windows.Forms.Label();
+            this.addBatchStudents = new System.Windows.Forms.Label();
             this.calculateLbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblGeekIt = new System.Windows.Forms.Label();
@@ -61,6 +63,7 @@ namespace Recording_Student_Achievements
             this.mathBttn = new System.Windows.Forms.Label();
             this.activitiesBttn = new System.Windows.Forms.Label();
             this.summaryBttn = new System.Windows.Forms.Label();
+            this.addExtra = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.geekItPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -205,7 +208,7 @@ namespace Recording_Student_Achievements
             this.withdrawStudentLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.withdrawStudentLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.withdrawStudentLbl.ForeColor = System.Drawing.Color.White;
-            this.withdrawStudentLbl.Location = new System.Drawing.Point(47, 108);
+            this.withdrawStudentLbl.Location = new System.Drawing.Point(47, 128);
             this.withdrawStudentLbl.Name = "withdrawStudentLbl";
             this.withdrawStudentLbl.Size = new System.Drawing.Size(98, 16);
             this.withdrawStudentLbl.TabIndex = 3;
@@ -218,11 +221,11 @@ namespace Recording_Student_Achievements
             this.assessmentAdd.BackColor = System.Drawing.Color.Transparent;
             this.assessmentAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.assessmentAdd.ForeColor = System.Drawing.Color.White;
-            this.assessmentAdd.Location = new System.Drawing.Point(46, 128);
+            this.assessmentAdd.Location = new System.Drawing.Point(46, 148);
             this.assessmentAdd.Name = "assessmentAdd";
-            this.assessmentAdd.Size = new System.Drawing.Size(83, 13);
+            this.assessmentAdd.Size = new System.Drawing.Size(85, 13);
             this.assessmentAdd.TabIndex = 8;
-            this.assessmentAdd.Text = "Add Assignment";
+            this.assessmentAdd.Text = "Add Assessment";
             this.assessmentAdd.Click += new System.EventHandler(this.label2_Click);
             // 
             // geekLbl
@@ -232,7 +235,7 @@ namespace Recording_Student_Achievements
             this.geekLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.geekLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.geekLbl.ForeColor = System.Drawing.Color.White;
-            this.geekLbl.Location = new System.Drawing.Point(46, 148);
+            this.geekLbl.Location = new System.Drawing.Point(46, 208);
             this.geekLbl.Name = "geekLbl";
             this.geekLbl.Size = new System.Drawing.Size(44, 16);
             this.geekLbl.TabIndex = 3;
@@ -245,7 +248,7 @@ namespace Recording_Student_Achievements
             this.reportLbl.BackColor = System.Drawing.Color.Transparent;
             this.reportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportLbl.ForeColor = System.Drawing.Color.White;
-            this.reportLbl.Location = new System.Drawing.Point(27, 183);
+            this.reportLbl.Location = new System.Drawing.Point(27, 248);
             this.reportLbl.Name = "reportLbl";
             this.reportLbl.Size = new System.Drawing.Size(60, 20);
             this.reportLbl.TabIndex = 3;
@@ -258,7 +261,7 @@ namespace Recording_Student_Achievements
             this.generateIndiReportLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.generateIndiReportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generateIndiReportLbl.ForeColor = System.Drawing.Color.White;
-            this.generateIndiReportLbl.Location = new System.Drawing.Point(46, 203);
+            this.generateIndiReportLbl.Location = new System.Drawing.Point(46, 268);
             this.generateIndiReportLbl.Name = "generateIndiReportLbl";
             this.generateIndiReportLbl.Size = new System.Drawing.Size(92, 16);
             this.generateIndiReportLbl.TabIndex = 3;
@@ -297,6 +300,9 @@ namespace Recording_Student_Achievements
             this.quickMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.quickMenuBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.quickMenuBar.Controls.Add(this.addExtra);
+            this.quickMenuBar.Controls.Add(this.addActivites);
+            this.quickMenuBar.Controls.Add(this.addBatchStudents);
             this.quickMenuBar.Controls.Add(this.menuLbl);
             this.quickMenuBar.Controls.Add(this.newStudentLbl);
             this.quickMenuBar.Controls.Add(this.homeLbl);
@@ -312,6 +318,34 @@ namespace Recording_Student_Achievements
             this.quickMenuBar.Size = new System.Drawing.Size(153, 618);
             this.quickMenuBar.TabIndex = 10;
             // 
+            // addActivites
+            // 
+            this.addActivites.AutoSize = true;
+            this.addActivites.BackColor = System.Drawing.Color.Transparent;
+            this.addActivites.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addActivites.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addActivites.ForeColor = System.Drawing.Color.White;
+            this.addActivites.Location = new System.Drawing.Point(46, 168);
+            this.addActivites.Name = "addActivites";
+            this.addActivites.Size = new System.Drawing.Size(73, 16);
+            this.addActivites.TabIndex = 10;
+            this.addActivites.Text = "Add Activites";
+            this.addActivites.Click += new System.EventHandler(this.addActivites_Click);
+            // 
+            // addBatchStudents
+            // 
+            this.addBatchStudents.AutoSize = true;
+            this.addBatchStudents.BackColor = System.Drawing.Color.Transparent;
+            this.addBatchStudents.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.addBatchStudents.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBatchStudents.ForeColor = System.Drawing.Color.White;
+            this.addBatchStudents.Location = new System.Drawing.Point(47, 108);
+            this.addBatchStudents.Name = "addBatchStudents";
+            this.addBatchStudents.Size = new System.Drawing.Size(74, 16);
+            this.addBatchStudents.TabIndex = 9;
+            this.addBatchStudents.Text = "Add Students";
+            this.addBatchStudents.Click += new System.EventHandler(this.addBatchStudents_Click);
+            // 
             // calculateLbl
             // 
             this.calculateLbl.AutoSize = true;
@@ -319,7 +353,7 @@ namespace Recording_Student_Achievements
             this.calculateLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.calculateLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.calculateLbl.ForeColor = System.Drawing.Color.White;
-            this.calculateLbl.Location = new System.Drawing.Point(46, 168);
+            this.calculateLbl.Location = new System.Drawing.Point(46, 228);
             this.calculateLbl.Name = "calculateLbl";
             this.calculateLbl.Size = new System.Drawing.Size(107, 16);
             this.calculateLbl.TabIndex = 3;
@@ -490,6 +524,9 @@ namespace Recording_Student_Achievements
         private Label summaryBttn;
         private Label mathBttn;
         private Label activitiesBttn;
+        private Label addBatchStudents;
+        private Label addActivites;
+        private Label addExtra;
     }
 }
 

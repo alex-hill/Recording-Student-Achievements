@@ -331,7 +331,7 @@ namespace Recording_Student_Achievements
                                 else if (field.Code.Text.Contains("Reading Effort At"))
                                 {
                                     field.Select();
-                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    if (drr["Reading Effort Level"].Equals("3"))
                                     {
                                         application.Selection.TypeText("X");
                                     }
@@ -343,7 +343,7 @@ namespace Recording_Student_Achievements
                                 else if (field.Code.Text.Contains("Reading Effort Above"))
                                 {
                                     field.Select();
-                                    if (drr["Reading Effort Level"].Equals("2"))
+                                    if (drr["Reading Effort Level"].Equals("4"))
                                     {
                                         application.Selection.TypeText("X");
                                     }

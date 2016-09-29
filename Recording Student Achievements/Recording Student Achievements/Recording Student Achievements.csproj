@@ -72,6 +72,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addActivites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addActivites.Designer.cs">
+      <DependentUpon>addActivites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddAssessment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAssessment.Designer.cs">
+      <DependentUpon>AddAssessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddExtra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddExtra.Designer.cs">
+      <DependentUpon>AddExtra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BatchStudents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BatchStudents.Designer.cs">
+      <DependentUpon>BatchStudents.cs</DependentUpon>
+    </Compile>
     <Compile Include="Calculations.cs" />
     <Compile Include="CustomRectangle.cs" />
     <Compile Include="DeleteAll.cs">
@@ -132,6 +156,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addActivites.resx">
+      <DependentUpon>addActivites.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddAssessment.resx">
+      <DependentUpon>AddAssessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddExtra.resx">
+      <DependentUpon>AddExtra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BatchStudents.resx">
+      <DependentUpon>BatchStudents.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateCalculations.resx">
       <DependentUpon>UpdateCalculations.cs</DependentUpon>
