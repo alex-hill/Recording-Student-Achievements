@@ -35,6 +35,7 @@ namespace Recording_Student_Achievements
             bs = new BatchStudents();
             add = new AddAssessment();
             aa = new addActivites();
+            ae = new AddExtra();
             topBar.Paint += new PaintEventHandler(topBar_Paint);
             topBar.Refresh();
             quickMenuBar.Paint += new PaintEventHandler(quickMenuBar_Paint);
@@ -390,6 +391,19 @@ namespace Recording_Student_Achievements
             {
                 aa = new addActivites();
                 aa.Show();
+            }
+        }
+        private AddExtra ae;
+        private void addExtra_Click(object sender, EventArgs e)
+        {
+            if (!ae.Visible && !ae.IsDisposed)
+            {
+                ae.Show();
+            }
+            if (ae.IsDisposed)
+            {
+                ae = new AddExtra();
+                ae.Show();
             }
         }
     }
