@@ -72,6 +72,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.updateAss);
             this.Controls.Add(this.addAss);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddAssessment";
             this.Text = "Add Assessments";
             this.ResumeLayout(false);

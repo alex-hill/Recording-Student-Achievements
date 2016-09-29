@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addActivites));
             this.addActivities = new System.Windows.Forms.Button();
             this.updateActivities = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // addActivities
@@ -52,16 +54,29 @@
             this.updateActivities.UseVisualStyleBackColor = true;
             this.updateActivities.Click += new System.EventHandler(this.updateActivities_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(272, 160);
+            this.label1.TabIndex = 2;
+            this.label1.Text = resources.GetString("label1.Text");
+            // 
             // addActivites
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.updateActivities);
             this.Controls.Add(this.addActivities);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "addActivites";
             this.Text = "Add Activites";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -69,5 +84,6 @@
 
         private System.Windows.Forms.Button addActivities;
         private System.Windows.Forms.Button updateActivities;
+        private System.Windows.Forms.Label label1;
     }
 }
