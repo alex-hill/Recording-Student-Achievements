@@ -16,7 +16,9 @@ namespace Recording_Student_Achievements
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StudentAchievement());
+
+            Application.Run(new Home());
+
         }
     }
 }

@@ -51,11 +51,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Icon 3.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject />
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -98,6 +98,18 @@
     </Compile>
     <Compile Include="Calculations.cs" />
     <Compile Include="CustomRectangle.cs" />
+    <Compile Include="DeleteAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteAll.Designer.cs">
+      <DependentUpon>DeleteAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
     <Compile Include="UpdateCalculations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -127,12 +139,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UpdateTeachers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdateTeachers.Designer.cs">
+      <DependentUpon>UpdateTeachers.cs</DependentUpon>
+    </Compile>
     <Compile Include="WithdrawStudent.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="WithdrawStudent.Designer.cs">
       <DependentUpon>WithdrawStudent.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DeleteAll.resx">
+      <DependentUpon>DeleteAll.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="addActivites.resx">
       <DependentUpon>addActivites.cs</DependentUpon>
     </EmbeddedResource>
@@ -167,6 +191,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UpdateTeachers.resx">
+      <DependentUpon>UpdateTeachers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WithdrawStudent.resx">
       <DependentUpon>WithdrawStudent.cs</DependentUpon>
     </EmbeddedResource>
@@ -206,6 +233,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Drawables\Logo.png" />
+    <None Include="Drawables\Icon.png" />
+    <Content Include="Icon 3.ico" />
     <Content Include="Table.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
