@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.OleDb;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -106,7 +108,7 @@ namespace Recording_Student_Achievements
         private StudentAchievement sa;
         private void geekItLbl_Click(object sender, EventArgs e)
         {
-            
+
             sa = new StudentAchievement();
             if (!sa.Visible && !sa.IsDisposed)
             {
@@ -151,7 +153,7 @@ namespace Recording_Student_Achievements
             }
         }
 
-        
+
 
         private UpdateTeachers ut;
         private void updateTeachersLbl_Click(object sender, EventArgs e)
@@ -172,5 +174,9 @@ namespace Recording_Student_Achievements
             }
         }
 
+        private void readingVennLbl_Click(object sender, EventArgs e)
+        {
+            VennDiagram.makeVenn();
+        }
     }
 }
