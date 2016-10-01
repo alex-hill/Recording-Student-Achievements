@@ -36,6 +36,7 @@
             this.calculatorLinkLbl = new System.Windows.Forms.Label();
             this.addAssessmentLbl = new System.Windows.Forms.Label();
             this.batchReportLbl = new System.Windows.Forms.Label();
+            this.updateTeachersBttn = new System.Windows.Forms.Label();
             this.updateDatabaseLbl = new System.Windows.Forms.Label();
             this.geekItLbl = new System.Windows.Forms.Label();
             this.withdrawAllStudentLbl = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.updateTeachersBttn = new System.Windows.Forms.Label();
             this.blueBackground.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -162,6 +162,18 @@
             this.batchReportLbl.TabIndex = 0;
             this.batchReportLbl.Text = "Generate batch of reports";
             // 
+            // updateTeachersBttn
+            // 
+            this.updateTeachersBttn.AutoSize = true;
+            this.updateTeachersBttn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.updateTeachersBttn.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.updateTeachersBttn.Location = new System.Drawing.Point(518, 105);
+            this.updateTeachersBttn.Name = "updateTeachersBttn";
+            this.updateTeachersBttn.Size = new System.Drawing.Size(101, 17);
+            this.updateTeachersBttn.TabIndex = 0;
+            this.updateTeachersBttn.Text = "Update Teachers";
+            this.updateTeachersBttn.Click += new System.EventHandler(this.updateTeachersLbl_Click);
+            // 
             // updateDatabaseLbl
             // 
             this.updateDatabaseLbl.AutoSize = true;
@@ -233,6 +245,7 @@
             this.readingVennLbl.Size = new System.Drawing.Size(141, 17);
             this.readingVennLbl.TabIndex = 0;
             this.readingVennLbl.Text = "Generate Excel Diagram";
+            this.readingVennLbl.Click += new System.EventHandler(this.readingVennLbl_Click);
             // 
             // addStudentCSVLbl
             // 
@@ -391,18 +404,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(65, 65);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
-            // 
-            // updateTeachersBttn
-            // 
-            this.updateTeachersBttn.AutoSize = true;
-            this.updateTeachersBttn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.updateTeachersBttn.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateTeachersBttn.Location = new System.Drawing.Point(518, 105);
-            this.updateTeachersBttn.Name = "updateTeachersBttn";
-            this.updateTeachersBttn.Size = new System.Drawing.Size(101, 17);
-            this.updateTeachersBttn.TabIndex = 0;
-            this.updateTeachersBttn.Text = "Update Teachers";
-            this.updateTeachersBttn.Click += new System.EventHandler(this.updateTeachersLbl_Click);
             // 
             // Home
             // 
