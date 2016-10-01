@@ -556,7 +556,7 @@ namespace Recording_Student_Achievements
                 add = new AddAssessment();
                 add.Show();
                                     }
-                        }
+        }
 
         private void search_Click(object sender, EventArgs e)
         {
@@ -975,6 +975,11 @@ namespace Recording_Student_Achievements
         private void venn_Click(object sender, EventArgs e)
         {
             VennDiagram.makeVenn();
+        }
+
+        private void quickMenuBar_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

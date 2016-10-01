@@ -206,7 +206,6 @@
             this.familyNameAlias.Name = "familyNameAlias";
             this.familyNameAlias.Size = new System.Drawing.Size(96, 20);
             this.familyNameAlias.TabIndex = 0;
-            this.familyNameAlias.Text = "a";
             // 
             // familyNameLegal
             // 
@@ -214,7 +213,6 @@
             this.familyNameLegal.Name = "familyNameLegal";
             this.familyNameLegal.Size = new System.Drawing.Size(96, 20);
             this.familyNameLegal.TabIndex = 1;
-            this.familyNameLegal.Text = "b";
             // 
             // firstNameLegal
             // 
@@ -222,7 +220,6 @@
             this.firstNameLegal.Name = "firstNameLegal";
             this.firstNameLegal.Size = new System.Drawing.Size(96, 20);
             this.firstNameLegal.TabIndex = 2;
-            this.firstNameLegal.Text = "c";
             // 
             // preferredName
             // 
@@ -230,7 +227,6 @@
             this.preferredName.Name = "preferredName";
             this.preferredName.Size = new System.Drawing.Size(96, 20);
             this.preferredName.TabIndex = 3;
-            this.preferredName.Text = "d";
             // 
             // dateOfBirth
             // 
@@ -238,7 +234,7 @@
             this.dateOfBirth.Name = "dateOfBirth";
             this.dateOfBirth.Size = new System.Drawing.Size(96, 20);
             this.dateOfBirth.TabIndex = 6;
-            this.dateOfBirth.Text = "20/07/1995";
+            this.dateOfBirth.Text = "DD/MM/YYYY";
             // 
             // startDate
             // 
@@ -246,7 +242,7 @@
             this.startDate.Name = "startDate";
             this.startDate.Size = new System.Drawing.Size(96, 20);
             this.startDate.TabIndex = 11;
-            this.startDate.Text = "1/08/2016";
+            this.startDate.Text = "DD/MM/YYYY";
             // 
             // yearLevelCombo
             // 
@@ -338,7 +334,6 @@
             this.nsn.Name = "nsn";
             this.nsn.Size = new System.Drawing.Size(96, 20);
             this.nsn.TabIndex = 8;
-            this.nsn.Text = "1000000000";
             // 
             // fundingLevelCombo
             // 

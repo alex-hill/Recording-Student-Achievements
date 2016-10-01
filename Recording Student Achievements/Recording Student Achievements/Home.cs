@@ -25,6 +25,10 @@ namespace Recording_Student_Achievements
             sa = new StudentAchievement();
             da = new DeleteAll();
             ut = new UpdateTeachers();
+            aa = new addActivites();
+            bs = new BatchStudents();
+            ae = new AddExtra();
+            add = new AddAssessment();
         }
 
 
@@ -46,21 +50,6 @@ namespace Recording_Student_Achievements
 
         private WithdrawStudent ws;
         private void withdrawStudentLbl_Click(object sender, EventArgs e)
-        {
-            if (!ws.Visible && !ws.IsDisposed)
-            {
-                // Add the message
-                ws.Show();
-            }
-            // Can now add more than one student (previously crashed if tried to add another student)
-            if (ws.IsDisposed)
-            {
-                ws = new WithdrawStudent();
-                ws.Show();
-            }
-        }
-
-        private void withdrawAllStudentLbl_Click(object sender, EventArgs e)
         {
             if (!ws.Visible && !ws.IsDisposed)
             {
@@ -126,12 +115,20 @@ namespace Recording_Student_Achievements
             sa.geekLbl_Click(sender, e);
 
         }
-
+        private AddAssessment add;
         private void addAssessmentLbl_Click(object sender, EventArgs e)
         {
-            /*
-             * 
-             */
+            if (!add.Visible && !add.IsDisposed)
+            {
+                add.Show();
+            }
+
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (ir.IsDisposed)
+            {
+                add = new AddAssessment();
+                add.Show();
+            }
         }
 
         private DeleteAll da;
@@ -177,6 +174,52 @@ namespace Recording_Student_Achievements
         private void readingVennLbl_Click(object sender, EventArgs e)
         {
             VennDiagram.makeVenn();
+        }
+
+        private BatchStudents bs;
+        private void addStudentCSVLbl_Click(object sender, EventArgs e)
+        {
+            if (!bs.Visible && !bs.IsDisposed)
+            {
+                // Add the message
+                bs.Show();
+            }
+            // Can now add more than one student (previously crashed if tried to add another student)
+            if (bs.IsDisposed)
+            {
+                bs = new BatchStudents();
+                bs.Show();
+            }
+        }
+
+        private AddExtra ae;
+
+        private void extraLbl_Click(object sender, EventArgs e)
+        {
+            if (!ae.Visible && !ae.IsDisposed)
+            {
+                ae.Show();
+            }
+            if (ae.IsDisposed)
+            {
+                ae = new AddExtra();
+                ae.Show();
+            }
+        }
+
+
+        private addActivites aa;
+        private void activitiesLbl_Click(object sender, EventArgs e)
+        {
+            if (!aa.Visible && !aa.IsDisposed)
+            {
+                aa.Show();
+            }
+            if (aa.IsDisposed)
+            {
+                aa = new addActivites();
+                aa.Show();
+            }
         }
     }
 }

@@ -59,12 +59,12 @@ namespace Recording_Student_Achievements
             this.topBar = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.quickMenuBar = new System.Windows.Forms.Panel();
+            this.venn = new System.Windows.Forms.Label();
             this.addExtra = new System.Windows.Forms.Label();
             this.addActivites = new System.Windows.Forms.Label();
             this.addBatchStudents = new System.Windows.Forms.Label();
             this.calculateLbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.venn = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.geekItPnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -396,7 +396,7 @@ namespace Recording_Student_Achievements
             // 
             this.quickMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.quickMenuBar.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.quickMenuBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.quickMenuBar.Controls.Add(this.venn);
             this.quickMenuBar.Controls.Add(this.addExtra);
             this.quickMenuBar.Controls.Add(this.addActivites);
@@ -415,6 +415,21 @@ namespace Recording_Student_Achievements
             this.quickMenuBar.Name = "quickMenuBar";
             this.quickMenuBar.Size = new System.Drawing.Size(153, 618);
             this.quickMenuBar.TabIndex = 10;
+            this.quickMenuBar.Paint += new System.Windows.Forms.PaintEventHandler(this.quickMenuBar_Paint_1);
+            // 
+            // venn
+            // 
+            this.venn.AutoSize = true;
+            this.venn.BackColor = System.Drawing.Color.Transparent;
+            this.venn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.venn.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.venn.ForeColor = System.Drawing.Color.White;
+            this.venn.Location = new System.Drawing.Point(39, 361);
+            this.venn.Name = "venn";
+            this.venn.Size = new System.Drawing.Size(126, 16);
+            this.venn.TabIndex = 11;
+            this.venn.Text = "Produce Venn Diagrams";
+            this.venn.Click += new System.EventHandler(this.venn_Click);
             // 
             // addExtra
             // 
@@ -482,20 +497,6 @@ namespace Recording_Student_Achievements
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1363, 651);
             this.panel2.TabIndex = 11;
-            // 
-            // venn
-            // 
-            this.venn.AutoSize = true;
-            this.venn.BackColor = System.Drawing.Color.Transparent;
-            this.venn.ForeColor = System.Drawing.Color.White;
-            this.venn.Cursor = Cursors.Hand;
-            this.venn.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.venn.Location = new System.Drawing.Point(39, 361);
-            this.venn.Name = "venn";
-            this.venn.Size = new System.Drawing.Size(122, 13);
-            this.venn.TabIndex = 11;
-            this.venn.Text = "Produce Venn Diagrams";
-            this.venn.Click += new System.EventHandler(this.venn_Click);
             // 
             // StudentAchievement
             // 
