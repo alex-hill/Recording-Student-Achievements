@@ -971,5 +971,10 @@ namespace Recording_Student_Achievements
                 ae.Show();
             }
         }
+
+        private void venn_Click(object sender, EventArgs e)
+        {
+            VennDiagram.makeVenn();
+        }
     }
 }

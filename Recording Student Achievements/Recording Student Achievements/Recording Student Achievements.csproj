@@ -145,6 +145,7 @@
     <Compile Include="UpdateTeachers.Designer.cs">
       <DependentUpon>UpdateTeachers.cs</DependentUpon>
     </Compile>
+    <Compile Include="VennDiagram.cs" />
     <Compile Include="WithdrawStudent.cs">
       <SubType>Form</SubType>
     </Compile>
