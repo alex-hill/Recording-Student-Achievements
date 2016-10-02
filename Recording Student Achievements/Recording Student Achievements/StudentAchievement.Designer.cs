@@ -399,7 +399,7 @@ namespace Recording_Student_Achievements
             // 
             this.quickMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.quickMenuBar.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.quickMenuBar.BackColor = System.Drawing.Color.White;
             this.quickMenuBar.Controls.Add(this.venn);
             this.quickMenuBar.Controls.Add(this.addExtra);
             this.quickMenuBar.Controls.Add(this.addActivites);
