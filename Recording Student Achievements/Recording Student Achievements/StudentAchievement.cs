@@ -37,6 +37,8 @@ namespace Recording_Student_Achievements
             add = new AddAssessment();
             aa = new addActivites();
             ae = new AddExtra();
+            ut = new UpdateTeachers();
+            da = new DeleteAll();
             topBar.Paint += new PaintEventHandler(topBar_Paint);
             topBar.Refresh();
             quickMenuBar.Paint += new PaintEventHandler(quickMenuBar_Paint);
@@ -976,6 +978,39 @@ namespace Recording_Student_Achievements
         {
             VennDiagram.makeVenn();
         }
+
+        
+
+         private UpdateTeachers ut;
+
+        private void updateTeachers_Click(object sender, EventArgs e)
+        {
+            if (!ut.Visible && !ae.IsDisposed)
+            {
+                ut.Show();
+            }
+            if (ut.IsDisposed)
+            {
+                ut = new UpdateTeachers();
+                ut.Show();
+            }
+        }
+
+        private DeleteAll da;
+
+        private void deleteAll_Click(object sender, EventArgs e)
+        {
+            if (!da.Visible && !ae.IsDisposed)
+            {
+                da.Show();
+            }
+            if (da.IsDisposed)
+            {
+                da = new DeleteAll();
+                da.Show();
+            }
+        }
+
 
         private void quickMenuBar_Paint_1(object sender, PaintEventArgs e)
         {
