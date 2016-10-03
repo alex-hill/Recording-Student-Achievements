@@ -38,6 +38,13 @@ namespace Recording_Student_Achievements
                     using (System.IO.StreamReader reader = new System.IO.StreamReader(fileStream))
                     {
                         reader.ReadLine();
+
+                        int next = reader.Peek();
+
+                        if (next == -1)
+                        {
+                            throw new FormatException("The file you tried to import is empty. Please check and try again.");
+                        }
                         while(reader.EndOfStream != true)
                         {
                             String line = reader.ReadLine();
@@ -127,8 +134,100 @@ namespace Recording_Student_Achievements
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error");
+                connection.Close();
             }
+
+            this.Dispose();
+        }
+
+        private void update_Click(object sender, EventArgs e)
+        {
+            string[] columns = new string[] {"NSN",
+                "Family Name Alias",
+                "Family Name Legal",
+                "First Name Legal",
+                "Preferred name",
+                "Year Level",
+                "Room Number",
+                "Gender",
+                "Date of Birth",
+                "Ethnicity",
+                "Funding Year Level",
+                "Start Date"};
+            try
+            {
+                connection.Open();
+                // Create an instance of the open file dialog box.
+                OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+                // Set filter options and filter index.
+                openFileDialog1.Filter = "CSV Files (.csv)|*.csv|All Files (*.*)|*.*";
+                openFileDialog1.FilterIndex = 1;
+
+                openFileDialog1.Multiselect = false;
+
+                // Process input if the user clicked OK.
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    // Open the selected file to read.
+                    System.IO.Stream fileStream = openFileDialog1.OpenFile();
+
+                    using (System.IO.StreamReader reader = new System.IO.StreamReader(fileStream))
+                    {
+                        String student = reader.ReadLine();
+
+
+                        String[] values = student.Split(',');
+                        OleDbCommand cmd = new OleDbCommand();
+                        values = student.Split(',');
+
+                        int next = reader.Peek();
+
+                        if (next == -1)
+                        {
+                            throw new FormatException("The file you tried to import is empty. Please check and try again.");
+                        }
+
+                        while (!reader.EndOfStream)
+                        {
+
+                            //values[0] = nsn
+                            for (int i = 1; i < values.Length; i++)
+                            {
+                                if (!values[i].Equals(""))
+                                {
+                                    cmd = new OleDbCommand();
+                                    cmd.CommandText = "UPDATE [Student] SET [" + columns[i] + "] = '" + values[i] + "' WHERE NSN = '" + values[0] + "';";
+
+                                    Console.WriteLine("Executing: " + cmd.CommandText.ToString());
+                                    cmd.Connection = connection;
+                                    cmd.ExecuteNonQuery();
+                                }
+                            }
+                            student = reader.ReadLine();
+                            values = student.Split(',');
+
+
+
+
+
+                        }
+                        MessageBox.Show("Data Updated");
+
+
+                    }
+                    fileStream.Close();
+                }
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+                connection.Close();
+            }
+
+            this.Dispose();
         }
         
     }

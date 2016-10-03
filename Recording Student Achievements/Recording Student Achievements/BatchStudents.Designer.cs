@@ -33,11 +33,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.update = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // importStudents
             // 
-            this.importStudents.Location = new System.Drawing.Point(65, 129);
+            this.importStudents.Location = new System.Drawing.Point(65, 97);
             this.importStudents.Name = "importStudents";
             this.importStudents.Size = new System.Drawing.Size(148, 56);
             this.importStudents.TabIndex = 0;
@@ -80,6 +81,16 @@
             this.label3.Text = "Warning: This will fail if you are trying to add \r\nstudents that already exist in" +
     " the database";
             // 
+            // update
+            // 
+            this.update.Location = new System.Drawing.Point(65, 159);
+            this.update.Name = "update";
+            this.update.Size = new System.Drawing.Size(148, 56);
+            this.update.TabIndex = 0;
+            this.update.Text = "Update Students";
+            this.update.UseVisualStyleBackColor = true;
+            this.update.Click += new System.EventHandler(this.update_Click);
+            // 
             // BatchStudents
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -88,6 +99,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.update);
             this.Controls.Add(this.importStudents);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BatchStudents";
@@ -103,5 +115,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button update;
     }
 }

@@ -93,6 +93,13 @@ namespace Recording_Student_Achievements
                             cmd.CommandType = CommandType.Text;
                             cmd.Connection = connection;
 
+                            int next = reader.Peek();
+
+                            if (next == -1)
+                            {
+                                throw new FormatException("The file you tried to import is empty. Please check and try again.");
+                            }
+
                             cmd.Parameters.Add("@NSN", OleDbType.VarChar).Value = values[0];
                             cmd.Parameters.Add("@Next Room Number", OleDbType.VarChar).Value = values[1];
                             cmd.Parameters.Add("@School Next Year Level", OleDbType.VarChar).Value = values[2];
@@ -153,7 +160,8 @@ namespace Recording_Student_Achievements
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error");
+                connection.Close();
             }
             this.Dispose();
         }
@@ -185,6 +193,13 @@ namespace Recording_Student_Achievements
                         String[] values = student.Split(',');
                         OleDbCommand cmd = new OleDbCommand();
                         values = student.Split(',');
+
+                        int next = reader.Peek();
+
+                        if (next == -1)
+                        {
+                            throw new FormatException("The file you tried to import is empty. Please check and try again.");
+                        }
 
 
                         while (!reader.EndOfStream)
