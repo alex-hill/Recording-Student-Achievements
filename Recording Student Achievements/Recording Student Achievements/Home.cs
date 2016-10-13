@@ -111,7 +111,6 @@ namespace Recording_Student_Achievements
                 sa = new StudentAchievement();
                 sa.Show();
             }
-            Visible = false;
             sa.geekLbl_Click(sender, e);
 
         }

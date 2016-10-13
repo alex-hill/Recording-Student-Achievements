@@ -39,30 +39,52 @@
             this.updateTeachersBttn = new System.Windows.Forms.Label();
             this.updateDatabaseLbl = new System.Windows.Forms.Label();
             this.geekItLbl = new System.Windows.Forms.Label();
-            this.deleteAllLbl = new System.Windows.Forms.Label();
             this.withdrawStudentLbl = new System.Windows.Forms.Label();
             this.vennDiagramLbl = new System.Windows.Forms.Label();
             this.addStudentCSVLbl = new System.Windows.Forms.Label();
             this.singleReportLbl = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.newStudentLbl = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label8 = new System.Windows.Forms.Label();
             extraLbl = new System.Windows.Forms.Label();
             activitiesLbl = new System.Windows.Forms.Label();
             this.blueBackground.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // extraLbl
+            // 
+            extraLbl.AutoSize = true;
+            extraLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            extraLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            extraLbl.Location = new System.Drawing.Point(70, 177);
+            extraLbl.Name = "extraLbl";
+            extraLbl.Size = new System.Drawing.Size(124, 17);
+            extraLbl.TabIndex = 0;
+            extraLbl.Text = "More Student Details";
+            extraLbl.Click += new System.EventHandler(this.extraLbl_Click);
+            // 
+            // activitiesLbl
+            // 
+            activitiesLbl.AutoSize = true;
+            activitiesLbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            activitiesLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            activitiesLbl.Location = new System.Drawing.Point(70, 199);
+            activitiesLbl.Name = "activitiesLbl";
+            activitiesLbl.Size = new System.Drawing.Size(179, 17);
+            activitiesLbl.TabIndex = 0;
+            activitiesLbl.Text = "Student Extra Curricular Details";
+            activitiesLbl.Click += new System.EventHandler(this.activitiesLbl_Click);
             // 
             // blueBackground
             // 
@@ -74,13 +96,11 @@
             this.blueBackground.Controls.Add(this.updateTeachersBttn);
             this.blueBackground.Controls.Add(this.updateDatabaseLbl);
             this.blueBackground.Controls.Add(this.geekItLbl);
-            this.blueBackground.Controls.Add(this.deleteAllLbl);
             this.blueBackground.Controls.Add(this.withdrawStudentLbl);
             this.blueBackground.Controls.Add(this.vennDiagramLbl);
             this.blueBackground.Controls.Add(this.addStudentCSVLbl);
             this.blueBackground.Controls.Add(this.singleReportLbl);
             this.blueBackground.Controls.Add(this.label16);
-            this.blueBackground.Controls.Add(this.label7);
             this.blueBackground.Controls.Add(this.label14);
             this.blueBackground.Controls.Add(this.label22);
             this.blueBackground.Controls.Add(this.label21);
@@ -174,18 +194,6 @@
             this.geekItLbl.Text = "Geek It";
             this.geekItLbl.Click += new System.EventHandler(this.geekItLbl_Click);
             // 
-            // deleteAllLbl
-            // 
-            this.deleteAllLbl.AutoSize = true;
-            this.deleteAllLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.deleteAllLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.deleteAllLbl.Location = new System.Drawing.Point(313, 240);
-            this.deleteAllLbl.Name = "deleteAllLbl";
-            this.deleteAllLbl.Size = new System.Drawing.Size(91, 17);
-            this.deleteAllLbl.TabIndex = 0;
-            this.deleteAllLbl.Text = "Delete all Data";
-            this.deleteAllLbl.Click += new System.EventHandler(this.deleteAll_Click);
-            // 
             // withdrawStudentLbl
             // 
             this.withdrawStudentLbl.AutoSize = true;
@@ -246,16 +254,6 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "Venn Diagram";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(303, 220);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 17);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "DELETE";
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -295,6 +293,16 @@
             this.label15.Size = new System.Drawing.Size(54, 17);
             this.label15.TabIndex = 0;
             this.label15.Text = "Reports";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(52, 131);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(118, 17);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Import Data by CSV";
             // 
             // label13
             // 
@@ -360,40 +368,6 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // extraLbl
-            // 
-            extraLbl.AutoSize = true;
-            extraLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            extraLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            extraLbl.Location = new System.Drawing.Point(70, 177);
-            extraLbl.Name = "extraLbl";
-            extraLbl.Size = new System.Drawing.Size(124, 17);
-            extraLbl.TabIndex = 0;
-            extraLbl.Text = "More Student Details";
-            extraLbl.Click += new System.EventHandler(this.extraLbl_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Franklin Gothic Demi", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(52, 131);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(118, 17);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Import Data by CSV";
-            // 
-            // activitiesLbl
-            // 
-            activitiesLbl.AutoSize = true;
-            activitiesLbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            activitiesLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            activitiesLbl.Location = new System.Drawing.Point(70, 199);
-            activitiesLbl.Name = "activitiesLbl";
-            activitiesLbl.Size = new System.Drawing.Size(179, 17);
-            activitiesLbl.TabIndex = 0;
-            activitiesLbl.Text = "Student Extra Curricular Details";
-            activitiesLbl.Click += new System.EventHandler(this.activitiesLbl_Click);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,8 +411,6 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label deleteAllLbl;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label updateTeachersBttn;
         private System.Windows.Forms.Label label8;
     }

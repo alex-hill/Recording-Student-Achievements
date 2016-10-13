@@ -124,7 +124,7 @@ namespace Recording_Student_Achievements
                 string exeDir = Directory.GetCurrentDirectory();
                 Console.WriteLine(exeDir);
 
-                Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(Path.GetFullPath(Path.Combine(exeDir, @"..\..\Venn Diagram Template.xlsx")));
+                Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(Path.GetFullPath(Path.Combine(exeDir, @"..\..\R&D\\Recording Student Achievements\Venn Diagram Template.xlsx")));
                 excelApp.Visible = true;
 
                 Sheets excelSheets = excelWorkbook.Worksheets;

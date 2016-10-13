@@ -80,10 +80,25 @@ namespace Recording_Student_Achievements
         private void removeAll_click(object sender, EventArgs e)
         {
 
-            OleDbCommand cmd = new OleDbCommand("DELETE FROM Student;");
-
+            OleDbCommand cmd = new OleDbCommand("DELETE FROM Student");
+            OleDbCommand cmd1 = new OleDbCommand("DELETE FROM Calculated");
+            OleDbCommand cmd2 = new OleDbCommand("DELETE FROM [Student Extra]");
+            OleDbCommand cmd3 = new OleDbCommand("DELETE FROM Reading");
+            OleDbCommand cmd4 = new OleDbCommand("DELETE FROM Writing");
+            OleDbCommand cmd5 = new OleDbCommand("DELETE FROM Mathematics");
+            OleDbCommand cmd6 = new OleDbCommand("DELETE FROM [Cultural Activities]");
+            OleDbCommand cmd7 = new OleDbCommand("DELETE FROM [Extra Activities]");
+            OleDbCommand cmd8 = new OleDbCommand("DELETE FROM [Sports Activities]");
             // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;
+            cmd1.Connection = conn;
+            cmd2.Connection = conn;
+            cmd3.Connection = conn;
+            cmd4.Connection = conn;
+            cmd5.Connection = conn;
+            cmd6.Connection = conn;
+            cmd7.Connection = conn;
+            cmd8.Connection = conn;
 
             conn.Open();
 
@@ -93,6 +108,14 @@ namespace Recording_Student_Achievements
                 try
                 {
                     cmd.ExecuteNonQuery();
+                    cmd1.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
+                    cmd3.ExecuteNonQuery();
+                    cmd4.ExecuteNonQuery();
+                    cmd5.ExecuteNonQuery();
+                    cmd6.ExecuteNonQuery();
+                    cmd7.ExecuteNonQuery();
+                    cmd8.ExecuteNonQuery();
                     MessageBox.Show("Data Removed");
                     conn.Close();
                 }

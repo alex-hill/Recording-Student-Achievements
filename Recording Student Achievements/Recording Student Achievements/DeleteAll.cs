@@ -30,7 +30,7 @@ namespace Recording_Student_Achievements
                     conn.Open();
                     try
                     {
-                        string query = "DELETE s, se, r, w, m, c, ca, sa, ea"
+                        string query = "DELETE "
                         + "FROM (((((((([Student] s "
 
                         + "INNER JOIN [Student Extra] se ON se.[NSN] = s.[NSN]) "

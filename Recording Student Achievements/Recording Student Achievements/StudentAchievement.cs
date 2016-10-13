@@ -523,6 +523,7 @@ namespace Recording_Student_Achievements
                 // Add the message
                 geekItPnl.Visible = false;
             }
+            this.Dispose();
         }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)

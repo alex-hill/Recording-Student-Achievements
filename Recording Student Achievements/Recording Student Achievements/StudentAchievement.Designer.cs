@@ -64,7 +64,6 @@ namespace Recording_Student_Achievements
             this.addActivites = new System.Windows.Forms.Label();
             this.addBatchStudents = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.calculateLbl = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -348,7 +347,7 @@ namespace Recording_Student_Achievements
             this.reportLbl.BackColor = System.Drawing.Color.Transparent;
             this.reportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.reportLbl.ForeColor = System.Drawing.Color.White;
-            this.reportLbl.Location = new System.Drawing.Point(27, 319);
+            this.reportLbl.Location = new System.Drawing.Point(27, 291);
             this.reportLbl.Name = "reportLbl";
             this.reportLbl.Size = new System.Drawing.Size(59, 20);
             this.reportLbl.TabIndex = 3;
@@ -361,7 +360,7 @@ namespace Recording_Student_Achievements
             this.generateIndiReportLbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.generateIndiReportLbl.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.generateIndiReportLbl.ForeColor = System.Drawing.Color.White;
-            this.generateIndiReportLbl.Location = new System.Drawing.Point(43, 340);
+            this.generateIndiReportLbl.Location = new System.Drawing.Point(43, 310);
             this.generateIndiReportLbl.Name = "generateIndiReportLbl";
             this.generateIndiReportLbl.Size = new System.Drawing.Size(92, 16);
             this.generateIndiReportLbl.TabIndex = 3;
@@ -411,7 +410,6 @@ namespace Recording_Student_Achievements
             this.quickMenuBar.Controls.Add(this.studentLbl);
             this.quickMenuBar.Controls.Add(this.label2);
             this.quickMenuBar.Controls.Add(this.reportLbl);
-            this.quickMenuBar.Controls.Add(this.label4);
             this.quickMenuBar.Controls.Add(this.label3);
             this.quickMenuBar.Controls.Add(this.calculateLbl);
             this.quickMenuBar.Controls.Add(this.geekLbl);
@@ -430,7 +428,7 @@ namespace Recording_Student_Achievements
             this.venn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.venn.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.venn.ForeColor = System.Drawing.Color.White;
-            this.venn.Location = new System.Drawing.Point(43, 361);
+            this.venn.Location = new System.Drawing.Point(43, 331);
             this.venn.Name = "venn";
             this.venn.Size = new System.Drawing.Size(77, 16);
             this.venn.TabIndex = 11;
@@ -490,20 +488,6 @@ namespace Recording_Student_Achievements
             this.label2.Size = new System.Drawing.Size(40, 20);
             this.label2.TabIndex = 3;
             this.label2.Text = "Data";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.label4.Font = new System.Drawing.Font("Franklin Gothic Medium", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(43, 298);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "DELETE ALL";
-            this.label4.Click += new System.EventHandler(this.deleteAll_Click);
             // 
             // label3
             // 
@@ -607,7 +591,6 @@ namespace Recording_Student_Achievements
         private Label venn;
         private Label label2;
         private Label label3;
-        private Label label4;
     }
 }
 
