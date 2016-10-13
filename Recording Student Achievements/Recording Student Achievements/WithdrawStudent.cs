@@ -22,7 +22,7 @@ namespace Recording_Student_Achievements
 
         private void removeOneStudent_click(object sender, EventArgs e)
         {
-            OleDbCommand nsn = new OleDbCommand("SELECT NSN FROM Student WHERE [First Name Legal] LIKE '%" + legalNameTxtBox.Text + "%' AND [Famile Name Legal] LIKE '%" + familyNameTxtBox.Text + "%';");
+            OleDbCommand nsn = new OleDbCommand("SELECT NSN FROM Student WHERE [First Name Legal] LIKE '%" + legalNameTxtBox.Text + "%' AND [Family Name Legal] LIKE '%" + familyNameTxtBox.Text + "%';");
             nsn.Connection = conn;
             OleDbDataReader reader = nsn.ExecuteReader();
             string nssn = reader.GetString(0);

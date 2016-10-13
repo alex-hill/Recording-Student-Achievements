@@ -73,6 +73,13 @@ namespace Recording_Student_Achievements
                         reader.ReadLine();
                         reader.ReadLine();
 
+                        int next = reader.Peek();
+
+                        if (next == -1)
+                        {
+                            throw new FormatException("The file you tried to import is empty. Please check and try again.");
+                        }
+
                         while (!reader.EndOfStream)
                         {
                             student = reader.ReadLine();
@@ -172,7 +179,7 @@ namespace Recording_Student_Achievements
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show(ex.Message, "Error");
                 connection.Close();
             }
         }
@@ -235,6 +242,13 @@ namespace Recording_Student_Achievements
                         String[] values = student.Split(',');
                         OleDbCommand cmd = new OleDbCommand();
                         values = student.Split(',');
+
+                        int next = reader.Peek();
+
+                        if (next == -1)
+                        {
+                            throw new FormatException("The file you tried to import is empty. Please check and try again.");
+                        }
                         
 
                         while (!reader.EndOfStream)
@@ -286,7 +300,7 @@ namespace Recording_Student_Achievements
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
+                MessageBox.Show(ex.Message, "Error");
                 connection.Close();
             }
         }
