@@ -14,7 +14,9 @@ namespace Recording_Student_Achievements
     public partial class DeleteAll : Form
     {
         private OleDbConnection conn = new OleDbConnection();
-        string connectionStr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;";
+
+        string path = "C:\\Users\\Public\\Desktop\\";
+        string connectionStr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Table.accdb;Persist Security Info=False;";
         public DeleteAll()
         {
             InitializeComponent();

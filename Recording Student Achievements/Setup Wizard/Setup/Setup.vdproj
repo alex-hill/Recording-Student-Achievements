@@ -15,8 +15,8 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_536493A94B768ABE724B0F715B2C09FA"
-        "OwnerKey" = "8:_7948FD2920074E14A4677F8C13F60D3A"
+        "MsmKey" = "8:_53CB5574EA05482E90DF9CBF05BED579"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -27,8 +27,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B2D6B67856814650A6A0C60B1E7AB367"
+        "MsmKey" = "8:_B9DBDDC0F7D54CAC92CE04CC426DE201"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EFCE8A279AADA30BD1869C48395B9E92"
+        "OwnerKey" = "8:_7948FD2920074E14A4677F8C13F60D3A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -40,13 +46,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_536493A94B768ABE724B0F715B2C09FA"
+        "OwnerKey" = "8:_7948FD2920074E14A4677F8C13F60D3A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7948FD2920074E14A4677F8C13F60D3A"
+        "OwnerKey" = "8:_EFCE8A279AADA30BD1869C48395B9E92"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -67,6 +73,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -83,6 +105,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:https://www.microsoft.com/en-us/download/details.aspx?id=23734"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.5"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.5 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.5"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -112,23 +150,12 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_536493A94B768ABE724B0F715B2C09FA"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_53CB5574EA05482E90DF9CBF05BED579"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_536493A94B768ABE724B0F715B2C09FA"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\..\\Recording Student Achievements\\Table.accdb"
+            "TargetName" = "8:Table.accdb"
             "Tag" = "8:"
-            "Folder" = "8:_99693B93CE1A4CE8B7C64D1E28B68E43"
+            "Folder" = "8:_C6B5C834AD54439CBED86823251795A8"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -140,13 +167,13 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B2D6B67856814650A6A0C60B1E7AB367"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B9DBDDC0F7D54CAC92CE04CC426DE201"
             {
-            "SourcePath" = "8:..\\..\\Recording Student Achievements\\Table.accdb"
-            "TargetName" = "8:Table.accdb"
+            "SourcePath" = "8:\\\\Mac\\Home\\Downloads\\AccessDatabaseEngine_x64.exe"
+            "TargetName" = "8:AccessDatabaseEngine_x64.exe"
             "Tag" = "8:"
             "Folder" = "8:_99693B93CE1A4CE8B7C64D1E28B68E43"
             "Condition" = "8:"
@@ -161,6 +188,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EFCE8A279AADA30BD1869C48395B9E92"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+                "ScatterAssemblies"
+                {
+                    "_EFCE8A279AADA30BD1869C48395B9E92"
+                    {
+                    "Name" = "8:System.Net.Http.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.Net.Http.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_DEDEE1C608EB487B8520CC3FB8EEB73F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F1722C710E2C4201BE69961EB3D33160"
@@ -198,6 +256,28 @@
             "Property" = "8:ProgramMenuFolder"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_9C023533B9ED4188A129D1EE8A4DAAE1"
+                    {
+                    "Name" = "8:R&D"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_FFC84E349C5A47FAA0152C512F4E1292"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_DEDEE1C608EB487B8520CC3FB8EEB73F"
+                            {
+                            "Name" = "8:Recording Student Achievements"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_E74C9C4D2FC24EEC9CF11DBE8412B7ED"
+                                "Folders"
+                                {
+                                }
+                            }
+                        }
+                    }
                 }
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_99693B93CE1A4CE8B7C64D1E28B68E43"
@@ -240,7 +320,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Recording Student Achievements"
         "ProductCode" = "8:{9DFD5C19-7A3B-41C2-B06C-9FD2D214542D}"
-        "PackageCode" = "8:{D1254D0F-1DA9-4134-9259-0BE91D7FF64D}"
+        "PackageCode" = "8:{5E0E07E3-386A-468F-AD97-7721B9DBF16B}"
         "UpgradeCode" = "8:{BE6E7CD8-4E86-4690-A3FC-48847426AD9A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -360,6 +440,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_00F664A0972A48889F0A5D77FB4E6984"
+            {
+            "Name" = "8:Recording Student Achievements"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:32512"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_7948FD2920074E14A4677F8C13F60D3A"
+            "Folder" = "8:_C6B5C834AD54439CBED86823251795A8"
+            "WorkingFolder" = "8:_99693B93CE1A4CE8B7C64D1E28B68E43"
+            "Icon" = "8:_7948FD2920074E14A4677F8C13F60D3A"
+            "Feature" = "8:"
+            }
         }
         "UserInterface"
         {

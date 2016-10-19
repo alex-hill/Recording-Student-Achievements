@@ -17,7 +17,9 @@ namespace Recording_Student_Achievements
         public NewStudent()
         {
             InitializeComponent();
-            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            string path = "C:\\Users\\Public\\Desktop\\";
+
+            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + "\\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
             //conn.ConnectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\\Table.mdb;Persist Security Info=True"; //For Alex's laptop
         }
 

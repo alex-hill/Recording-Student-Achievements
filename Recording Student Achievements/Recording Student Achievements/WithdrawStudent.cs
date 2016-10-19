@@ -17,11 +17,14 @@ namespace Recording_Student_Achievements
         public WithdrawStudent()
         {
             InitializeComponent();
-            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            string path = "C:\\Users\\Public\\Desktop\\";
+
+            conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + "\\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
         }
 
         private void removeOneStudent_click(object sender, EventArgs e)
         {
+            conn.Open();
             OleDbCommand nsn = new OleDbCommand("SELECT NSN FROM Student WHERE [First Name Legal] LIKE '%" + legalNameTxtBox.Text + "%' AND [Family Name Legal] LIKE '%" + familyNameTxtBox.Text + "%';");
             nsn.Connection = conn;
             OleDbDataReader reader = nsn.ExecuteReader();
@@ -38,8 +41,14 @@ namespace Recording_Student_Achievements
             OleDbCommand cmd8 = new OleDbCommand("DELETE FROM [Sports Activities] WHERE [NSN] LIKE '%" + nssn + "'%");
             // OleDbCommand cmd = new OleDbCommand("INSERT INTO Student (Gender, NSN) VALUES ('" + textBox7.Text + "', '" + textBox10.Text + "');");
             cmd.Connection = conn;
-
-            conn.Open();
+            cmd1.Connection = conn;
+            cmd2.Connection = conn;
+            cmd3.Connection = conn;
+            cmd4.Connection = conn;
+            cmd5.Connection = conn;
+            cmd6.Connection = conn;
+            cmd7.Connection = conn;
+            cmd8.Connection = conn;
 
             if (conn.State == ConnectionState.Open)
             {
@@ -121,7 +130,7 @@ namespace Recording_Student_Achievements
                 }
                 catch (OleDbException ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message + "\n" + ex.StackTrace);
                     conn.Close();
                 }
             }
