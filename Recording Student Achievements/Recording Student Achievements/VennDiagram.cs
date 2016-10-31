@@ -21,7 +21,7 @@ namespace Recording_Student_Achievements
                 OleDbConnection conn = new OleDbConnection();
                 string path = "C:\\Users\\Public\\Desktop\\";
 
-                conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + "\\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+                conn.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
                 conn.Open();
                 OleDbCommand cmd = new OleDbCommand();
                 cmd.Connection = conn;

@@ -16,7 +16,7 @@ namespace Recording_Student_Achievements
         private OleDbConnection conn = new OleDbConnection();
 
         string path = "C:\\Users\\Public\\Desktop\\";
-        string connectionStr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + "\\Table.accdb;Persist Security Info=False;";
+        string connectionStr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;";
         public DeleteAll()
         {
             InitializeComponent();

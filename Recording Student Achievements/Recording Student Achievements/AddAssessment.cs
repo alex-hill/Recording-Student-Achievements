@@ -19,7 +19,7 @@ namespace Recording_Student_Achievements
             InitializeComponent();
             connection = new OleDbConnection();
             string path = "C:\\Users\\Public\\Desktop\\";
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + "\\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
         }
 
         private void addAss_Click(object sender, EventArgs e)

@@ -27,7 +27,7 @@ namespace Recording_Student_Achievements
         string path = "C:\\Users\\Public\\Desktop\\";
 
 
-        string connectionStr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + path + "\\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
+        string connectionStr = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\Table.accdb;Persist Security Info=False;"; //For not Alex's laptop
         public StudentAchievement()
         {
             InitializeComponent();
